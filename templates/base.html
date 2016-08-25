@@ -1,0 +1,15 @@
+<!-- Base html from which other html templates inherit
+        Use this for persistent menu bar, panels etc -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} <!-- title -->{% endblock %}</title>
+</head>
+<body>
+    {% block body %}
+        <!-- body stuff goes in here -->
+    {%  endblock %}
+</body>
+</html>
