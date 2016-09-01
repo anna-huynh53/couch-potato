@@ -9,5 +9,5 @@ def home(request):
 
 
 def lists(request):
-    content = 'Some text'
+    content = 'Some text 2'
     return render(request, '../templates/lists.html', {"bodyContent" : "List stuff"})
