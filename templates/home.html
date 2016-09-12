@@ -2,4 +2,13 @@
 
 {%  block title %}  Movie App Home {% endblock %}
 
-{% block body %} {{ bodyContent }} {% endblock %}
+{% block body %}
+    {{ bodyContent }}
+
+    <form action="/results" method="post">
+        {% csrf_token %}
+        <label for="/results"> Movie: </label>
+        <input id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
+        <input type="submit" value="ok">
+    </form>
+{% endblock %}
