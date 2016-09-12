@@ -38,9 +38,9 @@ def results(request):
         raw_items = content["Search"]
 
         items = []
+        # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
         for item in raw_items:
             items.append(item["Title"] + ' ' + item["Year"])
-
 
         # title = content["Title"]
         # year = content["Year"]
