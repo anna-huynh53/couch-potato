@@ -4,5 +4,9 @@
 
 {% block body %}
     <h1>MOVIE RESULTS</h1>
-    {{ query }}
+    <ul>
+        {% for item in query %}
+        <li>{{ item }}</li>
+    {%  endfor %}
+    </ul>
 {% endblock %}
