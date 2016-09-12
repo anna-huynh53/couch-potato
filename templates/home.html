@@ -3,8 +3,7 @@
 {%  block title %}  Movie App Home {% endblock %}
 
 {% block body %}
-    {{ bodyContent }}
-
+    <h1>{{ bodyContent }}</h1>
 
     <form action="/results" method="post"> <!-- "/results" refers to url we are redirected to -->
         {% csrf_token %} <!-- Some security thing don't worry about it -->

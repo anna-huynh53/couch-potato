@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
-{%  block title %}  Movie App Home {% endblock %}
+{%  block title %} Results {% endblock %}
 
 {% block body %}
-    <h1>MOVIE RESULTS</h1>
+    <h1>Results</h1>
     <ul>
-        {% for item in query %}
-        <li>{{ item }}</li>
-    {%  endfor %}
+        {% for movie in query %}
+            <!-- GET request with ID as the imdbID that was returned from the API -->
+            <li><a href="/results?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</li>
+        {%  endfor %}
     </ul>
 {% endblock %}

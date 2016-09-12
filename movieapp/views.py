@@ -16,7 +16,7 @@ def home(request):
     else:
         form = SearchForm
 
-    content = 'Some text'
+    content = 'Search'
     return render(request, '../templates/home.html', {"bodyContent" : content})
 
 
@@ -28,6 +28,8 @@ def lists(request):
 
 # Search results
 def results(request):
+
+    # If this is a search
     if request.method == 'POST':
         # form = SearchForm(request.POST) -- not sure how to get this method working or if it's even necessary
         movie_query = request.POST.get('movie-search')  # gets query from POST data
@@ -37,14 +39,53 @@ def results(request):
         content = json.loads(response.text)
         raw_items = content["Search"]
 
-        items = []
+        class Movie:
+            def __init__(self, title, year, ID):
+                self.title = title
+                self.year = year
+                self.imdbID = ID
+
+        movies = []
+
         # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
         for item in raw_items:
-            items.append(item["Title"] + ' ' + item["Year"])
+            movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
 
-        # title = content["Title"]
-        # year = content["Year"]
+        # TODO rename query
+        return render(request, '../templates/results.html', {"query": movies})
 
-    return render(request, '../templates/results.html', {"query": items})
+    # if this is a clicked movie link
+    # TODO move this to a different view, a 'movie' view I would imagine
+    elif request.method == 'GET':
+        url = 'http://www.omdbapi.com/?i=' + request.GET["id"] + "&plot=full&r=json"
+        response = requests.get(url)
+        content = json.loads(response.text)
+
+        class FullMovie:
+            def __init__(self, content):
+                # there is almost certainly a less retarded way of doing this
+                self.title = content["Title"]
+                self.year = content["Year"]
+                self.rated = content["Rated"]
+                self.released = content["Released"]
+                self.runtime = content["Runtime"]
+                self.genre = content["Genre"]
+                self.director = content["Director"]
+                self.writer = content["Writer"]
+                self.actors = content["Actors"]
+                self.plot = content["Plot"]
+                self.language = content["Language"]
+                self.country = content["Country"]
+                self.poster = content["Poster"]
+                self.metascore = content["Metascore"]
+                self.imdbRating = content["imdbRating"]
+                self.response = content["Response"]
+
+        movie = FullMovie(content)
+
+        return render(request, '../templates/movie.html', {"movie": movie})
+
+
+
 
 

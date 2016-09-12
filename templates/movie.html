@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} {{ movie.title }} {% endblock %}
+
+{% block body %}
+    <h1>{{ movie.title }}</h1>
+    <img src="{{ movie.poster }}" alt="Poster" align="right">
+    <dl>
+        <dt> Year: </dt>
+        <dd>{{ movie.year }} </dd>
+
+        <dt> Rating: </dt>
+        <dd>{{ movie.rated }}</dd>
+
+        <dt> Runtime: </dt>
+        <dd> {{ movie.runtime }} </dd>
+
+        <dt> Genre/s: </dt>
+        <dd> {{ movie.genre }}</dd>
+
+        <dt> Director/s: </dt>
+        <dd> {{ movie.director }}</dd>
+
+        <dt> Writer/s: </dt>
+        <dd> {{ movie.writer }}</dd>
+
+        <dt> Actors: </dt>
+        <dd> {{ movie.actors }}</dd>
+
+        <dt> Plot Summary: </dt>
+        <dd> {{ movie.plot }}</dd>
+    </dl>
+{% endblock %}
