@@ -84,8 +84,3 @@ def results(request):
         movie = FullMovie(content)
 
         return render(request, '../templates/movie.html', {"movie": movie})
-
-
-
-
-
