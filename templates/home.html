@@ -3,6 +3,7 @@
 {%  block title %}  Movie App Home {% endblock %}
 
 {% block body %}
+
      <!-- Facebook Login Javascript SDK -->
     <script>	
 	function statusChangeCallback(response) {
@@ -57,14 +58,19 @@
 	}
 	</script>
 
+	<!-- Google Sign in -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="433518667328-964g5u4klg7ds73d26d1ckau95bnomr0.apps.googleusercontent.com">
+
+
 	<!-- This is the button, so we can move this around -->
 	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 	</fb:login-button>
-	
-	<div id="status">
-		
-	</div>
-	
+	<!-- This is the "Please log into facebook sentence"
+	<div id="status"></div>
+	-->
+	<!-- Google sign-in button -->
+	<div class="g-signin2" data-width="62" data-height="20" data-onsuccess="onSignIn"></div>
 
 	<h1>{{ bodyContent }}</h1>
 
