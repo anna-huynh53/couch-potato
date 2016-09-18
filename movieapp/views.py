@@ -24,7 +24,7 @@ def home(request):
                 newUser.save()
                 request.session['email'] = request.POST['email']
 
-            return render(request, '../templates/results.html', {"movie": request.POST['email']})  # don't know why this doesn't work
+            return render(request, '../templates/results.html', {"movie": request.POST['email']})
         else:
             form = SearchForm(request.POST)
             if form.is_valid():
@@ -42,8 +42,12 @@ def home(request):
 
 # Personal lists (if this is still it's own page I'm not sure)
 def lists(request):
-    content = 'Some text 2'
-    return render(request, '../templates/lists.html', {"bodyContent" : "List stuff"})
+    if request.session.get('loggedIn'):
+
+        currentUser = User.objects.get(email=request.session.get('email'))
+        return render(request, '../templates/lists.html', {"currentUserRecord": currentUser, "bodyContent": "List:"})
+
+    return render(request, '../templates/lists.html', {"bodyContent": "Error: Not logged in"})
 
 
 # Search results
@@ -51,28 +55,34 @@ def results(request):
 
     # If this is a search
     if request.method == 'POST':
-        # form = SearchForm(request.POST) -- not sure how to get this method working or if it's even necessary
-        movie_query = request.POST.get('movie-search')  # gets query from POST data
 
-        url = 'http://www.omdbapi.com/?s=' + movie_query
-        response = requests.get(url)
-        content = json.loads(response.text)
-        raw_items = content["Search"]
+        if 'movie' in request.POST:
+            # if the user has clicked "add to my watched list"
+            movie = request.POST.get("movie")
 
-        class Movie:
-            def __init__(self, title, year, ID):
-                self.title = title
-                self.year = year
-                self.imdbID = ID
 
-        movies = []
+        else:
+            movie_query = request.POST.get('movie-search')  # gets query from POST data
 
-        # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
-        for item in raw_items:
-            movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
+            url = 'http://www.omdbapi.com/?s=' + movie_query
+            response = requests.get(url)
+            content = json.loads(response.text)
+            raw_items = content["Search"]
 
-        # TODO rename query
-        return render(request, '../templates/results.html', {"query": movies})
+            class Movie:
+                def __init__(self, title, year, ID):
+                    self.title = title
+                    self.year = year
+                    self.imdbID = ID
+
+            movies = []
+
+            # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
+            for item in raw_items:
+                movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
+
+            # TODO rename query
+            return render(request, '../templates/results.html', {"query": movies})
 
     # if this is a clicked movie link
     # TODO move this to a different view, a 'movie' view I would imagine
@@ -104,3 +114,4 @@ def results(request):
         movie = FullMovie(content)
 
         return render(request, '../templates/movie.html', {"movie": movie})
+

@@ -35,6 +35,10 @@ h1 {
     text-decoration: none;
 }
 
+.navbar li .login {
+
+}
+
 .button {
     background-color: whitesmoke; /* Green */
     border: none;

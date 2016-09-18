@@ -2,4 +2,10 @@
 
 {% block title %} Lists {% endblock %}
 
-{% block body %} {{ bodyContent }} <a href="{% url 'movieapp:home' %}">home</a> {% endblock %}
+{% block body %}
+    {{ bodyContent }}
+    {{ currentUserRecords.firstName }}
+    {% for movie in currentUserRecords.watchedList %}
+        {{ movie.title }}
+    {% endfor %}
+{% endblock %}

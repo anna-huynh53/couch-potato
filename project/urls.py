@@ -21,6 +21,7 @@ from movieapp import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls), # ignore this
     url(r'^$', views.home, name='home'),
-    url(r'^lists$', views.lists),
+    url(r'^lists$', views.lists, name='lists'),
     url(r'^results$', views.results, name='results'),
+    url(r'^movie$', views.movie, name='movie'),
 ]
