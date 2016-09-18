@@ -27,16 +27,13 @@ def home(request):
 
             request.session['loggedIn'] = True  # specify that a user is logged in
 
-            return render(request, '../templates/results.html', {"movie": request.POST['email']})
+            return render(request, '../templates/movieResults.html', {"movie": request.POST['email']})
         else:
             form = SearchForm(request.POST)
             if form.is_valid():
                 return HttpResponseRedirect('/results')
 
     else:
-        form = SearchForm
-
-
 
         if request.session.get('loggedIn'):
             content = request.session['email']
@@ -50,7 +47,7 @@ def lists(request):
     if request.session.get('loggedIn'):
 
         currentUser = User.objects.get(email=request.session.get('email'))
-        return render(request, '../templates/lists.html', {"currentUserRecord": currentUser, "bodyContent": "List:"})
+        return render(request, '../templates/lists.html', {"currentUserRecord": currentUser, "bodyContent": "My List"})
 
     return render(request, '../templates/lists.html', {"bodyContent": "Error: Not logged in"})
 
@@ -67,7 +64,7 @@ def results(request):
 
 
         else:
-            movie_query = request.POST.get('movie-search')  # gets query from POST data
+            movie_query = request.POST.get('search')  # gets query from POST data
 
             url = 'http://www.omdbapi.com/?s=' + movie_query
             response = requests.get(url)
@@ -87,7 +84,7 @@ def results(request):
                 movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
 
             # TODO rename query
-            return render(request, '../templates/results.html', {"query": movies})
+            return render(request, '../templates/movieResults.html', {"query": movies})
 
 
 def movie(request):
@@ -126,7 +123,7 @@ def movie(request):
         movie = request.POST['movie']
 
         newMovieRecord = Movie(
-            imdbID=movie['imdbID'],
+            imdbID  = movie['imdbID'],
             title = movie['title'],
             year = movie['year'],
             rated = movie['rated'],
@@ -134,7 +131,7 @@ def movie(request):
             runtime = movie['runtime'],
             genre =movie['genre'],
             director = movie['director'],
-            writer =movie['writer'],
+            writer = movie['writer'],
             actors = movie['actors'],
             plot = movie['plot'],
             language = movie['language'],
@@ -147,3 +144,11 @@ def movie(request):
         newMovieRecord.save()
 
         return render(request, '../templates/movie.html', {"movie": movie})
+
+
+def friends(request):
+    if request.session.get('loggedIn'):
+        currentUser = User.objects.get(email=request.session.get('email'))
+        userFriends = currentUser.friends.all()
+        return render(request, '../templates/friends.html', {"friends": userFriends})
+

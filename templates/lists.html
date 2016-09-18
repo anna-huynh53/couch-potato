@@ -3,9 +3,19 @@
 {% block title %} Lists {% endblock %}
 
 {% block body %}
-    {{ bodyContent }}
-    {{ currentUserRecords.firstName }}
+  <h1> {{ bodyContent }} </h1>
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">{{ currentUserRecords.firstName }}</div>
+  <div class="panel-body">
+    <p>...</p>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
     {% for movie in currentUserRecords.watchedList %}
-        {{ movie.title }}
-    {% endfor %}
+    <li class="list-group-item">{{ movie.title }} {{ movie.year }}</li>
+  {% endfor %}
+  </ul>
+</div>
 {% endblock %}

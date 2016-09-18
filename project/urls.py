@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^lists$', views.lists, name='lists'),
     url(r'^results$', views.results, name='results'),
     url(r'^movie$', views.movie, name='movie'),
+    url(r'^friends$', views.friends, name='friends'),
 ]
