@@ -3,6 +3,7 @@ from .forms import SearchForm
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 import json
 import requests
+from .models import User
 
 # Home page
 def home(request):
@@ -10,11 +11,20 @@ def home(request):
     if request.method == 'POST':
         # unreachable code??
 
-        #testing if I can access the email
+        # testing if I can access the email
         if 'email' in request.POST:
-            email = request.POST['email']
-            print("WORKING " + email)
-            return render(request, '../templates/results.html', {"movie": email})
+
+            request.session['loggedIn'] = True  # specify that a user is logged in
+
+            try:
+                user = User.objects.get(email=request.POST['email'])
+            except:
+                print("OOK")
+                newUser = User(firstName=request.POST['firstName'], familyName=request.POST['familyName'], email=request.POST['email'])
+                newUser.save()
+                request.session['email'] = request.POST['email']
+
+            return render(request, '../templates/results.html', {"movie": request.POST['email']})  # don't know why this doesn't work
         else:
             form = SearchForm(request.POST)
             if form.is_valid():
@@ -22,8 +32,11 @@ def home(request):
 
     else:
         form = SearchForm
-        print("FUCK")
-        content = 'Search'
+
+        if request.session.get('loggedIn'):
+            content = request.session['email']
+        else:
+            content = 'Search'
         return render(request, '../templates/home.html', {"bodyContent" : content})
 
 

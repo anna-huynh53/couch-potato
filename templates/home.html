@@ -82,8 +82,8 @@
           var email = profile.getEmail();
 
           console.log("Email: " + email);
-          //"given_name" : given_name, "family_name" : family_name,
-          var data = {"email" : email};
+
+          var data = {"firstName" : given_name, "familyName" : family_name,"email" : email};
           var URL = "{% url 'home' %}";
 
           console.log("url: " + URL);
