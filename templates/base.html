@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <!----requred-js-files---->
 <script src="static/js/jquery-1.9.1.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
@@ -31,52 +32,151 @@
 <body>
     <div class="header">
     <div class="container">
-      <div class="header-shadow">
+        <div class="header-shadow">
         <div class="header-top">
-          <a href="index.html"><img class="logo" src="static/images/logo.png"></a>
-          <nav class="navbar navbar-default menu" role="navigation">
-          <div class="container-fluid">
-            <div class="options collapse navbar-collapse">
-              <ul class="nav navbar-nav menu1">
-                <li><a href="#movies">Movies</a></li>
-                <li><a href="#TVshows">TV Shows</a></li>
-                <li><a href="#Movie Roulette">Movie Roulette</a></li>
-              </ul>
+            <a href="index.html"><img class="logo" src="static/images/logo.png"></a>
+            <nav class="navbar navbar-default menu" role="navigation">
+            <div class="container-fluid">
+                <div class="options collapse navbar-collapse">
+                    <ul class="nav navbar-nav menu1">
+                        <li><a href="#movies">Movies</a></li>
+                        <li><a href="#TVshows">TV Shows</a></li>
+                        <li><a href="#Movie Roulette">Movie Roulette</a></li>
+                    </ul>
+                </div>
+                <!-- login/signup popup -->
+                <img id="login-button" class="login-button" src="static/images/login_signup_button.png">
+                <div id="login-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">x</span>
+                        <div class="omb_login">
+                            <h3 class="omb_authTitle">Login or <a href="#">Sign up</a></h3>
+                            <div class="row omb_row-sm-offset-3 omb_socialButtons">
+                                <div class="col-xs-4 col-sm-2">
+                                    <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+                                        <i class="fa fa-facebook visible-xs"></i>
+                                        <span class="hidden-xs">Facebook</span>
+                                    </a>
+                                </div>
+                                <div class="col-xs-4 col-sm-2">
+                                    <a href="#" class="btn btn-lg btn-block omb_btn-google">
+                                        <i class="fa fa-google-plus visible-xs"></i>
+                                        <span class="hidden-xs">Google+</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row omb_row-sm-offset-3 omb_loginOr">
+                                <div class="col-xs-12 col-sm-6">
+                                    <hr class="omb_hrOr">
+                                    <span class="omb_spanOr">or</span>
+                                </div>
+                            </div>
+
+                            <div class="row omb_row-sm-offset-3">
+                                <div class="col-xs-12 col-sm-6">
+                                    <form class="omb_loginForm" action="" autocomplete="off" method="POST">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" class="form-control" name="username" placeholder="email address">
+                                        </div>
+                                        <span class="help-block"></span>
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                            <input  type="password" class="form-control" name="password" placeholder="Password">
+                                        </div>
+
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row omb_row-sm-offset-3">
+                                <div class="col-xs-12 col-sm-3">
+                                    <label class="checkbox">
+                                        <input type="checkbox" value="remember-me">Remember Me
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-3">
+                                    <p class="omb_forgotPwd">
+                                        <a href="#">Forgot password?</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Filter by</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#movies">Movies</a></li>
+                            <li><a href="#TVshows">TV Shows</a></li>
+                            <li><a href="#actor">Actor</a></li>
+                            <li><a href="#user">User</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#all">Anything</a></li>
+                         </ul>
+                    </div>
+                    <form action="/results" method="post"> <!-- "/results" refers to url we are redirected to -->
+                        {% csrf_token %} <!-- Some security thing don't worry about it -->
+                        <input type="text" class="form-control" placeholder="Search for..." id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
+                    </form>
+                    <!-- movie search is the id of the search variable -->
+                    <span class="input-group-btn">
+                          <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
             </div>
-		    <div class="login-button">
-		      <button type="button">
-		        <span class="glyphicon glyphicon-user"></span>
-		      </button>
-		    </div>
-            <div class="input-group">
-              <div class="input-group-btn search-panel">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <span id="search_concept">Filter by</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#movies">Movies</a></li>
-                  <li><a href="#TVshows">TV Shows</a></li>
-                  <li><a href="#actor">Actor</a></li>
-                  <li><a href="#user">User</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#all">Anything</a></li>
-                </ul>
-              </div>
-              <form action="/results" method="post"> <!-- "/results" refers to url we are redirected to -->
-                {% csrf_token %} <!-- Some security thing don't worry about it -->
-                <input type="text" class="form-control" placeholder="Search for..." id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
-              </form>
-              <!-- movie search is the id of the search variable -->
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div>
-          </div>
-          </nav>
+            </nav>
         </div>
-      </div>
+        </div>
     </div>
     </div>
+
+
+    <div class="container" style="float:right; padding-left:2%; padding-right:4.5%; padding-top:1%; width:35%">
+        <div class="row">
+        <div class="col-md-6">
+            <h3>Movie Lists</h3>
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#one" data-toggle="tab">Latest</a></li>
+                    <li><a href="#two" data-toggle="tab">Popular</a></li>
+                    <li><a href="#twee" data-toggle="tab">Twee</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="one">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate.
+                    Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
+                    <div class="tab-pane" id="two">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                    Aliquam in felis sit amet augue.</div>
+                    <div class="tab-pane" id="twee">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                    Quisque mauris augue, molestie tincidunt condimentum vitae.</div>
+                </div>
+            </div>
+        </div>
+        </div><!-- /row -->
+    </div>
+
+    <!-- login/signup modal -->
+    <script>
+        var modal = document.getElementById("login-modal");
+        var btn = document.getElementById("login-button");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
      <!-- Facebook Login Javascript SDK -->
     <script>
