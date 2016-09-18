@@ -1,0 +1,48 @@
+.clear{clear: both;}
+h4, h5, h6,
+h1, h2, h3 {margin-top: 0;}
+ul, ol {margin: 0;}
+p {margin: 0;}
+html, body{
+	font-family: 'Open Sans', sans-serif;
+}
+body a{
+ 	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+}
+.header{
+}
+.header-shadow{
+	padding-bottom: 1.2%;
+}
+.header-top{
+	background: #fff;
+	margin-top: 2%;
+}
+.logo{
+	float: left;
+	height: auto;
+	width: 30%;
+}
+.menu{
+	float: right;
+	background: #FFF;
+	border: none;
+	margin: 0.5% 0 1.5% 0;
+	width: 70%;
+	padding-top: 2%;
+}
+.options.collapse.navbar-collapse{
+    padding-bottom: 1%;
+}
+.login-button{
+    position: absolute;
+    top: 35px;
+    right: 16px;
+}
+.input-group{
+    padding-left: 3%;
+    padding-bottom: 3%;
+}
