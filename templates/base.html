@@ -39,6 +39,7 @@
             <div class="options collapse navbar-collapse">
               <ul class="nav navbar-nav menu1">
                 <li><a href="/lists">My List</a></li>
+                <li><a href="/friends">Friends</a></li>
                 <li><a href="#movies">Movies</a></li>
                 <li><a href="#TVshows">TV Shows</a></li>
                 <li><a href="#Movie Roulette">Movie Roulette</a></li>
@@ -54,26 +55,26 @@
 		    </div>-->
             <div class="input-group">
               <div class="input-group-btn search-panel">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <span id="search_concept">Filter by</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#movies">Movies</a></li>
-                  <li><a href="#TVshows">TV Shows</a></li>
-                  <li><a href="#actor">Actor</a></li>
-                  <li><a href="#user">User</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#all">Anything</a></li>
-                </ul>
               </div>
-              <form action="/results" method="post"> <!-- "/results" refers to url we are redirected to -->
-                {% csrf_token %} <!-- Some security thing don't worry about it -->
-                <input type="text" class="form-control" placeholder="Search for..." id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-              </form>
-              <!-- movie search is the id of the search variable -->
+                <form class="form-inline" id="searchForm" action="/results" method="post">
+                  <div class="form-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span id="search_concept">Search for:</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li onclick="$('#searchType').val('movie')">Movie / TV</li>
+                      <li class="divider"></li>
+                      <li onclick="$('#searchType').val('user')">Users</li>
+{#                      <li><a href="#all">Anything</a></li>#}
+                    </ul>
+                  </div>
+                  <div class="form-group" style="width:auto"><!-- horrible, I know -->
+                    <input type="text" class="form-control" placeholder="Search for..." id="search" type="text" name="search" value="{{ search }}">
+                  </div>
+                   <div class="form-group">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                   </div>
+                </form>
             </div>
           </div>
           </nav>

@@ -24,3 +24,4 @@ class User(models.Model):
     familyName = models.CharField(max_length=200)
     email = models.EmailField()
     watchedList = models.ManyToManyField(Movie)
+    friends = models.ManyToManyField('self')
