@@ -9,15 +9,22 @@ def home(request):
 
     if request.method == 'POST':
         # unreachable code??
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect('/results')
+
+        #testing if I can access the email
+        if 'email' in request.POST:
+            email = request.POST['email']
+            print("WORKING " + email)
+            return render(request, '../templates/results.html', {"movie": email})
+        else:
+            form = SearchForm(request.POST)
+            if form.is_valid():
+                return HttpResponseRedirect('/results')
 
     else:
         form = SearchForm
-
-    content = 'Search'
-    return render(request, '../templates/home.html', {"bodyContent" : content})
+        print("FUCK")
+        content = 'Search'
+        return render(request, '../templates/home.html', {"bodyContent" : content})
 
 
 # Personal lists (if this is still it's own page I'm not sure)

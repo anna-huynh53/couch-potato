@@ -70,7 +70,32 @@
 	<div id="status"></div>
 	-->
 	<!-- Google sign-in button -->
-	<div class="g-signin2" data-width="62" data-height="20" data-onsuccess="onSignIn"></div>
+	<div class="g-signin2" data-width="62" data-height="20" data-onsuccess="onSignIn"> {% csrf_token %}</div>
+
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+
+          var given_name = profile.getGivenName();
+          var family_name = profile.getFamilyName();
+          var email = profile.getEmail();
+
+          console.log("Email: " + email);
+          //"given_name" : given_name, "family_name" : family_name,
+          var data = {"email" : email};
+          var URL = "{% url 'home' %}";
+
+          console.log("url: " + URL);
+
+          $.post(URL, data, function(response) {
+            //if(response === 'success'){ alert('Yay!'); }
+           //else{ alert('Error! :('); }
+          });
+
+      };
+    </script>
+
 
 	<h1>{{ bodyContent }}</h1>
 
