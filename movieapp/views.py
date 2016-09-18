@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound
 import json
 import requests
 from .models import User
+from .models import Movie
 
 # Home page
 def home(request):
@@ -14,15 +15,17 @@ def home(request):
         # testing if I can access the email
         if 'email' in request.POST:
 
-            request.session['loggedIn'] = True  # specify that a user is logged in
-
             try:
                 user = User.objects.get(email=request.POST['email'])
+                request.session['email'] = request.POST['email']
+
             except:
                 print("OOK")
                 newUser = User(firstName=request.POST['firstName'], familyName=request.POST['familyName'], email=request.POST['email'])
                 newUser.save()
                 request.session['email'] = request.POST['email']
+
+            request.session['loggedIn'] = True  # specify that a user is logged in
 
             return render(request, '../templates/results.html', {"movie": request.POST['email']})
         else:
@@ -32,6 +35,8 @@ def home(request):
 
     else:
         form = SearchForm
+
+
 
         if request.session.get('loggedIn'):
             content = request.session['email']
@@ -84,9 +89,10 @@ def results(request):
             # TODO rename query
             return render(request, '../templates/results.html', {"query": movies})
 
-    # if this is a clicked movie link
-    # TODO move this to a different view, a 'movie' view I would imagine
-    elif request.method == 'GET':
+
+def movie(request):
+
+    if request.method == 'GET':
         url = 'http://www.omdbapi.com/?i=' + request.GET["id"] + "&plot=full&r=json"
         response = requests.get(url)
         content = json.loads(response.text)
@@ -111,7 +117,33 @@ def results(request):
                 self.imdbRating = content["imdbRating"]
                 self.response = content["Response"]
 
-        movie = FullMovie(content)
+        movieDict = FullMovie(content)
+
+        return render(request, '../templates/movie.html', {"movie": movieDict})
+
+    elif request.method == 'POST':
+
+        movie = request.POST['movie']
+
+        newMovieRecord = Movie(
+            imdbID=movie['imdbID'],
+            title = movie['title'],
+            year = movie['year'],
+            rated = movie['rated'],
+            released = movie['released'],
+            runtime = movie['runtime'],
+            genre =movie['genre'],
+            director = movie['director'],
+            writer =movie['writer'],
+            actors = movie['actors'],
+            plot = movie['plot'],
+            language = movie['language'],
+            country = movie['country'],
+            poster = movie['poster'],
+            metascore = movie['metascore'],
+            imdbRating = movie['imdbRating'],
+        )
+
+        newMovieRecord.save()
 
         return render(request, '../templates/movie.html', {"movie": movie})
-

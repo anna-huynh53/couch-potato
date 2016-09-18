@@ -4,17 +4,23 @@
 
 {% block body %}
     <h1>{{ movie.title }}</h1>
-    <button id="watchedBtn">
+
+     <div class="button" id="watchedBtn">
         Add to my watched list
-    </button>
+     </div>
 
     <script>
-         var watchedBtn = document.getElementById('loginButton');
-         var data = { "movie": {{movie}} };
-         var URL = "{% url 'movie' %}";
-        $.post(URL, data, function(response) {
-            //Maybe this function can be removed altogether
-        });
+        document.getElementById("watchedBtn").addEventListener("click", addToList());
+        function addToList(){
+            console.log("Working");
+            //var button = document.getElementById('watchedBtn');
+
+             var data = { "movie": {{movie}} };
+             var URL = "{% url 'movie' %}";
+            $.post(URL, data, function(response) {
+                //Maybe this function can be removed altogether
+            });
+        }
     </script>
 
     <img src="{{ movie.poster }}" alt="Poster" align="right">

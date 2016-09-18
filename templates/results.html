@@ -7,7 +7,7 @@
     <ul>
         {% for movie in query %}
             <!-- GET request with ID as the imdbID that was returned from the API -->
-            <li><a href="/results?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</li>
+            <li><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</li>
         {%  endfor %}
     </ul>
 {% endblock %}

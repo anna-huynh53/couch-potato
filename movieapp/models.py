@@ -19,8 +19,6 @@ class Movie(models.Model):
     imdbRating = models.CharField(max_length=50)
 
 
-
-
 class User(models.Model):
     firstName = models.CharField(max_length=200)
     familyName = models.CharField(max_length=200)
