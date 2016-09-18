@@ -33,7 +33,7 @@
     <div class="container">
       <div class="header-shadow">
         <div class="header-top">
-          <a href="index.html"><img class="logo" src="static/images/logo.png"></a>
+          <a href="/"><img class="logo" src="static/images/logo.png"></a>
           <nav class="navbar navbar-default menu" role="navigation">
           <div class="container-fluid">
             <div class="options collapse navbar-collapse">
@@ -69,11 +69,11 @@
               <form action="/results" method="post"> <!-- "/results" refers to url we are redirected to -->
                 {% csrf_token %} <!-- Some security thing don't worry about it -->
                 <input type="text" class="form-control" placeholder="Search for..." id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
-              </form>
-              <!-- movie search is the id of the search variable -->
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
+              </form>
+              <!-- movie search is the id of the search variable -->
             </div>
           </div>
           </nav>
@@ -81,6 +81,19 @@
       </div>
     </div>
     </div>
+
+     <!--<form action="/results" method="post">
+        {% csrf_token %}
+        <label for="/results"> Movie: </label>
+        <input id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
+
+        <input type="submit" value="ok">
+    </form>-->
+
+    {% block body %}
+        <!-- body stuff goes in here -->
+
+    {%  endblock %}
 
      <!-- Facebook Login Javascript SDK -->
     <script>
@@ -164,10 +177,6 @@
       };
     </script>
 
-    {% block body %}
-        <!-- body stuff goes in here -->
-
-    {%  endblock %}
 
 </body>
 </html>

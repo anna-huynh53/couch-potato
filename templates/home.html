@@ -6,15 +6,7 @@
 
 	<h1>{{ bodyContent }}</h1>
 
-    <form action="/results" method="post"> <!-- "/results" refers to url we are redirected to -->
-        {% csrf_token %} <!-- Some security thing don't worry about it -->
-        <label for="/results"> Movie: </label>
-        <input id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
-        <!-- movie search is the id of the search variable -->
-        <input type="submit" value="ok">
-    </form>
 
-   
 
 	
     
