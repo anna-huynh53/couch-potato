@@ -14,6 +14,136 @@
 </head>
 <body>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <div class="navbar">
+        <ul>
+            <li><h1>WatchDog</h1></li>
+            <li style="float:right"><div class="button" id="loginButton">Login</div></li>
+        </ul>
+    </div>
+
+    <!-- Popup for login-->
+    <div id="loginPopup" class="loginPopup">
+      <!-- Modal content -->
+      <div class="loginContent">
+        <span class="close">x</span>
+        <p style="align-content: center">
+            Log in:
+            <div class="g-signin2" data-width="62" data-height="20" data-onsuccess="onSignIn"></div>
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+          </p>
+      </div>
+    </div>
+    <script>
+        var popup = document.getElementById('loginPopup');
+        var btn = document.getElementById('loginButton');
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            popup.style.display = "block";
+        }
+        span.onclick = function() {
+            popup.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        }
+    </script>
+
+
+     <!-- Facebook Login Javascript SDK -->
+    <script>
+	function statusChangeCallback(response) {
+	 	console.log('statusChangeCallback');
+	    console.log(response);
+	    if (response.status === 'connected') {
+	    	testAPI();
+	    } else if (response.status === 'not_authorized') {
+	      	document.getElementById('status').innerHTML = 'Please log ' +
+	        	'into this app.';
+	    } else {
+	      	document.getElementById('status').innerHTML = 'Please log ' +
+	        	'into Facebook.';
+	    }
+	}
+
+	function checkLoginState() {
+		FB.getLoginStatus(function(response) {
+	    	statusChangeCallback(response);
+	    });
+	}
+
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '1808543276057571',
+		    cookie     : true,
+		    xfbml      : true,
+		    version    : 'v2.5' // use graph api version 2.5
+		});
+
+		FB.getLoginStatus(function(response) {
+		    statusChangeCallback(response);
+		});
+	};
+
+	// Load the SDK asynchronously
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "http://connect.facebook.net/en_US/sdk.js";
+	    fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+	function testAPI() {
+	    console.log('Welcome!  Fetching your information.... ');
+	    FB.api('/me', function(response) {
+	      	console.log('Successful login for: ' + response.name);
+	      	document.getElementById('status').innerHTML =
+	        'Thanks for logging in, ' + response.name + '!';
+	    });
+	}
+	</script>
+
+	<!-- Google Sign in -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="433518667328-964g5u4klg7ds73d26d1ckau95bnomr0.apps.googleusercontent.com">
+
+
+	<!-- This is the button, so we can move this around -->
+
+	<!-- This is the "Please log into facebook sentence"
+	<div id="status"></div>
+	-->
+	<!-- Google sign-in button -->
+
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+
+          var given_name = profile.getGivenName();
+          var family_name = profile.getFamilyName();
+          var email = profile.getEmail();
+
+          console.log("Email: " + email);
+
+          var data = {"firstName" : given_name, "familyName" : family_name,"email" : email};
+          var URL = "{% url 'home' %}";
+
+          console.log("url: " + URL);
+
+          $.post(URL, data, function(response) {
+            //if(response === 'success'){ alert('Yay!'); }
+           //else{ alert('Error! :('); }
+          });
+
+      };
+    </script>
+
+
     {% block body %}
         <!-- body stuff goes in here -->
 
