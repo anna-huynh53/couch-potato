@@ -23,5 +23,6 @@ class User(models.Model):
     firstName = models.CharField(max_length=200)
     familyName = models.CharField(max_length=200)
     email = models.EmailField()
-    watchedList = models.ManyToManyField(Movie)
+    watchedList = models.ManyToManyField(Movie, related_name='watched')
+    toWatchList = models.ManyToManyField(Movie, related_name='toWatch')
     friends = models.ManyToManyField('self')

@@ -28,6 +28,18 @@ def home(request):
             request.session['loggedIn'] = True  # specify that a user is logged in
 
             return render(request, '../templates/movieResults.html', {"movie": request.POST['email']})
+
+        elif 'user' in request.POST:
+
+            try:
+                userAdded = User.objects.get(email=request.POST['user'])
+                return render(request, '../templates/home.html', {"addStatus": "User Added!"})
+
+            except:
+
+                return render(request, '../templates/home.html', {"addStatus": 'User Doesnt Exist!'})
+
+
         else:
             form = SearchForm(request.POST)
             if form.is_valid():
@@ -37,9 +49,15 @@ def home(request):
 
         if request.session.get('loggedIn'):
             content = request.session['email']
+            user = User.objects.get(email=request.session.get('email'))
+            watched = user.watchedList.all()
+            toWatch = user.toWatchList.all()
+
+            return render(request, '../templates/home.html', {"addStatus": "Email", "watched": watched, "toWatch": toWatch})
         else:
             content = 'Search'
-        return render(request, '../templates/home.html', {"bodyContent" : content})
+
+            return render(request, '../templates/home.html', {"addStatus" : "Email"})
 
 
 # Personal lists (if this is still it's own page I'm not sure)

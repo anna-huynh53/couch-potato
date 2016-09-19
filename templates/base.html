@@ -34,7 +34,7 @@
     <div class="container">
         <div class="header-shadow">
         <div class="header-top">
-            <a href="index.html"><img class="logo" src="static/images/logo.png"></a>
+            <a href="/"><img class="logo" src="static/images/logo.png"></a>
             <nav class="navbar navbar-default menu" role="navigation">
             <div class="container-fluid">
                 <div class="options collapse navbar-collapse">
@@ -120,14 +120,25 @@
                             <li><a href="#all">Anything</a></li>
                          </ul>
                     </div>
-                    <form action="/results" method="post"> <!-- "/results" refers to url we are redirected to -->
-                        {% csrf_token %} <!-- Some security thing don't worry about it -->
-                        <input type="text" class="form-control" placeholder="Search for..." id="movie-search" type="text" name="movie-search" value="{{ movie_search }}">
-                    </form>
-                    <!-- movie search is the id of the search variable -->
-                    <span class="input-group-btn">
-                          <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
+                    <form class="form-inline" id="searchForm" action="/results" method="post">
+{#                     <div class="form-group">#}
+{#                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">#}
+{#                        <span id="search_concept">Search for:</span> <span class="caret"></span>#}
+{#                      </button>#}
+{#                       <ul class="dropdown-menu" role="menu">#}
+{#                         <li onclick="$('#searchType').val('movie')">Movie / TV</li>#}
+{#                         <li class="divider"></li>#}
+{#                         <li onclick="$('#searchType').val('user')">Users</li>#}
+   {#                      <li><a href="#all">Anything</a></li>#}
+{#                       </ul>#}
+{#                     </div>#}
+                     <div class="form-group" style="width:auto"><!-- horrible, I know -->
+                       <input type="text" class="form-control" placeholder="Search for..." id="search" type="text" name="search" value="{{ search }}">
+                     </div>
+                      <div class="form-group">
+                       <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                      </div>
+                 </form>
                 </div>
             </div>
             </nav>
@@ -136,29 +147,7 @@
     </div>
     </div>
 
-    <!-- side lists -->
-    <div class="container" style="float:right; padding-left:2%; padding-right:4.5%; padding-top:1%; width:35%">
-        <div class="row">
-        <div class="col-md-6">
-            <h3>Movie Lists</h3>
-            <div class="tabbable">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#one" data-toggle="tab">Latest</a></li>
-                    <li><a href="#two" data-toggle="tab">Popular</a></li>
-                    <li><a href="#twee" data-toggle="tab">Twee</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="one">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate.
-                    Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
-                    <div class="tab-pane" id="two">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-                    Aliquam in felis sit amet augue.</div>
-                    <div class="tab-pane" id="twee">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                    Quisque mauris augue, molestie tincidunt condimentum vitae.</div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
+    <!-- Lists was here -->
 
     <!-- login/signup modal -->
     <script>
