@@ -115,16 +115,17 @@ def results(request):
         raw_items = content["Search"]
 
         class Movie:
-            def __init__(self, title, year, ID):
+            def __init__(self, title, year, ID, poster):
                 self.title = title
                 self.year = year
                 self.imdbID = ID
+                self.poster = poster
 
         movies = []
 
         # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
         for item in raw_items:
-            movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
+            movies.append(Movie(item["Title"], item["Year"], item["imdbID"], item["Poster"]))
 
         # TODO rename query
         return render(request, '../templates/movieResults.html', {"query": movies})

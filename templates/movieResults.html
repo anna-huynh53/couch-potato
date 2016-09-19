@@ -10,7 +10,7 @@
 
 
 
-    <h1>Search Results</h1><!-- GET request with ID as the imdbID that was returned from the API -->
+{#    <h1>Search Results</h1><!-- GET request with ID as the imdbID that was returned from the API -->#}
 
 
    <!-- side lists just put it here for now -->
@@ -64,14 +64,14 @@
     <!-- results -->
     <div class="container" >
     <div class="portfolioContainer" style="width:72%;">
-        <div style="padding-left:3%"><h2>Search results for...</h2></div><!-- GET request with ID as the imdbID that was returned from the API -->
+        <div style="padding-left:3%"><h2>Search results</h2></div><!-- GET request with ID as the imdbID that was returned from the API -->
         {% for movie in query %}
             <div class="col-sm-6 col-lg-3 col-md-4">
                 <div class="gal-detail thumb">
                     <div class="movie-image">
                         <img src={{ movie.poster }} class="thumb-img" alt="work-thumbnail">
                     </div>
-                    <h4 class="text-center"><a href="/movie?id={{ movie.imdbID }}" data-toggle="modal" data-target="#myModal">{{ movie.title }}</a></h4>
+                    <h5 class="text-center"><a href="/movie?id={{ movie.imdbID }}" data-toggle="modal" data-target="#myModal">{{ movie.title }}</a></h5>
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog" style="position: absolute; left:50%; top:7%; margin-left:-400px; margin-top:-300px;">
                                 <span class="close">x</span><img src="static/images/result.png">
@@ -108,12 +108,12 @@
         }
     </script>
 
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-        <ul class="list-group">
-      {% for movie in query %}
-        <li class="list-group-item"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</li>
-      {% endfor %}
-  </ul>
-</div>
+{#        <div class="panel panel-default">#}
+{#          <!-- Default panel contents -->#}
+{#        <ul class="list-group">#}
+{#      {% for movie in query %}#}
+{#        <li class="list-group-item"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</li>#}
+{#      {% endfor %}#}
+{#  </ul>#}
+{#</div>#}
 {% endblock %}
