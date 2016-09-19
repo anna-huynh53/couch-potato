@@ -59,9 +59,15 @@
             <div class="col-sm-6 col-lg-3 col-md-4">
                 <div class="gal-detail thumb">
                     <div class="movie-image">
-                        <img src={{ movie.results }} class="thumb-img" alt="work-thumbnail">
+                        <img src={{ movie.poster }} class="thumb-img" alt="work-thumbnail">
                     </div>
-                    <h4 class="text-center"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }}</a></h4>
+                    <h4 class="text-center"><a href="/movie?id={{ movie.imdbID }}" data-toggle="modal" data-target="#myModal">{{ movie.title }}</a></h4>
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog" style="position: absolute; left:50%; top:7%; margin-left:-400px; margin-top:-300px;">
+                                <span class="close">x</span><img src="static/images/result.png">
+
+                            </div>
+                        </div>
                     <div class="ga-border"></div>
                     <p class="text-muted text-center"><small>{{ movie.year }}</small></p>
                 </div>
@@ -69,6 +75,28 @@
         {% endfor %}
     </div>
     </div>
+
+    <!-- for the popup modal-->
+    <script>
+        function centerModal() {
+            $(this).css('display', 'block');
+            var $dialog = $(this).find(".modal-dialog");
+            var offset = ($(window).height() - $dialog.height()) / 2;
+            // Center modal vertically in window
+            $dialog.css("margin-top", offset);
+        }
+
+        $('.modal').on('show.bs.modal', centerModal);
+        $(window).on("resize", function () {
+            $('.modal:visible').each(centerModal);
+        });
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 <!--
     <h1>Search Results</h1><!-- GET request with ID as the imdbID that was returned from the API
@@ -85,5 +113,4 @@
         {% endfor %}
         </ul>
     </div>
--->
 {% endblock %}

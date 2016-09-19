@@ -314,7 +314,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 .img-rounded {
@@ -5114,7 +5114,7 @@ button.close {
 }
 .modal-dialog {
   position: relative;
-  width: auto;
+  width: 100%;
   margin: 10px;
 }
 .modal-content {
