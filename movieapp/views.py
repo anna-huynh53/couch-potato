@@ -18,9 +18,9 @@ def home(request):
             try:
                 user = User.objects.get(email=request.POST['email'])
                 request.session['email'] = request.POST['email']
-
+                print("user exists")
             except:
-                print("OOK")
+                print("creating new user")
                 newUser = User(firstName=request.POST['firstName'], familyName=request.POST['familyName'], email=request.POST['email'])
                 newUser.save()
                 request.session['email'] = request.POST['email']
@@ -33,10 +33,14 @@ def home(request):
 
             try:
                 userAdded = User.objects.get(email=request.POST['user'])
+                userAdded.save()
+                user = User.objects.get(email=request.POST['email'])
+                user.friends.add(userAdded)
+                user.save()
                 return render(request, '../templates/home.html', {"addStatus": "User Added!"})
 
             except:
-
+                
                 return render(request, '../templates/home.html', {"addStatus": 'User Doesnt Exist!'})
 
 

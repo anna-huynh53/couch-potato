@@ -3,12 +3,17 @@
 {%  block title %} Results {% endblock %}
 
 {% block body %}
-    <h1>Friends</h1><!-- GET request with ID as the imdbID that was returned from the API -->
+  <h1 xmlns="http://www.w3.org/1999/html">Friends</h1><!-- GET request with ID as the imdbID that was returned from the API -->
         <div class="panel panel-default">
           <!-- Default panel contents -->
         <ul class="list-group">
       {% for user in friends  %}
-        <li class="list-group-item">{{ user.firstName }} {{ user.familyName }}</li>
+        <li class="list-group-item">
+          <form class="form-group" style="align:right">
+            <label name="user" value="{{ user.email }}">{{ user.firstName }} {{ user.familyName }}</label>
+            <button class="btn btn-danger" type="submit">Unfollow</button>
+          </form>
+        </li>
       {% endfor %}
   </ul>
 </div>
