@@ -99,22 +99,22 @@ def results(request):
 
         if 'movie' in request.POST:
             # if the user has clicked "add to my watched list"
-            movie = request.POST.get("movie")
-            newMovie = Movie(title=movie.title, year=movie.year, imdbID=movie.imdbID)
-            newMovie.save()
-
-            user = User.objects.get(email=request.session.get('email'))
-            user.watchedList.add(movie)
-            user.save()
-
-        movie_query = request.POST.get('search')  # gets query from POST data
+             movie = request.POST.get("movie")
+            # newMovie = Movie(title=movie.title, year=movie.year, imdbID=movie.imdbID)
+            # newMovie.save()
+            #
+            # user = User.objects.get(email=request.session.get('email'))
+            # user.watchedList.add(movie)
+            # user.save()
+        else:
+            movie_query = request.POST.get('search')  # gets query from POST data
 
         url = 'http://www.omdbapi.com/?s=' + movie_query
         response = requests.get(url)
         content = json.loads(response.text)
         raw_items = content["Search"]
 
-        class MovieObject:
+        class Movie:
             def __init__(self, title, year, ID):
                 self.title = title
                 self.year = year
@@ -127,7 +127,8 @@ def results(request):
             movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
 
         # TODO rename query
-        return render(request, '../templates/movieResults.html', {"query": movies, "search" : movie_query})
+        return render(request, '../templates/movieResults.html', {"query": movies})
+
 
 def movie(request):
 

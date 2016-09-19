@@ -8,13 +8,7 @@
           <!-- Default panel contents -->
         <ul class="list-group">
       {% for movie in query %}
-        <li class="list-group-item">
-          <form class="form-group" style="align:right">
-            <label name="movie" value="{{ movie }}"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</label>
-            <label name="search" value="{{ search }}" style="display:none"></label>
-            <button class="btn btn-success" type="submit" style="float:right">Watched</button>
-          </form>
-        </li>
+        <li class="list-group-item"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</li>
       {% endfor %}
   </ul>
 </div>
