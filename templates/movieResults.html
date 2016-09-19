@@ -3,7 +3,6 @@
 {%  block title %} Results {% endblock %}
 
 {% block body %}
-
     <!-- side lists just put it here for now -->
     <div class="container" style="float:right; padding-left:2%; padding-right:4.5%; padding-top:1%; width:35%">
         <div class="row">
@@ -71,4 +70,20 @@
     </div>
     </div>
 
+<!--
+    <h1>Search Results</h1><!-- GET request with ID as the imdbID that was returned from the API
+    <div class="panel panel-default">
+        <ul class="list-group">
+        {% for movie in query %}
+            <li class="list-group-item">
+            <form class="form-group" style="align:right">
+                <label name="movie" value="{{ movie }}"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</label>
+                <label name="search" value="{{ search }}" style="display:none"></label>
+                <button class="btn btn-success" type="submit" style="float:right">Watched</button>
+            </form>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+-->
 {% endblock %}

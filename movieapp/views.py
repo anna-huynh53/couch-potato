@@ -15,29 +15,50 @@ def home(request):
         # testing if I can access the email
         if 'email' in request.POST:
 
-            try:
-                user = User.objects.get(email=request.POST['email'])
-                request.session['email'] = request.POST['email']
+            if 'password' in request.POST:
+                try:
+                    user = User.objects.get(email=request.POST['email'])
+                    if request.POST['password'] != user.password:
+                        return render(request, '../templates/home.html', {"loggedIn": False})
+                    else:
+                        request.session['email'] = request.POST['email']
+                        request.session['loggedIn'] = True
+                        return render(request, '../templates/home.html', {"loggedIn": True})
+                except:
+                    return render(request, '../templates/home.html', {"loggedIn": False})
 
-            except:
-                print("OOK")
-                newUser = User(firstName=request.POST['firstName'], familyName=request.POST['familyName'], email=request.POST['email'])
-                newUser.save()
-                request.session['email'] = request.POST['email']
+            else:
+                try:
+                    user = User.objects.get(email=request.POST['email'])
+                    request.session['email'] = request.POST['email']
+                    print("user exists")
+                except:
+                    print("creating new user")
+                    newUser = User(firstName=request.POST['firstName'], familyName=request.POST['familyName'], email=request.POST['email'])
+                    newUser.save()
+                    request.session['email'] = request.POST['email']
 
-            request.session['loggedIn'] = True  # specify that a user is logged in
+                request.session['loggedIn'] = True  # specify that a user is logged in
 
-            return render(request, '../templates/movieResults.html', {"movie": request.POST['email']})
+                return render(request, '../templates/home.html', {"loggedIn": True})
 
         elif 'user' in request.POST:
 
             try:
                 userAdded = User.objects.get(email=request.POST['user'])
-                return render(request, '../templates/home.html', {"addStatus": "User Added!"})
+                userAdded.save()
 
+                try:
+                    user = User.objects.get(email=request.session['email'])
+                    user.friends.add(userAdded)
+                    user.save()
+                    return render(request, '../templates/home.html', {"addStatus": "User Added!", "loggedIn": request.session['loggedIn']})
+                except:
+                    print("Some other error")
+                    return render(request, '../templates/home.html', {"addStatus": "Error", "loggedIn": request.session['loggedIn']})
             except:
-
-                return render(request, '../templates/home.html', {"addStatus": 'User Doesnt Exist!'})
+                print("actual user does not exist")
+                return render(request, '../templates/home.html', {"addStatus": 'User Doesnt Exist!', "loggedIn": request.session['loggedIn']})
 
 
         else:
@@ -53,11 +74,11 @@ def home(request):
             watched = user.watchedList.all()
             toWatch = user.toWatchList.all()
 
-            return render(request, '../templates/home.html', {"addStatus": "Email", "watched": watched, "toWatch": toWatch})
+            return render(request, '../templates/home.html', {"addStatus": "Email", "watched": watched, "toWatch": toWatch, "loggedIn": request.session['loggedIn']})
         else:
             content = 'Search'
 
-            return render(request, '../templates/home.html', {"addStatus" : "Email"})
+            return render(request, '../templates/home.html', {"addStatus" : "Email", "loggedIn": False})
 
 
 # Personal lists (if this is still it's own page I'm not sure)
@@ -79,31 +100,34 @@ def results(request):
         if 'movie' in request.POST:
             # if the user has clicked "add to my watched list"
             movie = request.POST.get("movie")
+            newMovie = Movie(title=movie.title, year=movie.year, imdbID=movie.imdbID)
+            newMovie.save()
 
+            user = User.objects.get(email=request.session.get('email'))
+            user.watchedList.add(movie)
+            user.save()
 
-        else:
-            movie_query = request.POST.get('search')  # gets query from POST data
+        movie_query = request.POST.get('search')  # gets query from POST data
 
-            url = 'http://www.omdbapi.com/?s=' + movie_query
-            response = requests.get(url)
-            content = json.loads(response.text)
-            raw_items = content["Search"]
+        url = 'http://www.omdbapi.com/?s=' + movie_query
+        response = requests.get(url)
+        content = json.loads(response.text)
+        raw_items = content["Search"]
 
-            class Movie:
-                def __init__(self, title, year, ID):
-                    self.title = title
-                    self.year = year
-                    self.imdbID = ID
+        class MovieObject:
+            def __init__(self, title, year, ID):
+                self.title = title
+                self.year = year
+                self.imdbID = ID
 
-            movies = []
+        movies = []
 
-            # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
-            for item in raw_items:
-                movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
+        # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
+        for item in raw_items:
+            movies.append(Movie(item["Title"], item["Year"], item["imdbID"]))
 
-            # TODO rename query
-            return render(request, '../templates/movieResults.html', {"query": movies})
-
+        # TODO rename query
+        return render(request, '../templates/movieResults.html', {"query": movies, "search" : movie_query})
 
 def movie(request):
 
