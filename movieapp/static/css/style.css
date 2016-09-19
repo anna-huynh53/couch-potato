@@ -43,6 +43,13 @@ body a{
     right: 16px;
 	width: 20%;
 }
+.signout-button{
+    position: absolute;
+    top: 10px;
+    right: 16px;
+	width: 20%;
+}
+
 .input-group{
     padding-bottom: 3%;
 }
