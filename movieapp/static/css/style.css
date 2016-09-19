@@ -39,16 +39,15 @@ body a{
 }
 .login-button{
     position: absolute;
-    top: 23px;
+    top: 28px;
     right: 16px;
 	width: 20%;
 }
 .input-group{
-    padding-left: 3%;
     padding-bottom: 3%;
 }
 
-/*login/singup modal*/
+/*login/signup modal*/
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */

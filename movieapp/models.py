@@ -26,3 +26,4 @@ class User(models.Model):
     watchedList = models.ManyToManyField(Movie, related_name='watched')
     toWatchList = models.ManyToManyField(Movie, related_name='toWatch')
     friends = models.ManyToManyField('self')
+    password = models.CharField(max_length=20, default="")

@@ -2,7 +2,7 @@
         Use this for persistent menu bar, panels etc -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <html>
 <head>
 <title>Movie Social Platform</title>
@@ -46,68 +46,64 @@
                     </ul>
                 </div>
                 <!-- login/signup popup -->
-                <img id="login-button" class="login-button" src="static/images/login_signup_button.png">
-                <div id="login-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">x</span>
-                        <div class="omb_login">
-                            <h3 class="omb_authTitle">Login or <a href="#">Sign up</a></h3>
-                            <div class="row omb_row-sm-offset-3 omb_socialButtons">
-                                <div class="col-xs-4 col-sm-2">
-                                    <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
-                                        <i class="fa fa-facebook visible-xs"></i>
-                                        <span class="hidden-xs">Facebook</span>
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-sm-2">
-{#                                    <a href="#" class="btn btn-lg btn-block omb_btn-google">#}
-{#                                        <i class="fa fa-google-plus visible-xs"></i>#}
-{#                                        <span class="hidden-xs">Google</span>#}
-{#                                    </a>#}
-                                  <div class="g-signin2" data-width="62" data-height="20" data-onsuccess="onSignIn"></div>
-                                </div>
-                            </div>
+                {% if  loggedIn == False %}
+                  <img id="login-button" class="login-button" src="static/images/login_signup_button.png">
+                  <div id="login-modal" class="modal">
+                      <div class="modal-content">
+                          <span class="close">x</span>
+                          <div class="omb_login">
+                              <h3 class="omb_authTitle">Login or <a href="#">Sign up</a></h3>
+                              <div class="row omb_row-sm-offset-3 omb_socialButtons">
+                                  <div class="col-xs-4 col-sm-2" style="width:50%; float:left">
+                                      <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+                                          <i class="fa fa-facebook visible-xs"></i>
+                                          <span class="hidden-xs">Facebook</span>
+                                      </a>
+                                  </div>
 
-                            <div class="row omb_row-sm-offset-3 omb_loginOr">
-                                <div class="col-xs-12 col-sm-6">
-                                    <hr class="omb_hrOr">
-                                    <span class="omb_spanOr">or</span>
-                                </div>
-                            </div>
+                                  <div class="col-xs-4 col-sm-2"  style="width:50%; float:right">
+  {#                                    <a href="#" class="btn btn-lg btn-block omb_btn-google" onclick="onSignIn">#}
+  {#                                        <i class="fa fa-google-plus visible-xs" onclick="onSignIn"></i>#}
+  {#                                        <span class="hidden-xs" onclick="onSignIn">Google</span>#}
+  {#                                    </a>#}
+                                    <div class="g-signin2" data-width="190" data-height="45" data-onsuccess="onSignIn"></div>
+                                  </div>
+                              </div>
+                              <div class="row omb_row-sm-offset-3 omb_loginOr">
+                                  <hr class="omb_hrOr">
+                                  <span class="omb_spanOr">or</span>
+                              </div>
+                              <form class="omb_loginForm" action="" autocomplete="off" method="POST">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                      <input type="text" class="form-control" name="email" placeholder="email address">
+                                  </div>
+                                  <span class="help-block"></span>
 
-                            <div class="row omb_row-sm-offset-3">
-                                <div class="col-xs-12 col-sm-6">
-                                    <form class="omb_loginForm" action="" autocomplete="off" method="POST">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="username" placeholder="email address">
-                                        </div>
-                                        <span class="help-block"></span>
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                      <input  type="password" class="form-control" name="password" placeholder="Password">
+                                  </div>
 
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            <input  type="password" class="form-control" name="password" placeholder="Password">
-                                        </div>
+                                  <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                              </form>
 
-                                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="row omb_row-sm-offset-3">
-                                <div class="col-xs-12 col-sm-3">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="remember-me">Remember Me
-                                    </label>
-                                </div>
-                                <div class="col-xs-12 col-sm-3">
-                                    <p class="omb_forgotPwd">
-                                        <a href="#">Forgot password?</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                              <div class="row omb_row-sm-offset-3">
+                                  <div class="col-xs-12 col-sm-3" style="width:50%; float:left">
+                                      <label class="checkbox">
+                                          <input type="checkbox" value="remember-me">Remember Me
+                                      </label>
+                                  </div>
+                                  <p class="omb_forgotPwd" style="padding-right:3%">
+                                      <a href="#">Forgot password?</a>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                {% else %}
+                  <img id="login-button" class="login-button" src="static/images/logged_in_temp.png">
+                {% endif %}
                 <div class="input-group">
                     <div class="input-group-btn search-panel">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -123,24 +119,23 @@
                          </ul>
                     </div>
                     <form class="form-inline" id="searchForm" action="/results" method="post">
-{#                     <div class="form-group">#}
-{#                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">#}
-{#                        <span id="search_concept">Search for:</span> <span class="caret"></span>#}
-{#                      </button>#}
-{#                       <ul class="dropdown-menu" role="menu">#}
-{#                         <li onclick="$('#searchType').val('movie')">Movie / TV</li>#}
-{#                         <li class="divider"></li>#}
-{#                         <li onclick="$('#searchType').val('user')">Users</li>#}
-   {#                      <li><a href="#all">Anything</a></li>#}
-{#                       </ul>#}
-{#                     </div>#}
-                     <div class="form-group" style="width:auto"><!-- horrible, I know -->
-                       <input type="text" class="form-control" placeholder="Search for..." id="search" type="text" name="search" value="{{ search }}">
-                     </div>
-                      <div class="form-group">
-                       <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                      </div>
-                 </form>
+{#                      <div class="form-group">#}
+{#                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">#}
+{#                              <span id="search_concept">Search for:</span> <span class="caret"></span>#}
+{#                           </button>#}
+{#                           <ul class="dropdown-menu" role="menu">#}
+{#                               <li onclick="$('#searchType').val('movie')">Movie / TV</li>#}
+{#                               <li class="divider"></li>#}
+{#                               <li onclick="$('#searchType').val('user')">Users</li>#}
+{#                               <li><a href="#all">Anything</a></li>#}
+{#                            </ul>#}
+{#                      </div>#}
+{#                      <div class="form-group" style="width:auto"><!-- horrible, I know -->#}
+                        <input type="text" class="form-control" placeholder="Search for..." id="search" type="text" name="search" value="{{ search }}">
+                        <!--<div class="input-group-btn>
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>-->
+                    </form>
                 </div>
             </div>
             </nav>
