@@ -5,6 +5,12 @@ ul, ol {margin: 0;}
 p {margin: 0;}
 html, body{
 	font-family: 'Open Sans', sans-serif;
+    background-color: #5bc0de;
+}
+.centre-panel {
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
 }
 body a{
  	transition: 0.5s all;
