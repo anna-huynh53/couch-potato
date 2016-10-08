@@ -1,150 +1,145 @@
-<!-- Base html from which other html templates inherit
-        Use this for persistent menu bar, panels etc -->
-
-<!-- ok right now there are probs not enough comments, kinda messy, and the css should be moved -->
+<!-- Base html from which other html templates inherit.
+     Use this for persistent menu bar, panels etc. -->
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<html>
 <head>
-<title>Movie Social Platform</title>
+<title>Couch Potato</title>
 <link href="static/css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="static/css/style.css" rel='stylesheet' type='text/css'/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<!----requred-js-files---->
+<!-- required-js-files -->
 <script src="static/js/jquery-1.9.1.min.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
-<!----for the option drop-down in the search bar---->
-<script type="text/javascript">
-  $(document).ready(function(e) {
-      $('.search-panel .dropdown-menu').find('a').click(function(e) {
-		  e.preventDefault();
-		  var param = $(this).attr("href").replace("#","");
-		  var concept = $(this).text();
-		  $('.search-panel span#search_concept').text(concept);
-		  $('.input-group #search_param').val(param);
-	  });
-  });
-</script>
+{# <script src="static/js/bootstrap.min.js"></script> #}
 </head>
 
 <body>
-<div class="container">
-<div class="centre-panel">
-    <div class="header">
-    <div class="container">
-        <div class="header-shadow">
-        <div class="header-top">
-            <a href="/"><img class="logo" src="static/images/logo.png"></a>
-            <nav class="navbar navbar-default menu" role="navigation">
-            <div class="container-fluid">
-                <div class="options collapse navbar-collapse">
-                    <ul class="nav navbar-nav menu1">
-                        <li><a href="/friends">Friends</a></li>
-                        <li><a href="#movies">Movies</a></li>
-                        <li><a href="#TVshows">TV Shows</a></li>
-                        <li><a href="#Movie Roulette">Movie Roulette</a></li>
-                    </ul>
-                </div>
-                <!-- login/signup popup -->
-                {% if  loggedIn == False %}
-                    <img id="login-button" class="login-button" src="static/images/login_signup_button.png">
-                    <div id="login-modal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">x</span>
-                            <div class="omb_login">
-                                <h3 class="omb_authTitle">Login or <a href="#">Sign up</a></h3>
-                                <div class="row omb_row-sm-offset-3 omb_socialButtons">
-                                    <div class="col-xs-4 col-sm-2" style="width:50%; float:left">
-                                        <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
-                                            <i class="fa fa-facebook visible-xs"></i>
-                                            <span class="hidden-xs">Facebook</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-2"  style="width:50%; float:right">
-{#                                      <a href="#" class="btn btn-lg btn-block omb_btn-google" onclick="onSignIn">#}
-{#                                          <i class="fa fa-google-plus visible-xs" onclick="onSignIn"></i>#}
-{#                                          <span class="hidden-xs" onclick="onSignIn">Google</span>#}
-{#                                      </a>#}
-                                        <div class="g-signin2" data-width="100" data-height="45" data-onsuccess="onSignIn"></div>
-                                    </div>
-                                </div>
-                                <div class="row omb_row-sm-offset-3 omb_loginOr">
-                                    <hr class="omb_hrOr">
-                                    <span class="omb_spanOr">or</span>
-                                </div>
-                                <form class="omb_loginForm" action="" autocomplete="off" method="POST">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" name="email" placeholder="email address">
-                                    </div>
-                                    <span class="help-block"></span>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                        <input  type="password" class="form-control" name="password" placeholder="Password">
-                                    </div>
-                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                                </form>
-                                <div class="row omb_row-sm-offset-3">
-                                    <div class="col-xs-12 col-sm-3" style="width:50%; float:left">
-                                        <label class="checkbox">
-                                            <input type="checkbox" value="remember-me">Remember Me
-                                        </label>
-                                    </div>
-                                    <p class="omb_forgotPwd" style="padding-right:3%">
-                                        <a href="#">Forgot password?</a>
-                                    </p>
-                                </div>
-                            </div>
+	<div id="page">
+		<div id="body">
+			<div class="header">
+                <a href="/"><img class="logo" src="static/images/logo.png"></a>
+                <nav class="navbar navbar-default menu" role="navigation">
+                    <div class="container-fluid">
+                        <!-- navigation buttons - replace with pictures?
+                             when logged in, 'my account' should appear as another option -->
+                        <div class="options collapse navbar-collapse">
+                            <ul class="nav navbar-nav menu1">
+                                <li><a href="#movies">Movies</a></li>
+                                <li><a href="#TVshows">TV Shows</a></li>
+                                <li><a href="#Movie Roulette">Movie Roulette</a></li>
+                            </ul>
                         </div>
-                    </div>
-                {% else %}
-                    <img class="signout-button" src="static/images/signout_button.png">
-                {% endif %}
-                <div class="input-group">
-                    <div class="input-group-btn search-panel">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span id="search_concept">Filter by</span> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#movies">Movies</a></li>
-                            <li><a href="#TVshows">TV Shows</a></li>
-                            <li><a href="#actor">Actor</a></li>
-                            <li><a href="#user">User</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#all">Anything</a></li>
-                         </ul>
-                    </div>
-                    <form class="form-inline" id="searchForm" action="/results" method="post">
-{#                      <div class="form-group">#}
-{#                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">#}
-{#                              <span id="search_concept">Search for:</span> <span class="caret"></span>#}
-{#                           </button>#}
-{#                           <ul class="dropdown-menu" role="menu">#}
-{#                               <li onclick="$('#searchType').val('movie')">Movie / TV</li>#}
-{#                               <li class="divider"></li>#}
-{#                               <li onclick="$('#searchType').val('user')">Users</li>#}
-{#                               <li><a href="#all">Anything</a></li>#}
-{#                            </ul>#}
-{#                      </div>#}
-{#                      <div class="form-group" style="width:auto"><!-- horrible, I know -->#}
-                        <input type="text" class="form-control" placeholder="Search for..." id="search" type="text" name="search" value="{{ search }}">
-                        <!--<div class="input-group-btn>
-                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                        </div>-->
-                    </form>
-                </div>
-            </div>
-            </nav>
-        </div>
-        </div>
-    </div>
-    </div>
+                        <!-- login popup, need to add signup-->
+                        {% if loggedIn == False %}
+                            <img id="login-button" class="login-button" src="static/images/login_signup_button.png">
+                            <div id="login-modal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">x</span>
+                                    <div class="omb_login">
+                                        <h3 class="omb_authTitle"><a href="#">Login</a> or <a href="#">Sign up</a></h3>
+                                        <!-- options for google and facebook -->
+                                        <div class="row omb_row-sm-offset-3 omb_socialButtons">
+                                            <div class="col-xs-4 col-sm-2" style="width:50%; float:left"> <!-- move css -->
+                                                <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+                                                    <i class="fa fa-facebook visible-xs"></i>
+                                                    <span class="hidden-xs">Facebook</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-4 col-sm-2" style="width:50%; float:right"> <!-- move css -->
+{#                                             <a href="#" class="btn btn-lg btn-block omb_btn-google" data-onsuccess="onSignIn">#}
+{#                                                  <i class="fa fa-google-plus visible-xs" data-onsuccess="onSignIn"></i>#}
+{#                                                  <span class="hidden-xs" data-onsuccess="onSignIn">Google</span>#}
+ {#                                            </a>#}
+                                               <div class="btn btn-lg btn-block omb_btn-google g-signin2" data-onsuccess="onSignIn"></div>
+                                            </div>
+                                        </div> <!-- social buttons -->
+                                        <div class="row omb_row-sm-offset-3 omb_loginOr">
+                                            <hr class="omb_hrOr">
+                                            <span class="omb_spanOr">or</span>
+                                        </div>
+                                        <!-- enter username/email and password -->
+                                        <form class="omb_loginForm" action="" method="POST">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <input type="text" class="form-control" name="email" placeholder="email address">
+                                            </div>
+                                            <span class="help-block"></span>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                                <input  type="password" class="form-control" name="password" placeholder="Password">
+                                            </div>
+                                            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                                        </form>
+                                        <!-- 'remember me' should leave username/email filled in for that computer,
+                                             'forgot pw' should lead to another page where the user can enter their username/email
+                                             and an email will be sent -->
+                                        <div class="row omb_row-sm-offset-3">
+                                            <div class="col-xs-12 col-sm-3" style="width:50%; float:left"> <!-- move css -->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="remember-me">Remember Me
+                                                </label>
+                                            </div>
+                                            <p class="omb_forgotPwd" style="padding-right:3%"> <!-- move css -->
+                                                <a href="#">Forgot password?</a>
+                                            </p>
+                                        </div> <!-- remember me and forgot pw -->
+                                    </div> <!-- login -->
+                                </div> <!-- modal-content -->
+                            </div> <!-- modal -->
+                        {% else %}
+                            <img class="signout-button" src="static/images/signout_button.png">
+                        {% endif %}
+                        <!-- search bar -->
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel" style="padding-left:4%"> <!-- move css -->
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">Filter by</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#movies">Movies</a></li>
+                                    <li><a href="#TVshows">TV Shows</a></li>
+                                    <li><a href="#actor">Actor</a></li>
+                                    <li><a href="#user">User</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#all">Anything</a></li>
+                                </ul>
+                            </div>
+                            <form class="form-inline" id="searchForm" action="/results" method="post">
+{#                              <div class="form-group">#}
+{#                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">#}
+{#                                      <span id="search_concept">Search for:</span> <span class="caret"></span>#}
+{#                                  </button>#}
+{#                                  <ul class="dropdown-menu" role="menu">#}
+{#                                      <li onclick="$('#searchType').val('movie')">Movie / TV</li>#}
+{#                                      <li class="divider"></li>#}
+{#                                      <li onclick="$('#searchType').val('user')">Users</li>#}
+{#                                      <li><a href="#all">Anything</a></li>#}
+{#                                  </ul>#}
+{#                              </div>#}
+                                <input type="text" class="form-control" style="width:92%" placeholder="Search for..." id="search" type="text" name="search" value="{{ search }}"> <!-- move css -->
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </form>
+                        </div> <!-- search -->
+                    </div> <!-- container-fluid -->
+                </nav>
+			</div> <!-- header -->
 
-    <!-- Lists was here -->
+			<div class="panel-body">
+                {% block body %} {%  endblock %}
+			</div> <!-- body with information depending on the page-->
+
+		</div> <!-- main body -->
+
+		<div id="footer">
+			<p>Couch Potato &copy; 2016 | All Rights Reserved</p>
+		</div>
+
+	</div> <!-- page -->
 
     <!-- login/signup modal -->
     <script>
@@ -164,7 +159,7 @@
         }
     </script>
 
-     <!-- Facebook Login Javascript SDK -->
+     <!-- facebook login js SDK -->
     <script>
 	function statusChangeCallback(response) {
 	 	console.log('statusChangeCallback');
@@ -199,7 +194,7 @@
 		});
 	};
 
-	// Load the SDK asynchronously
+	// load the SDK asynchronously
 	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 	    if (d.getElementById(id)) return;
@@ -209,7 +204,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 
 	function testAPI() {
-	    console.log('Welcome!  Fetching your information.... ');
+	    console.log('Welcome! Fetching your information.... ');
 	    FB.api('/me', function(response) {
 	      	console.log('Successful login for: ' + response.name);
 	      	document.getElementById('status').innerHTML =
@@ -218,36 +213,44 @@
 	}
 	</script>
 
-	<!-- Google Login -->
+	<!-- google login -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="433518667328-964g5u4klg7ds73d26d1ckau95bnomr0.apps.googleusercontent.com">
 
     <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
+        function onSignIn(googleUser) {
+            // useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            var given_name = profile.getGivenName();
+            var family_name = profile.getFamilyName();
+            var email = profile.getEmail();
 
-          var given_name = profile.getGivenName();
-          var family_name = profile.getFamilyName();
-          var email = profile.getEmail();
+            console.log("Email: " + email);
 
-          console.log("Email: " + email);
+            var data = {"firstName" : given_name, "familyName" : family_name,"email" : email};
+            var URL = "{% url 'home' %}";
 
-          var data = {"firstName" : given_name, "familyName" : family_name,"email" : email};
-          var URL = "{% url 'home' %}";
+            console.log("url: " + URL);
 
-          console.log("url: " + URL);
-
-          $.post(URL, data, function(response) {
-            //if(response === 'success'){ alert('Yay!'); }
-           //else{ alert('Error! :('); }
-          });
-
-      };
+            $.post(URL, data, function(response) {
+                //if (response === 'success'){ alert('Yay!'); }
+                //else { alert('Error! :('); }
+            });
+        };
     </script>
 
-    {% block body %} {%  endblock %}
+    <!-- js for the option drop-down in the search bar -->
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#","");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
+        });
+    </script>
 
-</div>
 </body>
 </html>

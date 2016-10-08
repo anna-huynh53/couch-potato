@@ -2,32 +2,25 @@
 
 {%  block title %} Results {% endblock %}
 
-
-
-
 {% block body %}
 
-
-
-
-{#    <h1>Search Results</h1><!-- GET request with ID as the imdbID that was returned from the API -->#}
-
-
-    <!-- results -->
-    <div class="container" >
-    <div class="portfolioContainer" style="width:72%;">
-        <div style="padding-left:3%"><h2>Search results</h2></div><!-- GET request with ID as the imdbID that was returned from the API -->
+    <!-- results - GET request with ID as the imdbID that was returned from the API -->
+    <div class="portfolioContainer" style="width:70%; padding-top:6%">
+        <div style="padding-left:3%"><h3>Search results</h3></div> <!-- move css -->
         {% for movie in query %}
             <div class="col-sm-6 col-lg-3 col-md-4">
-                <div class="gal-detail thumb">
+                <div class="gal-detail thumb" style="width:150px; height:280px">
                     <div class="movie-image">
-                        <img src={{ movie.poster }} class="thumb-img" alt="work-thumbnail">
+                        {% if movie.poster %}
+                            <img src={{ movie.poster }} class="thumb-img" style="width:130px; height:200px">
+                        {% else %}
+                            <img src="static/images/no_image.jpg" class="thumb-img" style="width:130px; height:140px">
+                        {% endif %}
                     </div>
                     <h5 class="text-center"><a href="/movie?id={{ movie.imdbID }}" data-toggle="modal" data-target="#myModal">{{ movie.title }}</a></h5>
                         <div id="myModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog" style="position: absolute; left:50%; top:7%; margin-left:-400px; margin-top:-300px;">
+                            <div class="modal-dialog" style="position:absolute; left:50%; top:7%; margin-left:-400px; margin-top:-300px"> <!-- move css -->
                                 <span class="close">x</span><img src="static/images/result.png">
-
                             </div>
                         </div>
                     <div class="ga-border"></div>
@@ -36,7 +29,6 @@
             </div>
         {% endfor %}
     </div>
-    </div>
 
     <!-- for the popup modal-->
     <script>
@@ -44,7 +36,7 @@
             $(this).css('display', 'block');
             var $dialog = $(this).find(".modal-dialog");
             var offset = ($(window).height() - $dialog.height()) / 2;
-            // Center modal vertically in window
+            // center modal vertically in window
             $dialog.css("margin-top", offset);
         }
 
@@ -60,12 +52,4 @@
         }
     </script>
 
-{#        <div class="panel panel-default">#}
-{#          <!-- Default panel contents -->#}
-{#        <ul class="list-group">#}
-{#      {% for movie in query %}#}
-{#        <li class="list-group-item"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }} -</a> {{ movie.year }}</li>#}
-{#      {% endfor %}#}
-{#  </ul>#}
-{#</div>#}
 {% endblock %}
