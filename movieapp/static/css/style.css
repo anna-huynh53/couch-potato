@@ -27,7 +27,7 @@ body a{
 .header{
 	background: #fff;
 	margin-top: 2%;
-    padding-bottom: 1.2%;
+    padding-bottom: 3%;
 }
 .logo{
 	float: left;
@@ -39,7 +39,7 @@ body a{
 	float: right;
 	background: #FFF;
 	border: none;
-	margin: 0.5% 0 1.5% 0;
+	margin: 0.5% 0 2% 0;
 	width: 70%;
 	padding-top: 2%;
 }
@@ -55,7 +55,7 @@ body a{
 }
 .signout-button{
     position: absolute;
-    top: 33px;
+    top: 13px;
     right: 3%;
 	width: 20%;
 }

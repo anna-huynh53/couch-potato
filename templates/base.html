@@ -27,9 +27,21 @@
                              when logged in, 'my account' should appear as another option -->
                         <div class="options collapse navbar-collapse">
                             <ul class="nav navbar-nav menu1">
+
                                 <li><a href="#movies">Movies</a></li>
                                 <li><a href="#TVshows">TV Shows</a></li>
-                                <li><a href="#Movie Roulette">Movie Roulette</a></li>
+                                <li><a href="#movieRoulette">Movie Roulette</a></li>
+                                {% if loggedIn == True %}
+                                    <li>
+                                        <a class="dropdown-toggle" data-toggle="dropdown">My Account</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="/lists">My Lists</a></li>
+                                            <li><a href="/editProfile">Edit Profile</a></li>
+                                            <li><a href="/friends">Friends</a></li>
+                                            <li><a href="#notifications">Notifications</a></li>
+                                        </ul>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </div>
                         <!-- login popup, need to add signup-->
