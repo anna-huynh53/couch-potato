@@ -3,111 +3,74 @@
 {%  block title %} Home {% endblock %}
 
 {% block body %}
-    <div class="container" style="float:left; padding-left:20%; padding-top:1%; width:65%">
-	<div class="row">
+
+    <!-- newsfeed needs to be populated with following types
+         green (class="timeline-icon bg-success") = new releases
+         red (class="timeline-icon bg-secondary") = reviews and ratings
+         blue (class="timeline-icon bg-info") = recommendations
+         yellow ("timeline-icon bg-warning">) = personal posts?
+
+         different when not logged in, which will only consist of new releases and random reviews -->
+    <div class="container" style="width:70%; padding-top:1%; float:left"> <!-- move css -->
         <div class="timeline-centered">
-        <article class="timeline-entry">
-            <div class="timeline-entry-inner">
-                <div class="timeline-icon bg-success">
-                    <i class="entypo-feather"></i>
+            <!-- method in for loop -->
+            <article class="timeline-entry">
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-success"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here -->
+                    </div>
                 </div>
-                <div class="timeline-label">
-                    <h2><a href="#">Kayla Vo</a> <span>has watched</span></h2>
-                    <p>The Dark Knight</p>
+            </article>
+
+            <article class="timeline-entry begin">
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
+                        <i class="entypo-flight"></i>
+                    </div>
                 </div>
-            </div>
-        </article>
-        <article class="timeline-entry">
-            <div class="timeline-entry-inner">
-                <div class="timeline-icon bg-secondary">
-                    <i class="entypo-suitcase"></i>
-                </div>
-                <div class="timeline-label">
-                    <h2><a href="#"></a>New releases</h2>
-                    <p><strong>Suicide Squad</strong> Today.</p>
-                </div>
-            </div>
-        </article>
-        <article class="timeline-entry">
-            <div class="timeline-entry-inner">
-                <div class="timeline-icon bg-info">
-                    <i class="entypo-location"></i>
-                </div>
-                <div class="timeline-label">
-                    <h2><a href="#">Anna Huynh</a> <span>has reviewed</span> <a href="#">Finding Nemo</a></h2>
-                    <blockquote>So beautiful.</blockquote>
-                </div>
-            </div>
-        </article>
-        <article class="timeline-entry">
-            <div class="timeline-entry-inner">
-                <div class="timeline-icon bg-warning">
-                    <i class="entypo-camera"></i>
-                </div>
-                <div class="timeline-label">
-                    <h2><a href="#">Maliha</a> <span></span> <a href="#"></a></h2>
-                    <blockquote><blockquote>
-                    <img src="http://themes.laborator.co/neon/assets/images/timeline-image-3.png" class="img-responsive img-rounded full-width">
-                </div>
-            </div>
-        </article>
-        <article class="timeline-entry begin">
-            <div class="timeline-entry-inner">
-                <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
-                    <i class="entypo-flight"></i>
-                </div>
-            </div>
-        </article>
-        </div>
-    </div>
-    </div>
+            </article>
+        </div> <!-- timeline -->
+    </div> <!-- newsfeed container -->
 
     <!-- side lists -->
-    <div class="container" style="float:right; padding-left:2%; padding-right:4.5%; padding-top:1%; width:35%">
-        <div class="row">
-        <div class="col-md-6">
-            <h3>Follow</h3>
-            <form class="form-group" method="post" action="/" id="friendForm">
-                <div class="input-group-sidebar">
-                    <input type="text" class="form-control" placeholder="{{ addStatus }}" id="user" name="user">
-                    <span class="input-group-btn"><button class="btn btn-default" type="submit">Add</button></span>
-                </div><!-- /input-group -->
-            </form>
-            <h3>Movie Lists</h3>
-            <div class="tabbable">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#one" data-toggle="tab">Latest</a></li>
-                    <li><a href="#two" data-toggle="tab">Popular</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="one">
-                        <ul class="list-group">
-                        {% for movie in watched %}
-                           <li class="list-group-item">
-                              <form class="form-inline">
-                                {{ movie.title }}
-                                <span class="glyphicon glyphicon-search" style="float:right"></span>
-                              </form>
-                           </li>
-                        {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="tab-pane" id="two">
-                      <ul class="list-group">
-                        {% for movie in toWatch %}
-                           <li class="list-group-item">
-                              <form class="form-inline">
-                                {{ movie.title }}
-                                <span class="glyphicon glyphicon-search" style="float:right"></span>
-                              </form>
-                           </li>
-                        {% endfor %}
-                        </ul>
-                    </div>
+    <div class="container" style="width:30%; padding-left:4%; padding-top:1%; float:right"> <!-- move css -->
+        <h3>Movie Lists</h3>
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <!-- these are the default tabs
+                     when logged in, there should be a list under the user's data that specifies which list they want to
+                     display (will add edit symbol so they can customise this) -->
+                <li class="active"><a href="#one" data-toggle="tab">Latest</a></li>
+                <li><a href="#two" data-toggle="tab">Popular</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="one">
+                    <ul class="list-group">
+                    {% for movie in watched %}
+                       <li class="list-group-item">
+                          <form class="form-inline">
+                              {{ movie.title }}
+                              <span class="glyphicon glyphicon-search" style="float:right"></span>
+                          </form>
+                       </li>
+                    {% endfor %}
+                    </ul>
                 </div>
-            </div>
-        </div>
-        </div>
-    </div>
+                <div class="tab-pane" id="two">
+                    <ul class="list-group">
+                    {% for movie in toWatch %}
+                       <li class="list-group-item">
+                          <form class="form-inline">
+                              {{ movie.title }}
+                              <span class="glyphicon glyphicon-search" style="float:right"></span>
+                          </form>
+                       </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div> <!-- tab content -->
+        </div> <!-- tabs -->
+    </div> <!-- side lists container -->
 
 {% endblock %}
