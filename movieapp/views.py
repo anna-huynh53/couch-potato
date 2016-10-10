@@ -191,8 +191,25 @@ def movie(request):
 
 
 def friends(request):
+    error = False
     if request.session.get('loggedIn'):
         currentUser = User.objects.get(email=request.session.get('email'))
+        if request.method == 'POST':
+            if request.POST.get("Unfollow"):
+                try:
+                    to_delete = User.objects.get(email=request.POST.get('Unfollow'))
+                    currentUser.friends.remove(to_delete)
+                    currentUser.save()
+                except (KeyError, User.DoesNotExist):
+                    print("")
+            else:
+                try:
+                    to_add = User.objects.get(email=request.POST['add_friend'])
+                    currentUser.friends.add(to_add)
+                    currentUser.save()
+                except (KeyError, User.DoesNotExist):
+                    error = True
+
         userFriends = currentUser.friends.all()
-        return render(request, '../templates/friends.html', {"friends": userFriends})
+        return render(request, '../templates/friends.html', {"friends": userFriends, 'error':error})
 

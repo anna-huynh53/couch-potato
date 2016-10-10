@@ -9,12 +9,20 @@
         <ul class="list-group">
       {% for user in friends  %}
         <li class="list-group-item">
-          <form class="form-group" style="align:right">
+          <form class="form-group" style="align:right" method="post">
+              {% csrf_token %}
             <label name="user" value="{{ user.email }}">{{ user.firstName }} {{ user.familyName }}</label>
-            <button class="btn btn-danger" type="submit" style="float:right">Unfollow</button>
+            <button class="btn btn-danger" type="submit" style="float:right" name="Unfollow" value="{{ user.email }}">Unfollow</button>
           </form>
         </li>
       {% endfor %}
   </ul>
+    <form style="align-self: auto" method="post">
+        {% if error %}
+            <p style="color: red">User does not exist!</p>
+        {% endif %}
+        <input class="text-left" type="email" name="add_friend">
+        <button class="btn btn-primary" type="submit" style="float:inherit" name="add" value="">Add</button>
+    </form>
 </div>
 {% endblock %}
