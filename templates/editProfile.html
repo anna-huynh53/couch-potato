@@ -4,4 +4,70 @@
 
 {% block body %}
 
+    <!-- edit name, username, and email
+         username needs to be checked for availability
+         email needs to be tagged not verified until the user clicks links in email -->
+    <br>
+    <form>
+        <div class="container">
+        <div class="row">
+        <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 lead">Edit user profile<hr></div>
+                </div> <!-- row -->
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div id="img-preview-block" class="img-circle avatar avatar-original center-block" style="background-size:cover;
+                    background-image:url(http://robohash.org/sitsequiquia.png?size=120x120)"></div>
+                        <br>
+                        <span class="btn btn-link btn-file">Edit profile picture<input type="file" id="upload-img"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="user_last_name">Name</label>
+                            <input type="text" class="form-control" id="user_name" placeholder=""> <!-- previous info as placeholder -->
+                        </div>
+                        <div class="form-group">
+                            <label for="user_first_name">Username</label>
+                            <input type="text" class="form-control" id="user_username" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_middle_name">Email</label>
+                            <input type="text" class="form-control" id="user_email" placeholder="">
+                        </div>
+                    </div>
+                </div> <!-- row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        <button class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- panel body -->
+        </div> <!-- panel -->
+        </div> <!-- col -->
+        </div> <!-- row -->
+        </div> <!-- container -->
+    </form>
+
+    <!-- to upload a new profile picture -->
+    <script>
+    $(function() {
+        $("#upload-img").on("change", function() {
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+            if (/^image/.test( files[0].type)) { // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+                reader.onload = function(e) { // set image data as background of div
+                    $("#img-preview-block").css({'background-image': 'url('+e.target.result +')', "background-size": "cover"});
+                }
+            }
+        });
+    });
+    </script>
+
 {% endblock %}
