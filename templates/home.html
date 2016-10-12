@@ -11,66 +11,25 @@
          yellow ("timeline-icon bg-warning">) = personal posts?
 
          different when not logged in, which will only consist of new releases and random reviews -->
-    <div class="container" style="width:70%; padding-top:1%; float:left"> <!-- move css -->
-        <div class="timeline-centered">
-            <!-- method in for loop -->
-            <article class="timeline-entry">
-                <div class="timeline-entry-inner">
-                    <div class="timeline-icon bg-success"></div> <!-- will change depending on type of post -->
-                    <div class="timeline-label">
-                        <!-- content to go here -->
-                    </div>
+    <div class="timeline-centered">
+        <!-- method in for loop -->
+        <article class="timeline-entry">
+            <div class="timeline-entry-inner">
+                <div class="timeline-icon bg-success"></div> <!-- will change depending on type of post -->
+                <div class="timeline-label">
+                    <!-- content to go here -->
                 </div>
-            </article>
+            </div>
+        </article>
 
-            <article class="timeline-entry begin">
-                <div class="timeline-entry-inner">
-                    <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
-                        <i class="entypo-flight"></i>
-                    </div>
+        <article class="timeline-entry begin">
+            <div class="timeline-entry-inner">
+                <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
+                    <i class="entypo-flight"></i>
                 </div>
-            </article>
-        </div> <!-- timeline -->
-    </div> <!-- newsfeed container -->
+            </div>
+        </article>
+    </div> <!-- timeline -->
 
-    <!-- side lists -->
-    <div class="container" style="width:30%; padding-left:4%; padding-top:1%; float:right"> <!-- move css -->
-        <h3>Movie Lists</h3>
-        <div class="tabbable">
-            <ul class="nav nav-tabs">
-                <!-- these are the default tabs
-                     when logged in, there should be a list under the user's data that specifies which list they want to
-                     display (will add edit symbol so they can customise this) -->
-                <li class="active"><a href="#one" data-toggle="tab">Latest</a></li>
-                <li><a href="#two" data-toggle="tab">Popular</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="one">
-                    <ul class="list-group">
-                    {% for movie in watched %}
-                       <li class="list-group-item">
-                          <form class="form-inline">
-                              {{ movie.title }}
-                              <span class="glyphicon glyphicon-search" style="float:right"></span>
-                          </form>
-                       </li>
-                    {% endfor %}
-                    </ul>
-                </div>
-                <div class="tab-pane" id="two">
-                    <ul class="list-group">
-                    {% for movie in toWatch %}
-                       <li class="list-group-item">
-                          <form class="form-inline">
-                              {{ movie.title }}
-                              <span class="glyphicon glyphicon-search" style="float:right"></span>
-                          </form>
-                       </li>
-                    {% endfor %}
-                    </ul>
-                </div>
-            </div> <!-- tab content -->
-        </div> <!-- tabs -->
-    </div> <!-- side lists container -->
 
 {% endblock %}

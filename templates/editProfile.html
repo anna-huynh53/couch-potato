@@ -9,9 +9,6 @@
          email needs to be tagged not verified until the user clicks links in email -->
     <br>
     <form>
-        <div class="container">
-        <div class="row">
-        <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
@@ -47,10 +44,29 @@
                 </div> <!-- row -->
             </div> <!-- panel body -->
         </div> <!-- panel -->
-        </div> <!-- col -->
-        </div> <!-- row -->
-        </div> <!-- container -->
     </form>
+
+    <!-- past reviews and ratings (for now it can be sorted from newest to oldest) -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 lead">Past reviews and ratings<hr></div>
+            </div> <!-- row -->
+            <!-- list of reviews, max 10 -->
+            <!-- page numbers -->
+            <div class="container">
+                <ul class="pagination" >
+                    <li class="disabled"><a href="#">«</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
+        </div> <!-- panel body -->
+    </div> <!-- panel -->
 
     <!-- to upload a new profile picture -->
     <script>

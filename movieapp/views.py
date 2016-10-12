@@ -213,3 +213,6 @@ def friends(request):
         userFriends = currentUser.friends.all()
         return render(request, '../templates/friends.html', {"friends": userFriends, 'error':error})
 
+def editProfile(request):
+
+    return render(request, '../templates/editProfile.html')

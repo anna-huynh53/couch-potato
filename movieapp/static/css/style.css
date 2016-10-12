@@ -1,9 +1,9 @@
-.clear{clear: both;}
+.clear {clear: both;}
 h4, h5, h6,
 h1, h2, h3 {margin-top: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
-html, body{
+html, body {
 	font-family: 'Open Sans', sans-serif;
     background-color: #5bc0de;
 }
@@ -18,24 +18,24 @@ html, body{
 	padding: 0 20px;
 	width: 60%;
 }
-body a{
+body a {
  	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
 }
-.header{
+.header {
 	background: #fff;
 	margin-top: 2%;
     padding-bottom: 3%;
 }
-.logo{
+.logo {
 	float: left;
 	height: auto;
 	width: 30%;
     padding-top: 2%;
 }
-.menu{
+.menu {
 	float: right;
 	background: #FFF;
 	border: none;
@@ -43,24 +43,23 @@ body a{
 	width: 70%;
 	padding-top: 2%;
 }
-.options.collapse.navbar-collapse{
+.options.collapse.navbar-collapse {
     padding-top: 1%;
     padding-bottom: 1%;
 }
-.login-button{
+.login-button {
     position: absolute;
     top: 33px;
     right: 3%;
 	width: 20%;
 }
-.signout-button{
+.signout-button {
     position: absolute;
     top: 13px;
     right: 3%;
 	width: 20%;
 }
-
-.input-group{
+.input-group {
     padding-bottom: 3%;
 }
 #footer {
@@ -71,119 +70,232 @@ body a{
 	text-align: center;
 	text-shadow: 1px 1px 1px #8da181;
 }
+.pagination>li>a, .pagination>li>span {
+    border-radius: 50% !important;margin: 0 5px;
+}
+
+/*************************************/
 
 /*login/signup modal*/
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0,0,0); /* Fallback color */
-	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+#login_body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    color: #666;
 }
-.modal-content {
-	align-content: center;
-	background-color: #fefefe;
-	margin: 10% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 25%; /* Could be more or less, depending on screen size */
-}
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-@media (min-width: 768px) {
-    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
-        align-content: center;
-    }
-}
-.omb_login .omb_authTitle {
+#login_h1 {
     text-align: center;
-	line-height: 300%;
+    margin-bottom: 0;
+    margin-top: 60px;
 }
-.omb_login .omb_socialButtons a {
-	color: white;
-	opacity:0.9;
+#lean_overlay {
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    display: none;
 }
-.omb_login .omb_socialButtons a:hover {
-    color: white;
-	opacity:1;
+.popupContainer {
+    position: absolute;
+    width: 330px;
+    height: auto;
+    left: 45%;
+    top: 60px;
+    background: #FFF;
 }
-.omb_login .omb_socialButtons .omb_btn-facebook {
-	align-content: center;
-	background: #3b5998;
+#modal_trigger {
+    margin: 40px auto;
+    width: 200px;
+    display: block;
+    border: 1px solid #DDD;
+    border-radius: 4px;
 }
-.omb_login .omb_socialButtons .omb_btn-google {
-	background: #c32f10;
+.btn_red {
+    background: #ED6347;
+    color: #FFF;
 }
-.omb_login .omb_loginOr {
-	position: relative;
-	font-size: 1.5em;
-	color: #aaa;
-	margin-top: 1em;
-	margin-bottom: 1em;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+.btn:hover {
+    background: #E4E4E2;
 }
-.omb_login .omb_loginOr .omb_hrOr {
-	background-color: #cdcdcd;
-	height: 1px;
-	margin-top: 0px !important;
-	margin-bottom: 0px !important;
+.btn_red:hover {
+    background: #C12B05;
 }
-.omb_login .omb_loginOr .omb_spanOr {
-	display: block;
-	position: absolute;
-	left: 50%;
-	top: -0.6em;
-	margin-left: -1.5em;
-	background-color: white;
-	width: 3em;
-	text-align: center;
+a.btn {
+    color: #666;
+    text-align: center;
+    text-decoration: none;
+}
+a.btn_red {
+    color: #FFF;
+}
+.one_half {
+    width: 50%;
+    display: block;
+    float: left;
+}
+.one_half.last {
+    width: 45%;
+    margin-left: 5%;
+}
+/*popup styles*/
+.popupHeader {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.popupHeader {
+    background: #F4F4F2;
+    position: relative;
+    padding: 10px 20px;
+    border-bottom: 1px solid #DDD;
+    font-weight: bold;
+}
+.popupHeader .modal_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 15px;
+    background: #E4E4E2;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 16px;
+}
+.popupBody {
+    padding: 20px;
+}
+/*social login form*/
+.social_login {}
+.social_login .social_box {
+    display: block;
+    clear: both;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #F4F4F2;
+    overflow: hidden;
+}
+.social_login .icon {
+    display: block;
+    width: 10px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    float: left;
+    color: #FFF;
+    font-size: 16px;
+    text-align: center;
+}
+.social_login .fb .icon {
+    background: #3B5998;
+}
+.social_login .google .icon {
+    background: #DD4B39;
+}
+.social_login .icon_title {
+    display: block;
+    padding: 5px 0;
+    float: left;
+    font-weight: bold;
+    font-size: 16px;
+    color: #777;
+}
+.social_login .social_box:hover {
+    background: #E4E4E2;
+}
+.centeredText {
+    text-align: center;
+    margin: 20px 0;
+    clear: both;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+.action_btns {
+    clear: both;
+    overflow: hidden;
+}
+.action_btns a {
+    display: block;
+}
+/*user login form*/
+.user_login {
+    display: none;
+}
+.user_login label {
+    display: block;
+    margin-bottom: 5px;
+}
+.user_login input[type="text"],
+.user_login input[type="email"],
+.user_login input[type="password"] {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    color: #666;
+}
+.user_login input[type="checkbox"] {
+    float: left;
+    margin-right: 5px;
+}
+.user_login input[type="checkbox"]+label {
+    float: left;
+}
+.user_login .checkbox {
+    margin-bottom: 10px;
+    clear: both;
+    overflow: hidden;
+}
+.forgot_password {
+    display: block;
+    margin: 20px 0 10px;
+    clear: both;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ED6347;
+}
+/*user register form*/
+.user_register {
+    display: none;
+}
+.user_register label {
+    display: block;
+    margin-bottom: 5px;
+}
+.user_register input[type="text"],
+.user_register input[type="email"],
+.user_register input[type="password"] {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    color: #666;
+}
+.user_register input[type="checkbox"] {
+    float: left;
+    margin-right: 5px;
+}
+.user_register input[type="checkbox"]+label {
+    float: left;
+}
+.user_register .checkbox {
+    margin-bottom: 10px;
+    clear: both;
+    overflow: hidden;
 }
 
-.omb_login .omb_loginForm .input-group.i {
-	width: 2em;
-}
-.omb_login .omb_loginForm .help-block {
-    color: red;
-}
-@media (min-width: 768px) {
-    .omb_login .omb_forgotPwd {
-        text-align: right;
-		margin-top:10px;
- 	}
-}
 /*************************************/
 
 /*newsfeed*/
 img {
     vertical-align: middle;
 }
-
 .img-responsive {
     display: block;
     height: auto;
     max-width: 100%;
 }
-
 .img-rounded {
     border-radius: 3px;
 }
-
 .img-thumbnail {
     background-color: #fff;
     border: 1px solid #ededf0;
@@ -198,7 +310,6 @@ img {
     transition: all .2s ease-in-out;
     webkit-transition: all .2s ease-in-out;
 }
-
 .img-circle {
     border-radius: 50%;
 }
@@ -418,6 +529,7 @@ img {
                         -ms-filter: alpha(opacity=60);
                         filter: alpha(opacity=60);
                     }
+
 /*************************************/
 
 /*search results*/
