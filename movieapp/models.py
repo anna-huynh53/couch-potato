@@ -27,3 +27,10 @@ class User(models.Model):
     toWatchList = models.ManyToManyField(Movie, related_name='toWatch')
     friends = models.ManyToManyField('self')
     password = models.CharField(max_length=20, default="")
+
+class Genre(models.Model):
+    name = models.CharField(max_length=100)
+    tmdbID = models.CharField(max_length=5)
+
+    def __str__(self):
+        return self.name

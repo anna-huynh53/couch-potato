@@ -3,8 +3,7 @@ from .forms import SearchForm
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 import json
 import requests
-from .models import User
-from .models import Movie
+from .models import User, Genre, Movie
 
 # Home page
 def home(request):
@@ -93,7 +92,7 @@ def lists(request):
 
 # Search results
 def results(request):
-
+    synced = False
     # If this is a search
     if request.method == 'POST':
 
@@ -109,23 +108,65 @@ def results(request):
         else:
             movie_query = request.POST.get('search')  # gets query from POST data
 
-        url = 'http://www.omdbapi.com/?s=' + movie_query
-        response = requests.get(url)
-        content = json.loads(response.text)
-        raw_items = content["Search"]
+        # Search movie by Genre
+        if False: # With current way drop down menu is working, can find a way to find out which item is selected
 
-        class Movie:
-            def __init__(self, title, year, ID, poster):
-                self.title = title
-                self.year = year
-                self.imdbID = ID
-                self.poster = poster
+            # Sync genres if haven't yet
+            test = Genre.objects.all() # check to see if db synced with Genres
+            if not test:
+                sync_genres()
 
-        movies = []
+            # Deal with search now
+            movie_query =str(movie_query).lower().capitalize().rstrip()
 
-        # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
-        for item in raw_items:
-            movies.append(Movie(item["Title"], item["Year"], item["imdbID"], item["Poster"]))
+            try:
+                genre = Genre.objects.get(name=movie_query)
+                url = "https://api.themoviedb.org/3/discover/movie?api_key=cc4b67c52acb514bdf4931f" \
+                      "7cedfd12b&language=en-US&with_genres=" + genre.tmdbID
+            except:
+                url = "https://api.themoviedb.org/3/discover/movie?api_key=cc4b67c52acb514bdf4931" \
+                      "f7cedfd12b&language=en-US&with_genres=0"
+
+            payload = "{}"
+            headers = {'content-type': 'application/json'}
+
+            response = requests.request("GET", url, data=payload, headers=headers)
+            content = json.loads(response.text)
+            raw_items = content["results"]
+
+            class Movie:
+                def __init__(self, title, year, ID, poster):
+                    self.title = title
+                    self.year = year
+                    self.tmdbID = ID
+                    self.poster = poster
+
+            movies = []
+
+            for item in raw_items:
+                movies.append(Movie(item['title'], item['release_date'], item['id'], item['poster_path']))
+
+            return render(request, '../templates/movieResults_genre.html', {"query": movies})
+
+        #search by movie title
+        else:
+            url = 'http://www.omdbapi.com/?s=' + movie_query
+            response = requests.get(url)
+            content = json.loads(response.text)
+            raw_items = content["Search"]
+
+            class Movie:
+                def __init__(self, title, year, ID, poster):
+                    self.title = title
+                    self.year = year
+                    self.imdbID = ID
+                    self.poster = poster
+
+            movies = []
+
+            # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
+            for item in raw_items:
+                movies.append(Movie(item["Title"], item["Year"], item["imdbID"], item["Poster"]))
 
         # TODO rename query
         return render(request, '../templates/movieResults.html', {"query": movies})
@@ -216,3 +257,21 @@ def friends(request):
 def editProfile(request):
 
     return render(request, '../templates/editProfile.html')
+
+
+def sync_genres():
+   '''url = "https://api.themoviedb.org/3/genre/movie/list?api_key=cc4b67c52acb514bdf4931f7cedfd12b&language=en-US"
+
+    payload = "{}"
+    headers = {'content-type': 'application/json'}
+
+    response = requests.request("GET", url, data=payload, headers=headers)
+    content = json.loads(response.text)
+
+    genres = content["genres"]
+
+    for item in genres:
+       genre = Genre(name=item['name'], tmdbID=str(item['id']))
+       genre.save()'''
+   for item in Genre.objects.all():
+       Genre.delete(item)
