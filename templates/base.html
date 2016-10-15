@@ -7,7 +7,7 @@
 <title>Couch Potato</title>
 <link href="static/css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="static/css/style.css" rel='stylesheet' type='text/css'/>
-    <link href="static/css/style_login.css" rel='stylesheet' type='text/css'/>
+<link href="static/css/style_login.css" rel='stylesheet' type='text/css'/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -18,9 +18,6 @@
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/jquery.leanModal.min.js"></script>
 <script src="static/js/jquery-1.11.0.min.js"></script>
-<script src="static/js/roulette.js"></script>
-<script src="static/js/roulette.min.js"></script>
-
 </head>
 
 <body>
@@ -213,99 +210,100 @@
                 </div> <!-- side lists container -->
 			</div> <!-- body with information depending on the page-->
 
-		<div id="footer">
-			<p>Couch Potato &copy; 2016 | All Rights Reserved</p>
-		</div>
+            <div id="footer">
+                <p>Couch Potato &copy; 2016 | All Rights Reserved</p>
+            </div>
 
+        </div>
 	</div> <!-- page -->
 
     <!-- login/signup modal -->
     <script>
-    $("#modal_trigger").leanModal({
-        top: 100,
-        overlay: 0.6,
-        closeButton: ".modal_close"
-    });
-
-    $(function() {
-        // calling login form
-        $("#login_form").click(function() {
-            $(".social_login").hide();
-            $(".user_login").show();
-            return false;
+        $("#modal_trigger").leanModal({
+            top: 100,
+            overlay: 0.6,
+            closeButton: ".modal_close"
         });
 
-        // calling register form
-        $("#register_form").click(function() {
-            $(".social_login").hide();
-            $(".user_register").show();
-            $(".header_title").text('Register');
-            return false;
-        });
+        $(function() {
+            // calling login form
+            $("#login_form").click(function() {
+                $(".social_login").hide();
+                $(".user_login").show();
+                return false;
+            });
 
-        // going back to social forms
-        $(".back_btn").click(function() {
-            $(".user_login").hide();
-            $(".user_register").hide();
-            $(".social_login").show();
-            $(".header_title").text('Login');
-            return false;
+            // calling register form
+            $("#register_form").click(function() {
+                $(".social_login").hide();
+                $(".user_register").show();
+                $(".header_title").text('Register');
+                return false;
+            });
+
+            // going back to social forms
+            $(".back_btn").click(function() {
+                $(".user_login").hide();
+                $(".user_register").hide();
+                $(".social_login").show();
+                $(".header_title").text('Login');
+                return false;
+            });
         });
-    });
     </script>
 
      <!-- facebook login js SDK -->
     <script>
-	function statusChangeCallback(response) {
-	 	console.log('statusChangeCallback');
-	    console.log(response);
-	    if (response.status === 'connected') {
-	    	testAPI();
-	    } else if (response.status === 'not_authorized') {
-	      	document.getElementById('status').innerHTML = 'Please log ' +
-	        	'into this app.';
-	    } else {
-	      	document.getElementById('status').innerHTML = 'Please log ' +
-	        	'into Facebook.';
-	    }
-	}
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            if (response.status === 'connected') {
+                testAPI();
+            } else if (response.status === 'not_authorized') {
+                document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this app.';
+            } else {
+                document.getElementById('status').innerHTML = 'Please log ' +
+                    'into Facebook.';
+            }
+        }
 
-	function checkLoginState() {
-		FB.getLoginStatus(function(response) {
-	    	statusChangeCallback(response);
-	    });
-	}
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
 
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId      : '1808543276057571',
-		    cookie     : true,
-		    xfbml      : true,
-		    version    : 'v2.5' // use graph api version 2.5
-		});
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1808543276057571',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.5' // use graph api version 2.5
+            });
 
-		FB.getLoginStatus(function(response) {
-		    statusChangeCallback(response);
-		});
-	};
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        };
 
-	// load the SDK asynchronously
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-	    if (d.getElementById(id)) return;
-	    js = d.createElement(s); js.id = id;
-	    js.src = "http://connect.facebook.net/en_US/sdk.js";
-	    fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+        // load the SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "http://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
-	function testAPI() {
-	    console.log('Welcome! Fetching your information.... ');
-	    FB.api('/me', function(response) {
-	      	console.log('Successful login for: ' + response.name);
-	      	document.getElementById('status').innerHTML =
-	        'Thanks for logging in, ' + response.name + '!';
-	    });
-	}
+        function testAPI() {
+            console.log('Welcome! Fetching your information.... ');
+            FB.api('/me', function(response) {
+                console.log('Successful login for: ' + response.name);
+                document.getElementById('status').innerHTML =
+                'Thanks for logging in, ' + response.name + '!';
+            });
+        }
 	</script>
 
 	<!-- google login -->
@@ -348,21 +346,31 @@
     </script>
 
     <!-- roulette -->
+    <script src="static/js/roulette.js"></script>
+    <script src="static/js/roulette.min.js"></script>
+
     <div id="roulette" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Movie Roulette<a class="close" data-dismiss="modal">x</a></h2>
                 </div>
-                <div class="modal-body">
-                    <div class="roulette" style="display:none;">
-                        <img src="static/image/red_potato.png">
-                        <img src="http://example.com/flower.png"/>
-                        <img src="http://example.com/coin.png"/>
-                        <img src="http://example.com/mshroom.png"/>
-                        <img src="http://example.com/chomp.png"/>
-                    </div>
-                </div>
+                <div class="modal-body" style="text-align:center">
+					<div class="roulette_container">
+                        <!-- function needed to generate random list of movies and find corresponding images -->
+                        {# {% for movie in list %}#}
+                        {#      <img src={{ movie.poster }} style="width:width:200px; height:300px">#}
+                        {# {% endfor %}#}
+						<div class="roulette" style="display:none;">
+                            <img class="roulette-img" src="static/images/little_mermaid.jpg">
+							<img class="roulette-img"src="static/images/up.jpg">
+							<img class="roulette-img"src="static/images/incredibles.jpg">
+							<img class="roulette-img"src="static/images/snow_white.jpg">
+							<img class="roulette-img"src="static/images/finding_nemo.jpg">
+						</div>
+					</div>
+                    <br>
+					<button class="btn btn-large btn-primary start"> Give me a random movie </button>
                 <div class="modal-footer">
 
                 </div>
@@ -371,21 +379,102 @@
     </div>
 
     <script>
-    var option = {
-        speed : 10,
-        duration : 5,
-        stopImageNumber : 0, // random number
-        startCallback : function() {
-            console.log('start');
-        },
-        slowDownCallback : function() {
-            console.log('slowDown');
-        },
-        stopCallback : function($stopElm) {
-            console.log('stop');
+        var option = {
+            speed : 15,
+            duration : 3,
+            stopImageNumber : 1,
+            startCallback : function() {
+                console.log('start');
+            },
+            slowDownCallback : function() {
+                console.log('slowDown');
+            },
+            stopCallback : function($stopElm) {
+                console.log('stop');
+            }
         }
-    }
-    $('div.roulette').roulette(option);
+        $('div.roulette').roulette(option);
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+        $(function() {
+            $('.roulette').find('img').hover(function() {
+                console.log($(this).height());
+            });
+
+            var p = {
+                startCallback : function() {
+                    $('#stopImageNumber').spinner('disable');
+                    $('.start').attr('disabled', 'true');
+                    $('.stop').removeAttr('disabled');
+                },
+                slowDownCallback : function() {
+                    $('.stop').attr('disabled', 'true');
+                },
+                stopCallback : function($stopElm) {
+                    $('#stopImageNumber').spinner('enable');
+                    $('.start').removeAttr('disabled');
+                    $('.stop').attr('disabled', 'true');
+                }
+            }
+
+            var rouletter = $('div.roulette');
+            rouletter.roulette(p);
+            $('.stop').click(function() {
+                var stopImageNumber = $('.stopImageNumber').val();
+                if(stopImageNumber == "") {
+                    stopImageNumber = null;
+                }
+                rouletter.roulette('stop');
+            });
+            $('.stop').attr('disabled', 'true');
+            $('.start').click(function(){
+                rouletter.roulette('start');
+            });
+
+            var updateParamater = function() {
+                p['speed'] = Number($('.speed_param').eq(0).text());
+                p['duration'] = Number($('.duration_param').eq(0).text());
+                p['stopImageNumber'] = Number($('.stop_image_number_param').eq(0).text());
+                rouletter.roulette('option', p);
+            }
+
+            var updateSpeed = function(speed) {
+                $('.speed_param').text(speed);
+            }
+
+            var updateDuration = function(duration) {
+                $('.duration_param').text(duration);
+            }
+
+            $('#stopImageNumber').spinner({
+                spin: function( event, ui ) {
+                    var imageNumber = ui.value;
+                    if ( ui.value > 4 ) {
+                        $( this ).spinner( "value", -1 );
+                        imageNumber = 0;
+                        updateStopImageNumber(-1);
+                        return false;
+                    } else if ( ui.value < -1 ) {
+                        $( this ).spinner( "value", 4 );
+                        imageNumber = 4;
+                        updateStopImageNumber(4);
+                        return false;
+                    }
+                    updateStopImageNumber(imageNumber);
+                }
+            });
+            $('#stopImageNumber').spinner('value', 0);
+	        updateStopImageNumber($('#stopImageNumber').spinner('value'));
+
+            $('.image_sample').children().click(function(){
+                var stopImageNumber = $(this).attr('data-value');
+                $('#stopImageNumber').spinner('value', stopImageNumber);
+                updateStopImageNumber(stopImageNumber);
+            });
+        });
     </script>
 
 </body>
