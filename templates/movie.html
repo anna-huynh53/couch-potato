@@ -1,27 +1,38 @@
 {% extends "base.html" %}
 
+
+
 {% block title %} {{ movie.title }} {% endblock %}
 
 {% block body %}
+    <script>
+            //document.getElementById("watchedBtn").addEventListener("click", addToList());
+            function addToWatched(){
+                console.log("Working");
+                //var button = document.getElementById('watchedBtn');
+
+                var data = { "movie": '{{movie.imdbID}}', "listAdd" : 'watched'};
+                var URL = "{% url 'movie' %}";
+                $.post(URL, data);
+            }
+            function addToWatch(){
+                console.log("Working");
+                //var button = document.getElementById('watchedBtn');
+
+                var data = { "movie": '{{movie.imdbID}}', "listAdd" : 'watch'};
+                var URL = "{% url 'movie' %}";
+                $.post(URL, data);
+            }
+     </script>
+
     <h1>{{ movie.title }}</h1>
 
-     <div class="button" id="watchedBtn">
-        Add to my watched list
-     </div>
-
-    <script>
-        document.getElementById("watchedBtn").addEventListener("click", addToList());
-        function addToList(){
-            console.log("Working");
-            //var button = document.getElementById('watchedBtn');
-
-             var data = { "movie": {{movie}} };
-             var URL = "{% url 'movie' %}";
-            $.post(URL, data, function(response) {
-                //Maybe this function can be removed altogether
-            });
-        }
-    </script>
+    <button class="btn btn-default" id="toWatchBtn" onclick="addToWatch()">
+        Add to my To Watch list
+     </button>
+     <button class="btn btn-success" id="watchedBtn" onclick="addToWatched()">
+        Add to my Watched list
+     </button>
 
     <img src="{{ movie.poster }}" alt="Poster" align="right">
     <dl>

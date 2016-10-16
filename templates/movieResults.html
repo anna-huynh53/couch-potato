@@ -17,7 +17,18 @@
                         <img src="static/images/no_image.jpg" class="thumb-img" style="width:130px; height:140px">
                     {% endif %}
                 </div>
-                <h5 class="text-center"><a {# href="/movie?id={{ movie.imdbID }}"#} data-toggle="modal" data-target="#movieModal">{{ movie.title }}</a></h5>
+
+{#                <h5 class="text-center"><a href="/movie?id={{ movie.imdbID }}" data-toggle="modal" data-target="#myModal">{{ movie.title }}</a></h5>#}
+{#                    <h5 class="text-center"><a href="/movie?id={{ movie.imdbID }}">{{ movie.title }}</a></h5>#}
+{#                    <div id="myModal" class="modal fade" role="dialog">#}
+{#                        <div class="modal-dialog" style="position:absolute; left:50%; top:7%; margin-left:-400px; margin-top:100px"> <!-- move css -->#}
+{#                            <span class="close">x</span>#}
+{#                            <img src="static/images/result.png">#}
+{#                            <h4>TEST {{ movie.title }}</h4>#}
+{#                        </div>#}
+
+                <h5 class="text-center"><a href="/movie?id={{ movie.imdbID }}" >{{ movie.title }}</a></h5>
+{#             data-toggle="modal" data-target="#movieModal" #}
                 <!-- modal for each movie result -->
                 <div id="movieModal" class="modal fade" role="dialog">
                     <!-- move css but it somehow fucks up when I do -->
