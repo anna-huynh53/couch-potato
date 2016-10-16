@@ -182,6 +182,7 @@ def movie(request):
         class FullMovie:
             def __init__(self, content):
                 # there is almost certainly a less retarded way of doing this
+                self.imdbID= content["imdbID"]
                 self.title = content["Title"]
                 self.year = content["Year"]
                 self.rated = content["Rated"]
@@ -201,34 +202,79 @@ def movie(request):
 
         movieDict = FullMovie(content)
 
+        try:
+           movie = Movie.objects.get(imdbID=request.POST['movie'])
+        except:
+
+            newMovieRecord = Movie(
+                imdbID=content['imdbID'],
+                title=content['Title'],
+                year=content['Year'],
+                rated=content['Rated'],
+                released=content['Released'],
+                runtime=content['Runtime'],
+                genre=content['Genre'],
+                director=content['Director'],
+                writer=content['Writer'],
+                actors=content['Actors'],
+                plot=content['Plot'],
+                language=content['Language'],
+                country=content['Country'],
+                poster=content['Poster'],
+                metascore=content['Metascore'],
+                imdbRating=content['imdbRating'],
+            )
+
+            newMovieRecord.save()
+
         return render(request, '../templates/movie.html', {"movie": movieDict})
 
     elif request.method == 'POST':
 
-        movie = request.POST['movie']
+        if 'listAdd' in request.POST:
+            print(request.POST['movie'])
 
-        newMovieRecord = Movie(
-            imdbID  = movie['imdbID'],
-            title = movie['title'],
-            year = movie['year'],
-            rated = movie['rated'],
-            released = movie['released'],
-            runtime = movie['runtime'],
-            genre =movie['genre'],
-            director = movie['director'],
-            writer = movie['writer'],
-            actors = movie['actors'],
-            plot = movie['plot'],
-            language = movie['language'],
-            country = movie['country'],
-            poster = movie['poster'],
-            metascore = movie['metascore'],
-            imdbRating = movie['imdbRating'],
-        )
+            movie = Movie.objects.get(imdbID=request.POST['movie'])
 
-        newMovieRecord.save()
+            if request.POST['listAdd'] == 'watch':
+                print("watch")
+                return render(request, '../templates/movie.html', {"movie": movie})
 
-        return render(request, '../templates/movie.html', {"movie": movie})
+            else:
+                print("watched")
+                return render(request, '../templates/movie.html', {"movie": movie})
+
+
+        else:
+
+            movie = request.POST['movie']
+
+            try:
+                movie = Movie.objects.get(imdbID=movie['imdbID'])
+            except:
+
+                newMovieRecord = Movie(
+                    imdbID  = movie['imdbID'],
+                    title = movie['title'],
+                    year = movie['year'],
+                    rated = movie['rated'],
+                    released = movie['released'],
+                    runtime = movie['runtime'],
+                    genre =movie['genre'],
+                    director = movie['director'],
+                    writer = movie['writer'],
+                    actors = movie['actors'],
+                    plot = movie['plot'],
+                    language = movie['language'],
+                    country = movie['country'],
+                    poster = movie['poster'],
+                    metascore = movie['metascore'],
+                    imdbRating = movie['imdbRating'],
+                )
+
+                newMovieRecord.save()
+
+            return render(request, '../templates/movie.html', {"movie": movie})
 
 
 def friends(request):
