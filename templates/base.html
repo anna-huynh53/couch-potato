@@ -5,7 +5,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
 <title>Couch Potato</title>
-    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/favicon.ico"/>
+<link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/favicon.ico"/>
 <link href="static/css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="static/css/style.css" rel='stylesheet' type='text/css'/>
 <link href="static/css/style_login.css" rel='stylesheet' type='text/css'/>
@@ -39,7 +39,7 @@
                                 <li><a href="/randomMovies">Movies</a></li>
                                 <li><a href="/randomTVShows">TV Shows</a></li>
                                 <li><a href="#movieRoulette" data-toggle="modal" data-target="#roulette">Movie Roulette</a></li>
-                                {% if loggedIn == False %}
+                                {% if loggedIn == True %}
                                     <li>
                                         <a class="dropdown-toggle" data-toggle="dropdown">My Account</a>
                                         <ul class="dropdown-menu" role="menu">
@@ -76,9 +76,7 @@
                                                 <span class="icon_title">Connect with Google</span>
                                             </a>
                                         </div>
-                                        <div class="centeredText">
-                                            <span>Or register using your email address</span>
-                                        </div>
+                                        <br />
                                         <div class="action_btns">
                                             <div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
                                             <div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
@@ -126,9 +124,9 @@
                             </div> <!-- login/signup modal -->
                         </div>
                         {% else %}
-                            <form method="POST">
-                                <input class="signout-button" type="image" src="static/images/signout_button.png">
-                            </form>
+                        <form method="POST">
+                            <input name="logout" class="signout-button" type="image" src="static/images/signout_button.png">
+                        </form>
                         {% endif %}
                         <!-- search bar -->
                         <div class="input-group">

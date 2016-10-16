@@ -3,15 +3,17 @@ from .forms import SearchForm
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 import json
 import requests
-from .models import User, Genre, Movie
+from .models import Profile, Genre, Movie
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 
 # Home page
 def home(request):
 
     if request.method == 'POST':
         if 'logout' in request.POST:
-            logout(request)
             request.session['loggedIn'] = False
+            logout(request)
             return render(request, '../templates/home.html', {"loggedIn": False})
         elif 'email' and 'username' in request.POST:
             if User.objects.filter(email=request.POST['email']).exists():
