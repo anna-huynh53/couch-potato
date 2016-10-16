@@ -33,61 +33,91 @@
         Add to my Watched list
      </button>
 
-    <img src="{{ movie.poster }}" alt="Poster" align="right">
-    <dl>
-        <dt> Year: </dt>
-        <dd>{{ movie.year }} </dd>
 
-        <dt> Rating: </dt>
-        <dd>{{ movie.rated }}</dd>
+        <div class="well well-sm" style="margin-top:20px;">
+            <img src="{{ movie.poster }}" alt="Poster" align="right" class="img-rounded" style="max-width: 20%; height: auto">
+            <dl class="dl-horizontal">
+                <dt> Year: </dt>
+                <dd>{{ movie.year }} </dd>
 
-        <dt> Runtime: </dt>
-        <dd> {{ movie.runtime }} </dd>
+                <dt> Rating: </dt>
+                <dd>{{ movie.rated }}</dd>
 
-        <dt> Genre/s: </dt>
-        <dd> {{ movie.genre }}</dd>
+                <dt> Runtime: </dt>
+                <dd> {{ movie.runtime }} </dd>
 
-        <dt> Director/s: </dt>
-        <dd> {{ movie.director }}</dd>
+                <dt> Genre/s: </dt>
+                <dd> {{ movie.genre }}</dd>
 
-        <dt> Writer/s: </dt>
-        <dd> {{ movie.writer }}</dd>
+                <dt> Director/s: </dt>
+                <dd> {{ movie.director }}</dd>
 
-        <dt> Actors: </dt>
-        <dd> {{ movie.actors }}</dd>
+                <dt> Writer/s: </dt>
+                <dd> {{ movie.writer }}</dd>
 
-        <dt> Plot Summary: </dt>
-        <dd> {{ movie.plot }}</dd>
-    </dl>
+                <dt> Actors: </dt>
+                <dd> {{ movie.actors }}</dd>
 
-
-    <div class="container">
-        <div class="row" style="margin-top:40px;">
-            <div class="col-md-6">
-            <div class="well well-sm">
-                <div class="text-right">
-                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
-                </div>
-
-                <div class="row" id="post-review-box" style="display:none;">
-                    <div class="col-md-12">
-                        <form accept-charset="UTF-8" action="" method="post">
-                            <input id="ratings-hidden" name="rating" type="hidden">
-                            <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-
-                            <div class="text-right">
-                                <div class="stars starrr" data-rating="0"></div>
-                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                <button class="btn btn-success btn-lg" type="submit">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            </div>
+                <dt> Plot Summary: </dt>
+                <dd> {{ movie.plot }}</dd>
+            </dl>
         </div>
-    </div>
+
+        <div class="well well-sm" style="margin-top:20px;">
+            
+        </div>
+
+        <div class="well well-sm" style="margin-top:20px;">
+{#            <div class="col-md-6">#}
+{#            <div class="well well-sm">#}
+{#                <div class="text-right">#}
+{#                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>#}
+{#                </div>#}
+{##}
+{#                <div class="row" id="post-review-box" style="display:none;">#}
+{#                    <div class="col-md-12">#}
+{#                        <form accept-charset="UTF-8" action="" method="post">#}
+{#                            <input id="ratings-hidden" name="rating" type="hidden">#}
+{#                            <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>#}
+{##}
+{#                            <div class="text-right">#}
+{#                                <div class="stars starrr" data-rating="0"></div>#}
+{#                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">#}
+{#                                <span class="glyphicon glyphicon-remove"></span>Cancel</a>#}
+{#                                <button class="btn btn-success btn-lg" type="submit">Save</button>#}
+{#                            </div>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+            <form>
+                <textarea class="form-control" rows="3" style="margin-right: 10px; margin-bottom: 10px">Comment...</textarea>
+                <btn type="submit" class="btn btn-success btn-green">
+                    Leave Review
+                </btn>
+                <div style="float: right;">
+                    <label style="font-weight: bold; margin-left: 20px">Rating: </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> 2
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> 3
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4"> 4
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5"> 5
+                    </label>
+                </div>
+                
+            </form>
+        </div>
+
+{#    </div>#}
 
 {% endblock %}
