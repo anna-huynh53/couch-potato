@@ -9,47 +9,45 @@ from .models import User, Genre, Movie
 def home(request):
 
     if request.method == 'POST':
-        # unreachable code??
-
-        # testing if I can access the email
-        if 'email' in request.POST:
-
-            if 'password' in request.POST:
-                try:
-                    user = User.objects.get(email=request.POST['email'])
-                    if request.POST['password'] != user.password:
-                        return render(request, '../templates/home.html', {"loggedIn": False})
-                    else:
-                        request.session['email'] = request.POST['email']
-                        request.session['loggedIn'] = True
-                        return render(request, '../templates/home.html', {"loggedIn": True})
-                except:
-                    return render(request, '../templates/home.html', {"loggedIn": False})
-
+        if 'logout' in request.POST:
+            logout(request)
+            request.session['loggedIn'] = False
+            return render(request, '../templates/home.html', {"loggedIn": False})
+        elif 'email' and 'username' in request.POST:
+            if User.objects.filter(email=request.POST['email']).exists():
+                print ("Email already registered");
+                return render(request, '../templates/home.html', {"addStatus": "Email already registered", "loggedIn": False})
             else:
-                try:
-                    user = User.objects.get(email=request.POST['email'])
-                    request.session['email'] = request.POST['email']
-                    print("user exists")
-                except:
-                    print("creating new user")
-                    newUser = User(firstName=request.POST['firstName'], familyName=request.POST['familyName'], email=request.POST['email'])
-                    newUser.save()
-                    request.session['email'] = request.POST['email']
+                user = User.objects.create_user(username=request.POST['username'], email=request.POST['email'], password=request.POST['password'])
+                user.save() # profile supposed to be automatically created
+                login(request, user)    # login
+                print ("Created account")   # debug print
+                profile = user.profile
+                request.session['username'] = user.username
+                request.session['loggedIn'] = True
+                return render(request, '../templates/home.html', {"addStatus": "Account successfully created", "loggedIn": True})
 
-                request.session['loggedIn'] = True  # specify that a user is logged in
-
+        elif 'username_LI' and 'password_LI' in request.POST:
+            user = authenticate(username=request.POST['username_LI'], password=request.POST['password_LI'])
+            
+            if user is None:
+                print ("Incorrect password");
+                return render(request, '../templates/home.html', {"addStatus": "Incorrect password", "loggedIn": False})
+            else:
+                login(request, user)
+                request.session['username'] = user.username
+                request.session['email'] = user.email
+                request.session['loggedIn'] = True
                 return render(request, '../templates/home.html', {"loggedIn": True})
 
         elif 'user' in request.POST:
-
             try:
                 userAdded = User.objects.get(email=request.POST['user'])
                 userAdded.save()
-
                 try:
                     user = User.objects.get(email=request.session['email'])
-                    user.friends.add(userAdded)
+                    user.save()
+                    user.profile.friends.add(userAdded)
                     user.save()
                     return render(request, '../templates/home.html', {"addStatus": "User Added!", "loggedIn": request.session['loggedIn']})
                 except:
@@ -58,26 +56,23 @@ def home(request):
             except:
                 print("actual user does not exist")
                 return render(request, '../templates/home.html', {"addStatus": 'User Doesnt Exist!', "loggedIn": request.session['loggedIn']})
-
-
         else:
             form = SearchForm(request.POST)
             if form.is_valid():
                 return HttpResponseRedirect('/results')
-
-    else:
-
+    else:   # GET method
         if request.session.get('loggedIn'):
             content = request.session['email']
             user = User.objects.get(email=request.session.get('email'))
-            watched = user.watchedList.all()
-            toWatch = user.toWatchList.all()
-
+            user.save()
+            watched = user.profile.watchedList.all()
+            toWatch = user.profile.toWatchList.all()
             return render(request, '../templates/home.html', {"addStatus": "Email", "watched": watched, "toWatch": toWatch, "loggedIn": request.session['loggedIn']})
         else:
             content = 'Search'
+            return render(request, '../templates/home.html', {"addStatus" : "Email", "loggedIn": False})  
 
-            return render(request, '../templates/home.html', {"addStatus" : "Email", "loggedIn": False})
+    return render(request, '../templates/home.html', {"loggedIn": False})
 
 
 # Personal lists (if this is still it's own page I'm not sure)
@@ -285,19 +280,19 @@ def friends(request):
             if request.POST.get("Unfollow"):
                 try:
                     to_delete = User.objects.get(email=request.POST.get('Unfollow'))
-                    currentUser.friends.remove(to_delete)
+                    currentUser.profile.friends.remove(to_delete)
                     currentUser.save()
                 except (KeyError, User.DoesNotExist):
                     print("")
             else:
                 try:
                     to_add = User.objects.get(email=request.POST['add_friend'])
-                    currentUser.friends.add(to_add)
+                    currentUser.profile.friends.add(to_add)
                     currentUser.save()
                 except (KeyError, User.DoesNotExist):
                     error = True
 
-        userFriends = currentUser.friends.all()
+        userFriends = currentUser.profile.friends.all()
         return render(request, '../templates/friends.html', {"friends": userFriends, 'error':error})
 
 def myProfile(request):
