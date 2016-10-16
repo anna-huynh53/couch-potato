@@ -11,25 +11,154 @@
          yellow ("timeline-icon bg-warning">) = personal posts?
 
          different when not logged in, which will only consist of new releases and random reviews -->
-    <div class="timeline-centered">
-        <!-- method in for loop -->
-        <article class="timeline-entry">
-            <div class="timeline-entry-inner">
-                <div class="timeline-icon bg-success"></div> <!-- will change depending on type of post -->
-                <div class="timeline-label">
-                    <!-- content to go here -->
+    {# <div class="panel panel-default">#}
+        <div style="padding-left:2%">
+			<button type="button" class="btn btn-fresh text-uppercase"><a style="color:#fff">New releases</a></button>
+            <button type="button" class="btn btn-hot text-uppercase"><a style="color:#fff">Reviews and ratings</a></button>
+            <button type="button" class="btn btn-sky text-uppercase"><a style="color:#fff">Recommendations</a></button>
+            {% if loggedIn == True %}
+                <button type="button" class="btn btn-sunny text-uppercase"><a>Random</a></button>
+            {% endif %}
+        </div>
+        <div class="timeline-centered">
+            <!-- method in for loop -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-info"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt0468569">
+                                    <img class="media-object" src="static/images/the_dark_knight.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>You should watch this!</b></h4>
+                                    <p class="text-right" style="font-size:13px">By Anna</p>
+                                    <p>Hey watch this it is funny trust me when have I ever lied to you.</p>
+                                    <br>
+                                    <h4 class="media-heading">THE DARK KNIGHT</h4>
+                                    <p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham,
+                                       the caped crusader must come to terms with one of the greatest psychological tests
+                                       of his ability to fight injustice.</p>
+                                    <br><br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 1hr </span></li>
+                                        <li>|</li>
+                                        <span><i class="glyphicon glyphicon-comment"></i> 2 comments </span>
+                                        <li>|</li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> <!-- post content -->
+                    </div>
                 </div>
-            </div>
-        </article>
-
-        <article class="timeline-entry begin">
-            <div class="timeline-entry-inner">
-                <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
-                    <i class="entypo-flight"></i>
+            </article> <!-- one post -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-secondary"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt0468569">
+                                    <img class="media-object" src="static/images/titanic.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>It was good</b></h4>
+                                    <p class="text-right" style="font-size:13px">By Josh</p>
+                                    <p>The movie had a really good story BUT IT WAS SO SAD I COULDN'T STOP CRYING.</p>
+                                    <br>
+                                    <h4 class="media-heading">TITANIC</h4>
+                                    <p>A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.</p>
+                                    <br><br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 6hr </span></li>
+                                        <li>|</li>
+                                        <span><i class="glyphicon glyphicon-comment"></i> 3 comments </span>
+                                        <li>|</li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> <!-- post content -->
+                    </div>
                 </div>
-            </div>
-        </article>
-    </div> <!-- timeline -->
-
+            </article> <!-- one post -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-success"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt0468569">
+                                    <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>NEW RELEASE</b></h4>
+                                    <p class="text-right" style="font-size:13px">2016</p>
+                                    <br>
+                                    <h4 class="media-heading">THE SECRET LIFE OF PETS</h4>
+                                    <p>The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
+                                    <br><br>
+                                    <p><b>Genres:</b> Animation | Comedy | Adventure | Family</p>
+                                    <br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 3 months </span></li>
+                                        <li>|</li>
+                                        <span><i class="glyphicon glyphicon-comment"></i> 0 comments </span>
+                                        <li>|</li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> <!-- post content -->
+                    </div>
+                </div>
+            </article> <!-- one post -->
+            <article class="timeline-entry begin">
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
+                        <i class="entypo-flight"></i>
+                    </div>
+                </div>
+            </article>
+        </div> <!-- timeline -->
+    {# </div> <!-- panel -->#}
 
 {% endblock %}

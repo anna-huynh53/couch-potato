@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{%  block title %} My Profile {% endblock %}
+
+{% block body %}
+
+    <!-- Profile layout should be same for others as well excepting that others will have an
+         'add friend' button (or 'remove' if already a friend) below the picture -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 lead">My profile<hr></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img class="img-circle avatar avatar-original" style="-webkit-user-select:none;
+                    display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="only-bottom-margin">ilovemovies</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span class="text-muted">Name:</span> Anna Huynh<br>
+                            <span class="text-muted">Email:</span> movies_great@gmail.com<br>
+                            <br>
+                            <small class="text-muted">Created: 10.10.2016</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr><button class="btn btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                </div>
+            </div>
+        </div> <!-- panel content --->
+    </div> <!-- panel -->
+
+    <!-- List of friends -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 lead">Friends<hr></div>
+            </div>
+        </div> <!-- panel content -->
+    </div> <!-- panel -->
+
+    <!-- Favourites/lists that are public -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 lead">Favourites<hr></div>
+            </div>
+        </div> <!-- panel content -->
+    </div> <!-- panel -->
+
+{% endblock %}

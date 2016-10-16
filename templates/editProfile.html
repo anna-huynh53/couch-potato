@@ -7,7 +7,7 @@
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#editProfile" data-toggle="tab">Edit Profile</a></li>
-            <li><a href="#preferences" data-toggle="tab">Preferences</a></li>
+            <li><a id="preferences" href="#preferences" data-toggle="tab">Preferences</a></li>
             <li><a href="#friends" data-toggle="tab">Friends List</a></li>
         </ul>
 
@@ -33,15 +33,15 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label for="user_last_name">Name</label>
-                                        <input type="text" class="form-control" id="user_name" placeholder=""> <!-- previous info as placeholder -->
+                                        <input type="text" class="form-control" id="user_name" placeholder="Anna Huynh"> <!-- previous info as placeholder -->
                                     </div>
                                     <div class="form-group">
                                         <label for="user_first_name">Username</label>
-                                        <input type="text" class="form-control" id="user_username" placeholder="">
+                                        <input type="text" class="form-control" id="user_username" placeholder="ilovemovies">
                                     </div>
                                     <div class="form-group">
                                         <label for="user_middle_name">Email</label>
-                                        <input type="text" class="form-control" id="user_email" placeholder="">
+                                        <input type="text" class="form-control" id="user_email" placeholder="movies_great@gmail.com                                                  VERIFIED">
                                     </div>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change password</button>
                                     <div id="changePassword" class="modal fade" role="dialog">
@@ -117,7 +117,11 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-12 lead">Preferences<hr></div>
+                            <div class="col-md-12 lead">
+                                Preferences
+                                <a class="btn btn-primary pull-right" data-toggle="collapse" data-parent="#accordion-s" data-target="#collapseOne-s,#collapseTwo-s,#collapseThree-s">All</a>
+                                <hr>
+                            </div>
                         </div>
                         <!-- various topics of settings that expand -->
                         <div class="panel panel-default">
