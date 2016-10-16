@@ -147,13 +147,6 @@ body a {
     top: 60px;
     background: #FFF;
 }
-#modal_trigger {
-    margin: 40px auto;
-    width: 200px;
-    display: block;
-    border: 1px solid #DDD;
-    border-radius: 4px;
-}
 .btn_red {
     background: #ED6347;
     color: #FFF;
@@ -630,9 +623,6 @@ img {
 /*************************************/
 
 /*edit profile*/
-body {
-  background-color: #eaeaea;
-}
 img.avatar,
 div.avatar {
   border: 1px solid #eee;
@@ -683,6 +673,8 @@ div.avatar {
 .strength {
   float: right;
 }
+
+/*************************************/
 
 /*preferences*/
 .alert-message {
@@ -743,6 +735,8 @@ div.avatar {
 .alert-message-notice h4 {
     color: #444;
 }
+
+/*************************************/
 
 /*toggle switch*/
 .switch {
@@ -876,3 +870,161 @@ margin-top: 2px;
     outline-offset: 0px;
 }
 
+/*************************************/
+
+/*friends list*/
+.list-content {
+    min-height:300px;
+}
+.list-content .list-group .title {
+  background:#5bc0de;
+  border:2px solid #DDDDDD;
+  font-weight:bold;
+  color:#FFFFFF;
+}
+.list-group-item img {
+    height:80px;
+    width:80px;
+}
+.jumbotron .btn {
+    padding: 5px 5px !important;
+    font-size: 12px !important;
+}
+.prj-name {
+    color:#5bc0de;
+}
+.break {
+    width:100%;
+    margin:20px;
+}
+@media (max-width: 767px) {
+    .visible-xs {
+        display: inline-block !important;
+    }
+    .block {
+        display: block !important;
+        width: 100%;
+        height: 1px !important;
+    }
+}
+.c-search > .form-control {
+   border-radius: 0px;
+   border-width: 0px;
+   border-bottom-width: 1px;
+   font-size: 1.3em;
+   padding: 12px 12px;
+   height: 44px;
+   outline: none !important;
+}
+.c-search > .form-control:focus {
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none;
+}
+.c-search > .input-group-btn .btn {
+   border-radius: 0px;
+   border-width: 0px;
+   border-left-width: 1px;
+   border-bottom-width: 1px;
+   height: 44px;
+}
+.c-list {
+    padding: 0px;
+    min-height: 44px;
+}
+.title {
+    display: inline-block;
+    font-size: 1.7em;
+    padding: 5px 15px;
+}
+ul.c-controls {
+    list-style: none;
+    margin: 0px;
+    min-height: 44px;
+}
+ul.c-controls li {
+    margin-top: 8px;
+    float: left;
+}
+ul.c-controls li a {
+    font-size: 1.7em;
+    padding: 11px 10px 6px;
+}
+ul.c-controls li a i {
+    min-width: 24px;
+    text-align: center;
+}
+ul.c-controls li a:hover {
+    background-color: rgba(51, 51, 51, 0.2);
+}
+.c-toggle {
+    font-size: 1.7em;
+}
+
+
+/*************************************/
+
+/*comments*/
+.detailBox {
+    padding-top: 3%;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}

@@ -1,28 +1,26 @@
 {% extends "base.html" %}
 
-
-
 {% block title %} {{ movie.title }} {% endblock %}
 
 {% block body %}
     <script>
-            //document.getElementById("watchedBtn").addEventListener("click", addToList());
-            function addToWatched(){
-                console.log("Working");
-                //var button = document.getElementById('watchedBtn');
+        //document.getElementById("watchedBtn").addEventListener("click", addToList());
+        function addToWatched(){
+            console.log("Working");
+            //var button = document.getElementById('watchedBtn');
 
-                var data = { "movie": '{{movie.imdbID}}', "listAdd" : 'watched'};
-                var URL = "{% url 'movie' %}";
-                $.post(URL, data);
-            }
-            function addToWatch(){
-                console.log("Working");
-                //var button = document.getElementById('watchedBtn');
+            var data = { "movie": '{{movie.imdbID}}', "listAdd" : 'watched'};
+            var URL = "{% url 'movie' %}";
+            $.post(URL, data);
+        }
+        function addToWatch(){
+            console.log("Working");
+            //var button = document.getElementById('watchedBtn');
 
-                var data = { "movie": '{{movie.imdbID}}', "listAdd" : 'watch'};
-                var URL = "{% url 'movie' %}";
-                $.post(URL, data);
-            }
+            var data = { "movie": '{{movie.imdbID}}', "listAdd" : 'watch'};
+            var URL = "{% url 'movie' %}";
+            $.post(URL, data);
+        }
      </script>
 
 
@@ -63,33 +61,33 @@
     </dl>
 
 
-<div class="container">
-    <div class="row" style="margin-top:40px;">
-        <div class="col-md-6">
-        <div class="well well-sm">
-            <div class="text-right">
-                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
-            </div>
-        
-            <div class="row" id="post-review-box" style="display:none;">
-                <div class="col-md-12">
-                    <form accept-charset="UTF-8" action="" method="post">
-                        <input id="ratings-hidden" name="rating" type="hidden"> 
-                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-        
-                        <div class="text-right">
-                            <div class="stars starrr" data-rating="0"></div>
-                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                            <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                            <button class="btn btn-success btn-lg" type="submit">Save</button>
-                        </div>
-                    </form>
+    <div class="container">
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-6">
+            <div class="well well-sm">
+                <div class="text-right">
+                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                </div>
+
+                <div class="row" id="post-review-box" style="display:none;">
+                    <div class="col-md-12">
+                        <form accept-charset="UTF-8" action="" method="post">
+                            <input id="ratings-hidden" name="rating" type="hidden">
+                            <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
+
+                            <div class="text-right">
+                                <div class="stars starrr" data-rating="0"></div>
+                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                <button class="btn btn-success btn-lg" type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div> 
-         
+
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

@@ -7,7 +7,7 @@
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#editProfile" data-toggle="tab">Edit Profile</a></li>
-            <li><a id="preferences" href="#preferences" data-toggle="tab">Preferences</a></li>
+            <li><a href="#preferences" data-toggle="tab">Preferences</a></li>
             <li><a href="#friends" data-toggle="tab">Friends List</a></li>
         </ul>
 
@@ -119,7 +119,7 @@
                         <div class="row">
                             <div class="col-md-12 lead">
                                 Preferences
-                                <a class="btn btn-primary pull-right" data-toggle="collapse" data-parent="#accordion-s" data-target="#collapseOne-s,#collapseTwo-s,#collapseThree-s">All</a>
+                                <button class="btn btn-primary pull-right" data-toggle="collapse" data-parent="#accordion-s" data-target="#collapseOne-s,#collapseTwo-s,#collapseThree-s">All</button>
                                 <hr>
                             </div>
                         </div>
@@ -192,8 +192,103 @@
             </div> <!-- preferences tab -->
 
             <div class="tab-pane" id="friends">
-
-
+                <div class="panel panel-default">
+                    <div style="padding-right:2%; padding-top:2%"> <!-- move css -->
+                        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addFriends"><i class="glyphicon glyphicon-user"></i> Add friends</button>
+                        <div id="addFriends" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2>Add Friends<a class="close" data-dismiss="modal">x</a></h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading c-list">
+                                                <span class="title">Search</span>
+                                                <ul class="pull-right c-controls">
+                                                    <li><a href="#" class="hide-search" data-command="toggle-search" data-toggle="tooltip" data-placement="top" title="Toggle Search"><i class="fa fa-ellipsis-v"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="row" style="display: none;">
+                                                <div class="col-xs-12">
+                                                    <div class="input-group c-search">
+                                                        <input type="text" class="form-control" id="contact-list-search">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul class="list-group" id="contact-list">
+                                                <li class="list-group-item">
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-9">
+                                                        <span class="name">Scott Stevens</span><br/>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <img src="http://api.randomuser.me/portraits/men/97.jpg" alt="Seth Frazier" class="img-responsive img-circle" />
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-9">
+                                                        <span class="name">Seth Frazier</span><br/>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <img src="http://api.randomuser.me/portraits/women/90.jpg" alt="Jean Myers" class="img-responsive img-circle" />
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-9">
+                                                        <span class="name">Jean Myers</span><br/>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <img src="http://api.randomuser.me/portraits/men/24.jpg" alt="Todd Shelton" class="img-responsive img-circle" />
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-9">
+                                                        <span class="name">Todd Shelton</span><br/>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                            </ul>
+                                        </div> <!-- contacts panel -->
+                                    </div> <!-- modal body -->
+                                </div> <!-- modal content -->
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li href="#" class="list-group-item text-left">
+                                <img class="img-thumbnail" src="http://bootdey.com/img/Content/user_1.jpg">
+                                <label class="name">James Rodriguez</label>
+                                <label class="pull-right">
+                                    <a class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
+                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-trash" href="#" title="Delete"></a>
+                                    <a class="btn btn-info  btn-xs glyphicon glyphicon glyphicon-comment" href="#" title="Send message"></a>
+                                </label>
+                                <div class="break"></div>
+                            </li>
+                            <li href="#" class="list-group-item text-left">
+                                <img class="img-thumbnail" src="http://bootdey.com/img/Content/user_2.jpg">
+                                <label class="name">Mariana pajon</label>
+                                <label class="pull-right">
+                                    <a class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
+                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-trash" href="#" title="Delete"></a>
+                                    <a class="btn btn-info  btn-xs glyphicon glyphicon glyphicon-comment" href="#" title="Send message"></a>
+                                </label>
+                                <div class="break"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div> <!-- friends tab -->
 
         </div> <!-- tab content -->
@@ -231,6 +326,52 @@
 
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
+    </script>
+
+    <!-- search bar for adding friends -->
+    <!-- js search plugin -->
+    <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
+    <script>
+        $(function () {
+            /* BOOTSNIPP FULLSCREEN FIX */
+            if (window.location == window.parent.location) {
+                $('#back-to-bootsnipp').removeClass('hide');
+            }
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#fullscreen').on('click', function(event) {
+                event.preventDefault();
+                window.parent.location = "http://bootsnipp.com/iframe/4l0k2";
+            });
+            $('a[href="#cant-do-all-the-work-for-you"]').on('click', function(event) {
+                event.preventDefault();
+                $('#cant-do-all-the-work-for-you').modal('show');
+            })
+
+            $('[data-command="toggle-search"]').on('click', function(event) {
+                event.preventDefault();
+                $(this).toggleClass('hide-search');
+
+                if ($(this).hasClass('hide-search')) {
+                    $('.c-search').closest('.row').slideUp(100);
+                }else{
+                    $('.c-search').closest('.row').slideDown(100);
+                }
+            })
+
+            $('#contact-list').searchable({
+                searchField: '#contact-list-search',
+                selector: 'li',
+                childSelector: '.col-xs-12',
+                show: function( elem ) {
+                    elem.slideDown(100);
+                },
+                hide: function( elem ) {
+                    elem.slideUp( 100 );
+                }
+            })
+        });
     </script>
 
 {% endblock %}

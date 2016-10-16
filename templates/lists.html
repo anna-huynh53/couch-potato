@@ -4,19 +4,31 @@
 
 {% block body %}
 
-  <h1> {{ bodyContent }} </h1>
-  <div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">{{ currentUserRecords.firstName }}</div>
-  <div class="panel-body">
-    <p>...</p>
-  </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 lead">My Lists<hr></div>
+            </div>
+            <!-- lists of lists -->
+        </div> <!-- panel content -->
+    </div> <!-- panel -->
 
-  <!-- List group -->
-  <ul class="list-group">
-    {% for movie in currentUserRecords.watchedList %}
-    <li class="list-group-item">{{ movie.title }} {{ movie.year }}</li>
-  {% endfor %}
-  </ul>
-</div>
+
+
+    <h1> {{ bodyContent }} </h1>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">{{ currentUserRecords.firstName }}</div>
+        <div class="panel-body">
+            <p>...</p>
+        </div>
+
+        <!-- List group -->
+        <ul class="list-group">
+            {% for movie in currentUserRecords.watchedList %}
+                <li class="list-group-item">{{ movie.title }} {{ movie.year }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
 {% endblock %}
