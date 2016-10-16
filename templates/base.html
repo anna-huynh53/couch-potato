@@ -50,9 +50,6 @@
                                         </ul>
                                     </li>
                                     <li><a href="/lists">My Lists</a></li>
-                                    <li><form method="POST">
-                                        <input type="image" src="static/images/signout_button.png" width=15% height=15% border="0" position="Absolute" alt="Submit" />
-                                    </form></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -127,6 +124,10 @@
                                 </section>
                             </div> <!-- login/signup modal -->
                         </div>
+                        {% else %}
+                            <form method="POST">
+                                <input class="signout-button" type="image" src="static/images/signout_button.png">
+                            </form>
                         {% endif %}
                         <!-- search bar -->
                         <div class="input-group">
