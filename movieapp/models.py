@@ -1,4 +1,8 @@
+import datetime
 from django.db import models
+from django.contrib.auth.models import User, UserManager, AbstractBaseUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Movie(models.Model):
     imdbID = models.CharField(max_length=100)
@@ -19,14 +23,32 @@ class Movie(models.Model):
     imdbRating = models.CharField(max_length=50)
 
 
-class User(models.Model):
-    firstName = models.CharField(max_length=200)
-    familyName = models.CharField(max_length=200)
-    email = models.EmailField()
-    watchedList = models.ManyToManyField(Movie, related_name='watched')
-    toWatchList = models.ManyToManyField(Movie, related_name='toWatch')
-    friends = models.ManyToManyField('self')
-    password = models.CharField(max_length=20, default="")
+class Friendship(models.Model):
+    to_user = models.ForeignKey(User, related_name="friends")
+    from_user = models.ForeignKey(User, related_name="_unused_")
+    added = models.DateField(default=datetime.date.today)
+    
+    class Meta:
+        unique_together = (('to_user', 'from_user'),)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    watchedList = models.ManyToManyField(Movie, blank=True, related_name='watched')
+    toWatchList = models.ManyToManyField(Movie, blank=True, related_name='toWatch')
+    friends = models.ManyToManyField(Friendship, blank=True)
+
+
+# create profile after a user is created
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=100)

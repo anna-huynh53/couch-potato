@@ -50,11 +50,15 @@
                                         </ul>
                                     </li>
                                     <li><a href="/lists">My Lists</a></li>
+                                    <li><form method="POST">
+                                        <input type="image" src="static/images/signout_button.png" width=15% height=15% border="0" position="Absolute" alt="Submit" />
+                                    </form></li>
                                 {% endif %}
                             </ul>
                         </div>
                         <!-- login popup, need to add signup-->
                         {% if loggedIn == False %}
+                        <div class="container">
                             <img id="modal_trigger" class="login-button" href="#modal" src="static/images/login_signup_button.png">
                             <div id="modal" class="popupContainer" style="display:none;">
                                 <header class="popupHeader">
@@ -122,8 +126,7 @@
                                     </div>
                                 </section>
                             </div> <!-- login/signup modal -->
-                        {% else %}
-                            <img class="signout-button" src="static/images/signout_button.png">
+                        </div>
                         {% endif %}
                         <!-- search bar -->
                         <div class="input-group">
