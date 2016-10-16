@@ -12,8 +12,8 @@ def home(request):
 
     if request.method == 'POST':
         if 'logout' in request.POST:
-            logout(request)
             request.session['loggedIn'] = False
+            logout(request)
             return render(request, '../templates/home.html', {"loggedIn": False})
         elif 'email' and 'username' in request.POST:
             if User.objects.filter(email=request.POST['email']).exists():

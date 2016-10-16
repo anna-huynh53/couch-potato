@@ -39,7 +39,7 @@
                                 <li><a href="#movies">Movies</a></li>
                                 <li><a href="#TVshows">TV Shows</a></li>
                                 <li><a href="#movieRoulette" data-toggle="modal" data-target="#roulette">Movie Roulette</a></li>
-                                {% if loggedIn == False %}
+                                {% if loggedIn == True %}
                                     <li>
                                         <a class="dropdown-toggle" data-toggle="dropdown">My Account</a>
                                         <ul class="dropdown-menu" role="menu">
@@ -124,9 +124,9 @@
                             </div> <!-- login/signup modal -->
                         </div>
                         {% else %}
-                            <form method="POST">
-                                <input class="signout-button" type="image" src="static/images/signout_button.png">
-                            </form>
+                        <form method="POST">
+                            <input name="logout" class="signout-button" type="image" src="static/images/signout_button.png">
+                        </form>
                         {% endif %}
                         <!-- search bar -->
                         <div class="input-group">
