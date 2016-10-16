@@ -304,8 +304,8 @@ def editProfile(request):
 
     return render(request, '../templates/editProfile.html')
 
-
 def sync_genres():
+
    '''url = "https://api.themoviedb.org/3/genre/movie/list?api_key=cc4b67c52acb514bdf4931f7cedfd12b&language=en-US"
 
     payload = "{}"
@@ -317,7 +317,9 @@ def sync_genres():
     genres = content["genres"]
 
     for item in genres:
-       genre = Genre(name=item['name'], tmdbID=str(item['id']))
-       genre.save()'''
-   for item in Genre.objects.all():
-       Genre.delete(item)
+        genre = Genre(name=item['name'], tmdbID=str(item['id']))
+        genre.save()'''
+
+    # for item in Genre.objects.all():
+    #     Genre.delete(item)
+

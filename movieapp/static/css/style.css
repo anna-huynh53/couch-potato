@@ -73,10 +73,46 @@ body a {
 .pagination>li>a, .pagination>li>span {
     border-radius: 50% !important;margin: 0 5px;
 }
+
+/*************************************/
+
+/*roulette*/
+
 .roulette-img {
     width:200px;
     height:300px;
     display: block;
+    margin: 0 auto;
+}
+
+/*************************************/
+
+/*modals*/
+.movie-modal {
+    position: absolute;
+    left: 50%;
+    top: 7%;
+    margin-left: -400px;
+    margin-top: 100px;
+    width: 800px;
+    height: 600px;
+    background-image: url('static/images/result.png');
+}
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
     margin: 0 auto;
 }
 
@@ -590,6 +626,7 @@ img {
   background-color: #228bdf;
   margin: 10px auto;
 }
+
 /*************************************/
 
 /*edit profile*/
@@ -620,4 +657,140 @@ div.avatar {
     background: white;
     cursor: inherit;
     display: block;
+}
+
+/*password strength*/
+.password-background {
+  position: relative;
+  top: -34px;
+  margin-bottom: -34px;
+  height: 34px;
+  width: 0;
+  border-radius: 4px;
+  z-index: -1;
+  /*CSS transitions*/
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#password {
+  background: none;
+}
+
+.strength {
+  float: right;
+}
+
+/*preferences*/
+.alert-message {
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 3px solid #eee;
+}
+.alert-message h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.alert-message p:last-child {
+    margin-bottom: 0;
+}
+.alert-message code {
+    background-color: #fff;
+    border-radius: 3px;
+}
+.alert-message-success {
+    background-color: #F4FDF0;
+    border-color: #3C763D;
+}
+.alert-message-success h4 {
+    color: #3C763D;
+}
+.alert-message-danger {
+    background-color: #fdf7f7;
+    border-color: #d9534f;
+}
+.alert-message-danger h4 {
+    color: #d9534f;
+}
+.alert-message-warning {
+    background-color: #fcf8f2;
+    border-color: #f0ad4e;
+}
+.alert-message-warning h4 {
+    color: #f0ad4e;
+}
+.alert-message-info {
+    background-color: #f4f8fa;
+    border-color: #5bc0de;
+}
+.alert-message-info h4 {
+    color: #5bc0de;
+}
+.alert-message-default {
+    background-color: #EEE;
+    border-color: #B4B4B4;
+}
+.alert-message-default h4 {
+    color: #000;
+}
+.alert-message-notice {
+    background-color: #FCFCDD;
+    border-color: #BDBD89;
+}
+.alert-message-notice h4 {
+    color: #444;
+}
+
+/*toggle switch*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+}
+/*hide default HTML checkbox*/
+.switch input {display:none;}
+/*slider*/
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 0px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+/*rounded sliders*/
+.slider.round {
+  border-radius: 20px;
+}
+.slider.round:before {
+  border-radius: 50%;
 }

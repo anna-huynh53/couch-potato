@@ -13,7 +13,6 @@
 
         <div class="tab-content">
             <div class="tab-pane active" id="editProfile">
-
                 <!-- edit name, username, and email
                      username needs to be checked for availability
                      email needs to be tagged not verified until the user clicks links in email -->
@@ -43,6 +42,39 @@
                                     <div class="form-group">
                                         <label for="user_middle_name">Email</label>
                                         <input type="text" class="form-control" id="user_email" placeholder="">
+                                    </div>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change password</button>
+                                    <div id="changePassword" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2>Change Password<a class="close" data-dismiss="modal">x</a></h2>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label for="old_password">Old password</label>
+                                                                <input type="text" class="form-control" id="user_name" placeholder="" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="password">New password</label>
+                                                                <input type="password" class="form-control" id="password" placeholder="" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="confirm_password">Retype password</label>
+                                                                <input type="password" class="form-control" id="confirm_password" placeholder="" required>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div> <!-- row -->
@@ -80,9 +112,79 @@
 
             </div> <!-- edit profile tab -->
 
+            <br>
             <div class="tab-pane" id="preferences">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 lead">Preferences<hr></div>
+                        </div>
+                        <!-- various topics of settings that expand -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#collapseOne-s">
+                                        Sharing
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne-s" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Automatically share reviews and ratings?
+                                    <label class="switch pull-right">
+                                        <input type="checkbox">
+                                            <div class="slider round"></div>
+                                    </label>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#collapseTwo-s">
+                                        Privacy settings
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo-s" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Allow all users to search up and view profile?
+                                    <label class="switch pull-right">
+                                        <input type="checkbox">
+                                            <div class="slider round"></div>
+                                    </label>
+                                    <hr>
+                                    Allow all users to view personal lists?
+                                    <label class="switch pull-right">
+                                        <input type="checkbox">
+                                            <div class="slider round"></div>
+                                     </label>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#collapseThree-s">
+                                        Notifications
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree-s" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Receive emails when recommendations are given?
+                                    <label class="switch pull-right">
+                                        <input type="checkbox">
+                                            <div class="slider round"></div>
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- panel body -->
+                </div> <!-- panel -->
             </div> <!-- preferences tab -->
 
             <div class="tab-pane" id="friends">
@@ -95,20 +197,36 @@
 
     <!-- to upload a new profile picture -->
     <script>
-    $(function() {
-        $("#upload-img").on("change", function() {
-            var files = !!this.files ? this.files : [];
-            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        $(function() {
+            $("#upload-img").on("change", function() {
+                var files = !!this.files ? this.files : [];
+                if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
 
-            if (/^image/.test( files[0].type)) { // only image file
-                var reader = new FileReader(); // instance of the FileReader
-                reader.readAsDataURL(files[0]); // read the local file
-                reader.onload = function(e) { // set image data as background of div
-                    $("#img-preview-block").css({'background-image': 'url('+e.target.result +')', "background-size": "cover"});
+                if (/^image/.test( files[0].type)) { // only image file
+                    var reader = new FileReader(); // instance of the FileReader
+                    reader.readAsDataURL(files[0]); // read the local file
+                    reader.onload = function(e) { // set image data as background of div
+                        $("#img-preview-block").css({'background-image': 'url('+e.target.result +')', "background-size": "cover"});
+                    }
                 }
-            }
+            });
         });
-    });
+    </script>
+
+    <!-- verifying retyped password when changing password is same -->
+    <script>
+        var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword() {
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords do not match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
     </script>
 
 {% endblock %}
