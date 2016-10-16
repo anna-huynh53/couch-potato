@@ -869,6 +869,23 @@ margin-top: 2px;
     outline: none;
     outline-offset: 0px;
 }
+.btn-purple {
+color: #fff;
+background-color: #b98cdb;
+border-bottom:2px solid #9568b7;
+}
+.btn-purple:hover, .btn-sky.active:focus, .btn-hot:focus, .open>.dropdown-toggle.btn-hot {
+color: #fff;
+background-color: #b98cdb;
+border-bottom:2px solid #9568b7;
+outline: none;
+}
+.btn-purple:active, .btn-purple.active {
+color: #fff;
+background-color: #b98cdb;
+border-top:2px solid #9568b7;
+margin-top: 2px;
+}
 
 /*************************************/
 

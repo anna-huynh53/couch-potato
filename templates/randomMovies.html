@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{%  block title %} Movies {% endblock %}
+
+{% block body %}
+
+    <!-- results - GET request with ID as the imdbID that was returned from the API -->
+    <div class="col-md-12 lead">
+        <button type="button" class="btn btn-fresh text-uppercase"><a style="color:#fff">Newest</a></button>
+        <button type="button" class="btn btn-hot text-uppercase"><a style="color:#fff">Highest rated</a></button>
+        <button type="button" class="btn btn-sky text-uppercase"><a style="color:#fff">Recommendations</a></button>
+        <button type="button" class="btn btn-sunny text-uppercase"><a style="color:#fff">Popular</a></button>
+        <button type="button" class="btn btn-purple text-uppercase"><a style="color:#fff">Genre</a></button>
+        <!-- modal where user can search a genre? After choosing however many and clicking ok, list of active
+             tags beneath -->
+    </div>
+    {% for movie in query %}
+        <div class="col-sm-6 col-lg-3 col-md-4">
+            <div class="gal-detail thumb" style="width:150px; height:280px">
+                <div class="movie-image">
+                    {% if movie.poster %}
+                        <img src={{ movie.poster }} class="thumb-img" style="width:130px; height:200px">
+                    {% else %}
+                        <img src="static/images/no_image.jpg" class="thumb-img" style="width:130px; height:140px">
+                    {% endif %}
+                </div>
+                <h5 class="text-center"><a href="/movie?id={{ movie.imdbID }}" >{{ movie.title }}</a></h5>
+                <!-- modal for each movie result -->
+                <div id="movieModal" class="modal fade" role="dialog">
+                    <!-- move css but it somehow fucks up when I do -->
+                    <div class="modal-dialog vertical-align-center" style="position:absolute; left:50%; top:7%; margin-left:-400px; margin-top:100px; width:800px; height:600px; background-image:url('static/images/result.png')">
+
+                    </div>
+                </div>
+                <div class="ga-border"></div>
+                <p class="text-muted text-center"><small>{{ movie.year }}</small></p>
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- for the popup modal-->
+    <script>
+        function centerModal() {
+            $(this).css('display', 'block');
+            var $dialog = $(this).find(".modal-dialog");
+            var offset = ($(window).height() - $dialog.height()) / 2;
+            // center modal vertically in window
+            $dialog.css("margin-top", offset);
+        }
+
+        $('.modal').on('show.bs.modal', centerModal);
+        $(window).on("resize", function () {
+            $('.modal:visible').each(centerModal);
+        });
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+{% endblock %}

@@ -21,10 +21,13 @@ from movieapp import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls), # ignore this
     url(r'^$', views.home, name='home'),
-    url(r'^lists$', views.lists, name='lists'),
+    url(r'randomMovies$', views.randomMovies, name='randomMovies'),
+    url(r'randomTVShows$', views.randomTVShows, name='randomTVShows'),
     url(r'^results$', views.results, name='results'),
     url(r'^movie$', views.movie, name='movie'),
-    url(r'^friends$', views.friends, name='friends'),
     url(r'myProfile$', views.myProfile, name='myProfile'),
     url(r'editProfile$', views.editProfile, name='editProfile'),
+    url(r'^lists$', views.lists, name='lists'),
+    url(r'^friends$', views.friends, name='friends'),
+
 ]

@@ -14,11 +14,9 @@
     {# <div class="panel panel-default">#}
         <div style="padding-left:2%">
 			<button type="button" class="btn btn-fresh text-uppercase"><a style="color:#fff">New releases</a></button>
+            <button type="button" class="btn btn-sunny text-uppercase"><a style="color:#fff">Popular</a></button>
             <button type="button" class="btn btn-hot text-uppercase"><a style="color:#fff">Reviews and ratings</a></button>
             <button type="button" class="btn btn-sky text-uppercase"><a style="color:#fff">Recommendations</a></button>
-            {% if loggedIn == True %}
-                <button type="button" class="btn btn-sunny text-uppercase"><a>Random</a></button>
-            {% endif %}
         </div>
         <div class="timeline-centered">
             <!-- method in for loop -->
@@ -45,7 +43,12 @@
                                     <ul class="list-inline list-unstyled">
                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 1hr </span></li>
                                         <li>|</li>
-                                        <span><i class="glyphicon glyphicon-comment"></i> 3 comments </span>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsOne">
+                                                3 comments
+                                            </a>
+                                        </span>
                                         <li>|</li>
                                         <li>
                                             <span class="glyphicon glyphicon-star"></span>
@@ -63,46 +66,48 @@
                                 </div>
                             </div>
                             <!-- comments -->
-                            <div class="detailBox">
-                                <ul class="commentList">
-                                    <li>
-                                        <div class="commenterImage">
-                                          <img src="http://placekitten.com/50/50" />
-                                        </div>
-                                        <div class="commentText">
-                                            <p class="">Hello this is a test comment.</p>
-                                            <span class="date sub-text">yesterday</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="commenterImage">
-                                          <img src="http://placekitten.com/45/45" />
-                                        </div>
-                                        <div class="commentText">
-                                            <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p>
-                                            <span class="date sub-text">yesterday</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="commenterImage">
-                                          <img src="http://placekitten.com/40/40" />
-                                        </div>
-                                        <div class="commentText">
-                                            <p class="">Hello this is a test comment.</p>
-                                            <span class="date sub-text">yesterday</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <br>
-                                <form class="form-inline" role="form">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="Your comments" />
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-default">Add</button>
-                                    </div>
-                                </form>
-                            </div>
+                            <div id="commentsOne" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <ul class="commentList">
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart pull-right" data-toggle="tooltip" title="Unlike"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://placekitten.com/50/50" />
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">This is seriously such a good movie.</p>
+                                                <span class="date sub-text">yesterday</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://placekitten.com/45/45" />
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">One of the best superhero movies, can rewatch it again and again and still impressed.</p>
+                                                <span class="date sub-text">yesterday</span>
+
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://placekitten.com/40/40" />
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">Joker was AMAZING best Joker ever.</p>
+                                                <span class="date sub-text">yesterday</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsable comments -->
                         </div> <!-- post content -->
                     </div>
                 </div>
@@ -128,7 +133,12 @@
                                     <ul class="list-inline list-unstyled">
                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 6hr </span></li>
                                         <li>|</li>
-                                        <span><i class="glyphicon glyphicon-comment"></i> 3 comments </span>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsTwo">
+                                                2 comments
+                                            </a>
+                                        </span>
                                         <li>|</li>
                                         <li>
                                             <span class="glyphicon glyphicon-star"></span>
@@ -145,6 +155,38 @@
                                     </ul>
                                 </div>
                             </div>
+                            <!-- comments -->
+                            <div id="commentsTwo" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <ul class="commentList">
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://placekitten.com/50/50" />
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">Wow I really like boats they are the greatest.</p>
+                                                <span class="date sub-text">1/10/16</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://placekitten.com/45/45" />
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">The water looks cold I don't like cold water cause it is just too cold.</p>
+                                                <span class="date sub-text">27/8/16</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsable comments -->
                         </div> <!-- post content -->
                     </div>
                 </div>
@@ -171,7 +213,12 @@
                                     <ul class="list-inline list-unstyled">
                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 3 months </span></li>
                                         <li>|</li>
-                                        <span><i class="glyphicon glyphicon-comment"></i> 0 comments </span>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsThree">
+                                                0 comments
+                                            </a>
+                                        </span>
                                         <li>|</li>
                                         <li>
                                             <span class="glyphicon glyphicon-star"></span>
@@ -188,6 +235,16 @@
                                     </ul>
                                 </div>
                             </div>
+                            <!-- comments -->
+                            <div id="commentsThree" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsable comments -->
                         </div> <!-- post content -->
                     </div>
                 </div>

@@ -322,4 +322,10 @@ def sync_genres():
     for item in Genre.objects.all():
         Genre.delete(item)'''
 
+def randomMovies(request):
 
+    return render(request, '../templates/randomMovies.html')
+
+def randomTVShows(request):
+
+    return render(request, '../templates/randomTVShows.html')
