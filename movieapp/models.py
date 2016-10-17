@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User, UserManager, AbstractBaseUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django import forms
 
 class Movie(models.Model):
     imdbID = models.CharField(max_length=100)
@@ -32,8 +33,12 @@ class Friendship(models.Model):
         unique_together = (('to_user', 'from_user'),)
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=100, default="Empty") 
+    birthday = models.DateField('birthday', default=datetime.date.today, blank=True)
+    fav = models.CharField(max_length=100, default="Favourite movies?")
+    fav_genre = models.CharField(max_length=100, default="Favourite genres?")
+    joined = models.DateField('joined', default=datetime.date.today)
     watchedList = models.ManyToManyField(Movie, blank=True, related_name='watched')
     toWatchList = models.ManyToManyField(Movie, blank=True, related_name='toWatch')
     friends = models.ManyToManyField(Friendship, blank=True)
@@ -48,6 +53,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
 
 
 class Genre(models.Model):
