@@ -560,3 +560,7 @@ def chicken_nugget(request):
 
     return render(request, '../templates/chicken_nugget.html')
 
+def listExample(request):
+
+    return render(request, '../templates/listExample.html')
+

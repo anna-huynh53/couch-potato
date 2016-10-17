@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Lists {% endblock %}
+{% block title %} Example List {% endblock %}
 
 {% block body %}
 
@@ -8,35 +8,40 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-12 lead">
-                    My Lists
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addLists"><i class="glyphicon glyphicon-plus"></i> Add lists</button>
+                    For laughs
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addLists"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
                     <hr>
                 </div>
             </div>
-            <!-- lists of lists -->
-            <div class="col-sm-3">
-                <img class="media-object" src="static/images/little_mermaid.jpg" style="width:120px; height:180px">
-                <br>
-                <button type="button" class="btn btn-purple text-uppercase">Watched</button>
-                <br><br>
+            <div class="col-sm-6 col-lg-3 col-md-4">
+                <div class="gal-detail thumb" style="width:150px; height:280px">
+                    <div class="movie-image">
+                        <img src="static/images/titanic.jpg" class="thumb-img" style="width:130px; height:200px">
+                    </div>
+                    <h5 class="text-center"><a href="/movie?id=" >Titanic</a></h5>
+                    <div class="ga-border"></div>
+                    <p class="text-muted text-center"><small><i class="glyphicon glyphicon-remove"></i> Remove</small></p>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <img class="media-object" src="static/images/suicide_squad.jpg" style="width:120px; height:180px">
-                <br>
-                <button type="button" class="btn btn-hot text-uppercase">To Watch</button>
-                <br><br>
+            <div class="col-sm-6 col-lg-3 col-md-4">
+                <div class="gal-detail thumb" style="width:150px; height:280px">
+                    <div class="movie-image">
+                        <img src="static/images/the_dark_knight" class="thumb-img" style="width:130px; height:200px">
+                    </div>
+                    <h5 class="text-center"><a href="/movie?id=" >The Dark Knight</a></h5>
+                    <div class="ga-border"></div>
+                    <p class="text-muted text-center"><small><i class="glyphicon glyphicon-remove"></i> Remove</small></p>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <img class="media-object" src="static/images/titanic.jpg" style="width:120px; height:180px">
-                <br>
-                <a href="/listExample"><button type="button" class="btn btn-fresh text-uppercase">For laughs</button></a>
-                <br><br>
-            </div>
-            <div class="col-sm-3">
-                <img class="media-object" src="static/images/chicken_run.jpg" style="width:120px; height:180px">
-                <br>
-                <button type="button" class="btn btn-sunny text-uppercase">Chicken themed</button>
-                <br><br>
+            <div class="col-sm-6 col-lg-3 col-md-4">
+                <div class="gal-detail thumb" style="width:150px; height:280px">
+                    <div class="movie-image">
+                        <img src="static/image/brave.jpg" class="thumb-img" style="width:130px; height:200px">
+                    </div>
+                    <h5 class="text-center"><a href="/movie?id=" >Brave</a></h5>
+                    <div class="ga-border"></div>
+                    <p class="text-muted text-center"><small><i class="glyphicon glyphicon-remove"></i> Remove</small></p>
+                </div>
             </div>
         </div> <!-- panel content -->
     </div> <!-- panel -->
@@ -54,17 +59,17 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Enter a name for your list" required>
+                                <input type="text" class="form-control" placeholder="For laughs" required>
                             </div>
                             <div class="form-group">
-                                <label>Things for your list</label>
+                                <label>Add to your list</label>
                                 <input type="text" class="form-control" placeholder="Enter a name of a movie/show to add" required>
                             </div>
                             <div class="form-group">
                                 <label for="" class="">Select colour</label>
                                 <div class="dropdown">
                                     <button class="btn _select_color dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Green<span class="caret _right"></span>
-                                    <span _text_display="Green" class="color green"></span></button>
+                                    <span _text_display="Blue" class="color blue"></span></button>
                                     <ul class="dropdown-menu _select_color_drop" aria-labelledby="dropdownMenu1">
                                         <li><span _text_display="Green" class="color green"></span></li>
                                         <li><span _text_display="Red" class="color red"></span></li>
