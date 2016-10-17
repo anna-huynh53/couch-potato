@@ -6,6 +6,7 @@ import requests
 from .models import Profile, Genre, Movie
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+import random
 
 # Home page
 def home(request):
@@ -344,8 +345,52 @@ def sync_genres():
 
 
 def randomMovies(request):
+    # gets a random movie from movies in the database
+    n_movies = Movie.objects.count()
+    m = Movie.objects.all()
+    movies = []
+    i = 0
 
-    return render(request, '../templates/randomMovies.html')
+    while i < 4:
+        rand_movie = m[random.randrange(0, n_movies)]
+        if rand_movie in movies:
+            continue
+
+        movies.append(rand_movie)
+        i += 1
+
+        # slower and probably worse way of random movie, generates number between 1-4000000
+        # and uses that number as an id
+        '''movies = []
+          i = 0
+
+          while i < 4:
+              rand_n = random.randrange(1, 4000000)
+              url = "http://www.omdbapi.com/?i=tt" + str(rand_n) + "&plot=short&r=json"
+              response = requests.get(url)
+              content = json.loads(response.text)
+
+              class Movie:
+                  def __init__(self, title, year, ID, poster):
+                      self.title = title
+                      self.year = year
+                      self.imdbID = ID
+                      self.poster = poster
+
+              # TODO make item some kind of object which includes imdbID so when clicked, it can link to more detailed info
+              try:
+                  movies.append(Movie(content["Title"], content["Year"], content["imdbID"], content["Poster"]))
+              except:
+                  continue
+
+              i += 1
+
+          '''
+
+    return render(request, '../templates/randomMovies.html', {"query": movies})
+
+
+
 
 def randomTVShows(request):
 
