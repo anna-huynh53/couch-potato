@@ -18,6 +18,9 @@ listArray = [watchedList, toWatchList]
 def home(request):
     if request.session.get('loggedIn'):
         updateLists(request)
+        print("===")
+        print("ITEM: "+ listArray[0][0].title)
+
     if request.method == 'POST':
         if 'logout' in request.POST:
             request.session['loggedIn'] = False
@@ -539,11 +542,12 @@ def updateLists(request):
     print("updating lists")
     currentUser = User.objects.get(email=request.session['email'])
     profile = Profile.objects.get(user=currentUser)
-    toWatchList = []
-    watchedList = []
+    del toWatchList[:]
+    del watchedList[:]
     for movie in profile.toWatchList.all():
+        print("To" + movie.title)
         toWatchList.append(movie)
-        toWatchList.sort()
     for movie in profile.watchedList.all():
+        print("W" + movie.title)
         watchedList.append(movie)
-        watchedList.sort()
+    listArray = [watchedList, toWatchList]

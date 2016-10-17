@@ -351,8 +351,8 @@
 {#											The Secret Life of Pets#}
 {#										</div>#}
 {#									</div>#}
-									{% for movie in lists.0 %}
-                                        <div class="container">
+									{% for movie in lists.1 %}
+                                        <div class="container" style="margin-top: 14px">
                                             <a class="pull-left" href="/movie?id=tt0468569">
                                                 <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
                                             </a><br><br>
@@ -371,7 +371,7 @@
 							</div>
 							<div class="tab-pane" id="two">
 								<ul class="list-group">
-									{% for movie in lists.1 %}
+									{% for movie in lists.0 %}
 										<div class="container">
                                             <a class="pull-left" href="/movie?id=tt0468569">
                                                 <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
