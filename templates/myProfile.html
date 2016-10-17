@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <span class="text-muted">Name:</span> Anna Huynh<br>
-                            <span class="text-muted">Email:</span> movies_great@gmail.com<br>
+                            <span class="text-muted">Genres:</span> Comedy | Adventure<br>
                             <br>
                             <small class="text-muted">Created: 10.10.2016</small>
                         </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <hr><button class="btn btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                    <hr><a class="btn btn-default pull-right" href="/editProfile"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                 </div>
             </div>
         </div> <!-- panel content --->
@@ -46,6 +46,22 @@
             <div class="row">
                 <div class="col-md-12 lead">Friends<hr></div>
             </div>
+            <!-- random people, only need the first one to actually link to something -->
+            <div class="col-sm-2">
+                <img src="http://api.randomuser.me/portraits/men/62.jpg" data-toggle="tooltip" title="John Smith" class="img-responsive img-circle"/>
+            </div>
+            <div class="col-sm-2">
+                <img src="http://api.randomuser.me/portraits/women/3.jpg" data-toggle="tooltip" title="Bread Face" class="img-responsive img-circle"/>
+            </div>
+            <div class="col-sm-2">
+                <img src="http://api.randomuser.me/portraits/women/66.jpg" data-toggle="tooltip" title="Mary Movie" class="img-responsive img-circle"/>
+            </div>
+            <div class="col-sm-2">
+                <img src="http://api.randomuser.me/portraits/men/94.jpg" data-toggle="tooltip" title="Christopher Nolan" class="img-responsive img-circle"/>
+            </div>
+            <div class="col-sm-2">
+                <img src="http://api.randomuser.me/portraits/men/4.jpg" data-toggle="tooltip" title="Bruce Kent" class="img-responsive img-circle"/><br>
+            </div>
         </div> <!-- panel content -->
     </div> <!-- panel -->
 
@@ -53,29 +69,52 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-12 lead">Favourites<hr></div>
+                <div class="col-md-12 lead">My Lists<hr></div>
             </div>
+            <div class="col-sm-2">
+                <img class="media-object" src="static/images/little_mermaid.jpg" style="width:95px; height:140px">
+                <br>
+                <button type="button" class="btn btn-purple text-uppercase" data-toggle="modal" data-target="#listOne">Adventure</button>
+                <br><br>
+            </div>
+            <!-- modal for list -->
+            <div id="listOne" class="modal fade" role="dialog">
+                <div class="modal-dialog" >
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-left:7%">
+                            <h2>Adventure<a class="close" data-dismiss="modal">x</a></h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <a class="pull-left" href="/movie?id=tt0468569">
+                                    <img class="media-object" src="static/images/little_mermaid.jpg" style="width:65px; height:100px;"> <!-- move css -->
+                                </a><br><br>
+                                <!-- why is this container so wide -->
+                                <div class="col-md-9" style="width:480px">
+                                    <!-- only for other user's profile -->
+                                    <button type="button" class="btn btn-fresh text-uppercase pull-right"><a style="color:#fff">Add to my list</a></button>
+                                    <h4>The Little Mermaid</h4>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container">
+                                <a class="pull-left" href="/movie?id=tt0468569">
+                                    <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
+                                </a><br><br>
+                                <div class="col-md-9" style="width:480px">
+                                    <!-- only for other user's profile -->
+                                    <button type="button" class="btn btn-sunny text-uppercase pull-right"><a style="color:#fff">Add to my list</a></button>
+                                    <h4>The Secret Life of Pets</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary pull-right" data-dismiss="modal">OK!</button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- list modal -->
         </div> <!-- panel content -->
     </div> <!-- panel -->
-
-    <script>
-        var myApp = angular.module('myApp', []);
-        function Main($scope, $http) {
-            $http.get('http://api.randomuser.me/0.4/?results=20').success(function(data) {
-                $scope.users = data.results;
-                $('#loader').hide();
-                $('#userList').show();
-            }).error(function(data, status) {
-                alert('get data error!');
-            });
-
-            $scope.showUserModal = function(idx) {
-                var user = $scope.users[idx].user;
-                $scope.currUser = user;
-                $('#myModalLabel').text(user.name.first + ' ' + user.name.last);
-                $('#myModal').modal('show');
-            }
-        }
-    </script>
 
 {% endblock %}

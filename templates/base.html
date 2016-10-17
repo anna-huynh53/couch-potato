@@ -2,10 +2,10 @@
      Use this for persistent menu bar, panels etc. -->
 
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
 <title>Couch Potato</title>
-    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/favicon.ico"/>
+<link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/favicon.ico"/>
 <link href="static/css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="static/css/style.css" rel='stylesheet' type='text/css'/>
 <link href="static/css/style_login.css" rel='stylesheet' type='text/css'/>
@@ -36,10 +36,10 @@
                         <div class="options collapse navbar-collapse">
                             <ul class="nav navbar-nav menu1">
 
-                                <li><a href="#movies">Movies</a></li>
-                                <li><a href="#TVshows">TV Shows</a></li>
+                                <li><a href="/randomMovies">Movies</a></li>
+                                <li><a href="/randomTVShows">TV Shows</a></li>
                                 <li><a href="#movieRoulette" data-toggle="modal" data-target="#roulette">Movie Roulette</a></li>
-                                {% if loggedIn == False %}
+                                {% if loggedIn == True %}
                                     <li>
                                         <a class="dropdown-toggle" data-toggle="dropdown">My Account</a>
                                         <ul class="dropdown-menu" role="menu">
@@ -51,9 +51,6 @@
                                         </ul>
                                     </li>
                                     <li><a href="/lists">My Lists</a></li>
-                                    <li><form method="POST">
-                                        <input type="image" src="static/images/signout_button.png" width=15% height=15% border="0" position="Absolute" alt="Submit" />
-                                    </form></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -74,14 +71,12 @@
                                                 <span class="icon" style="width:15%"><i class="fa fa-facebook"></i></span>
                                                 <span class="icon_title">Connect with Facebook</span>
                                             </a>
-                                            <a href="#" class="social_box google">
+                                            <a href="#" class="social_box google" onclick="onSignIn()">
                                                 <span class="icon" style="width:15%"><i class="fa fa-google-plus"></i></span>
                                                 <span class="icon_title">Connect with Google</span>
                                             </a>
                                         </div>
-                                        <div class="centeredText">
-                                            <span>Or register using your email address</span>
-                                        </div>
+                                        <br />
                                         <div class="action_btns">
                                             <div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
                                             <div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
@@ -128,6 +123,10 @@
                                 </section>
                             </div> <!-- login/signup modal -->
                         </div>
+                        {% else %}
+                        <form method="POST">
+                            <input name="logout" class="signout-button" type="image" src="static/images/signout_button.png">
+                        </form>
                         {% endif %}
                         <!-- search bar -->
                         <div class="input-group">
@@ -173,6 +172,72 @@
 
                 <!-- side lists -->
                 <div class="container" style="width:30%; padding-left:4%; padding-top:1%; float:right"> <!-- move css -->
+                    <a class="pull-right" data-toggle="modal" data-target="#editMovieLists" style="padding-top:1%">
+                        <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit what lists to see"></span>
+                    </a>
+                    <!-- modal to edit what lists to display -->
+                    <div id="editMovieLists" class="modal fade" role="dialog">
+                        <div class="modal-dialog" style="width:500px">
+                            <div class="modal-content">
+                                <div class="modal-header" style="padding-left:7%">
+                                    <h2>Which lists?<a class="close" data-dismiss="modal">x</a></h2>
+                                </div>
+                                <div class="container" style="padding-left:7%">
+                                    <br><p>Choose which lists you want to see and access quickly on the side.</p>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <!-- change list pictures -->
+                                        <a class="pull-left" href="/movie?id=tt0468569">
+                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+                                        </a><br><br>
+                                        <div class="col-md-4">
+                                            Latest
+                                            <label class="switch pull-right">
+                                                <input type="checkbox" checked data-toggle="toggle">
+                                                    <div class="slider round"></div>
+                                                </input>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="container">
+                                        <!-- change list pictures -->
+                                        <a class="pull-left" href="/movie?id=tt0468569">
+                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+                                        </a><br><br>
+                                        <div class="col-md-4">
+                                            Latest
+                                            <label class="switch pull-right">
+                                                <input type="checkbox" checked data-toggle="toggle">
+                                                    <div class="slider round"></div>
+                                                </input>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="container">
+                                        <!-- change list pictures -->
+                                        <a class="pull-left" href="/movie?id=tt0468569">
+                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+                                        </a><br><br>
+                                        <div class="col-md-4">
+                                            Horror
+                                            <label class="switch pull-right">
+                                                <input type="checkbox">
+                                                    <div class="slider round"></div>
+                                                </input>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <h3>Movie Lists</h3>
                     <div class="tabbable">
                         <ul class="nav nav-tabs">
@@ -186,29 +251,48 @@
                             {#  #}
                             </li>
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content" style="padding-left:3%">
                             <div class="tab-pane active" id="one">
                                 <ul class="list-group">
-                                {% for movie in watched %}
-                                   <li class="list-group-item">
-                                      <form class="form-inline">
-                                          {{ movie.title }}
-                                          <span class="glyphicon glyphicon-search" style="float:right"></span>
-                                      </form>
-                                   </li>
-                                {% endfor %}
+                                    <br>
+                                    <!-- example entries in list -->
+                                    <div class="container">
+                                        <a class="pull-left" href="/movie?id=tt0468569">
+                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
+                                        </a><br><br>
+                                        <div class="col-md-9">
+                                            The Secret Life of Pets
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="container">
+                                        <a class="pull-left" href="/movie?id=tt0468569">
+                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
+                                        </a><br><br>
+                                        <div class="col-md-9">
+                                            The Secret Life of Pets
+                                        </div>
+                                    </div>
+                                    {% for movie in watched %}
+                                        <li class="list-group-item">
+                                            <form class="form-inline">
+                                                {{ movie.title }}
+                                                <span class="glyphicon glyphicon-search" style="float:right"></span>
+                                            </form>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="tab-pane" id="two">
                                 <ul class="list-group">
-                                {% for movie in toWatch %}
-                                   <li class="list-group-item">
-                                      <form class="form-inline">
-                                          {{ movie.title }}
-                                          <span class="glyphicon glyphicon-search" style="float:right"></span>
-                                      </form>
-                                   </li>
-                                {% endfor %}
+                                    {% for movie in toWatch %}
+                                        <li class="list-group-item">
+                                            <form class="form-inline">
+                                                {{ movie.title }}
+                                                <span class="glyphicon glyphicon-search" style="float:right"></span>
+                                            </form>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div> <!-- tab content -->
@@ -355,10 +439,13 @@
     <script src="static/js/roulette.js"></script>
     <script src="static/js/roulette.min.js"></script>
 
+
     <div id="roulette" class="modal fade" role="dialog">
+       
         <div class="modal-dialog">
+            <link href="static/css/base.css" rel='stylesheet' type='text/css'/>
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="padding-left:7%">
                     <h2>Movie Roulette<a class="close" data-dismiss="modal">x</a></h2>
                 </div>
                 <div class="modal-body" style="text-align:center">
@@ -377,9 +464,9 @@
 					</div>
                     <br>
 					<button class="btn btn-large btn-primary start"> Give me a random movie </button>
-                <div class="modal-footer">
+                
 
-                </div>
+               
             </div>
         </div>
     </div>
