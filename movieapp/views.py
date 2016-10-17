@@ -526,10 +526,10 @@ def randomMovies(request):
     i = 0
 
     if n_movies:
-        if n_movies < 4:
+        if n_movies < 12:
             num_rand = n_movies
         else:
-            num_rand = 4
+            num_rand = 12
 
         while i < num_rand:
             rand_movie = m[random.randrange(0, n_movies)]
@@ -568,7 +568,37 @@ def randomMovies(request):
 def randomTVShows(request):
     if request.session.get('loggedIn'):
         updateLists(request)
-    return render(request, '../templates/randomTVShows.html')
+
+    movies = []
+
+    a = Movie(title="The Simpsons", imdbID="tt0096697", year="1989-", poster="static/images/no_image.jpg")
+    movies.append(a)
+    a = Movie(title="How I Met Your Mother", imdbID="tt0096697", year="2005-2014", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMTA5MzAzNTcyNjZeQTJeQWpwZ15BbWU3MDUyMzE1MTk@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="Family Guy", imdbID="tt0182576", year="1999-", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BYmU1ZGRkNDMtODFiNy00ZjgyLWJlMzktY2MyNWJjODY4MTBmXkEyXkFqcGdeQXVyMzM4NjcxOTc@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="Dexter", imdbID="tt0773262", year="2006-2013", poster="static/images/no_image.jpg")
+    movies.append(a)
+    a = Movie(title="American Dad", imdbID="tt0397306", year="2005-", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BODQ0NTE3Mjg3N15BMl5BanBnXkFtZTcwNDY2MDMwNw@@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="Supernatural", imdbID="tt0460681", year="2005-", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0Mzc1MzM4OV5BMl5BanBnXkFtZTgwNjUxOTg3NjE@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="Game of Thrones", imdbID="tt0944947", year="2011-",
+              poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="CSI: Crime Scene Investigation", imdbID="tt0247082", year="2000-2015", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkyODgwMDMzNV5BMl5BanBnXkFtZTgwMTExOTMyMjE@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="The 100", imdbID="tt2661044", year="2014-", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BYWIzNDMwNGYtMjk5ZC00ZjA2LTg4ZDgtZmI5NDEzMzdkZTc5XkEyXkFqcGdeQXVyNDExMTIxMDc@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="Ed, Edd, 'n' Eddy", imdbID="tt0184111", year="1999-2009",
+              poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ1MzYwMjk0NV5BMl5BanBnXkFtZTgwMDQ4NDgwMzE@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="Gilmore Girls", imdbID="tt0238784", year="2000-2007", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYyMjM4Mjc5MF5BMl5BanBnXkFtZTcwMTg1OTAzMQ@@._V1_SX300.jpg")
+    movies.append(a)
+    a = Movie(title="American Horror Story", imdbID="tt1844624", year="2011-", poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMjI5NzQzNTcyMl5BMl5BanBnXkFtZTgwNjQ0MTYyMDI@._V1_SX300.jpg")
+    movies.append(a)
+
+    return render(request, '../templates/randomTVShows.html', {'query': movies})
 
 
 def updateLists(request):

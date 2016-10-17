@@ -13,7 +13,7 @@
         <button type="button" class="btn btn-purple text-uppercase"><a style="color:#fff">Genre</a></button>
     </div>
     {% for movie in query %}
-        <div class="col-sm-6 col-lg-3 col-md-4">
+            <div class="col-sm-6 col-lg-3 col-md-4">
             <div class="gal-detail thumb" style="width:150px; height:280px">
                 <div class="movie-image">
                     {% if movie.poster %}
@@ -21,6 +21,7 @@
                     {% else %}
                         <img src="static/images/no_image.jpg" class="thumb-img" style="width:130px; height:140px">
                     {% endif %}
+                </div>
                 <h5 class="text-center"><a href="/movie?id={{ movie.imdbID }}" >{{ movie.title }}</a></h5>
                 <!-- modal for each movie result -->
                 <div id="movieModal" class="modal fade" role="dialog">
