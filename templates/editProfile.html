@@ -17,11 +17,10 @@
                      username needs to be checked for availability
                      email needs to be tagged not verified until the user clicks links in email -->
                 <br>
-                <form>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-12 lead">Edit user profile<hr></div>
+                                <div class="col-md-12 lead"><i class="glyphicon glyphicon-pencil"></i> Edit user profile<hr></div>
                             </div> <!-- row -->
                             <div class="row">
                                 <div class="col-md-4 text-center">
@@ -29,66 +28,61 @@
                                 background-image:url(http://robohash.org/sitsequiquia.png?size=120x120)"></div>
                                     <br>
                                     <span class="btn btn-link btn-file">Edit profile picture<input type="file" id="upload-img"></span>
-                                    <br><br>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#changeGenres">Favourite genres</button>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label for="user_last_name">Name</label>
-                                        <input type="text" class="form-control" id="user_name" placeholder="Anna Huynh"> <!-- previous info as placeholder -->
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="user_first_name">Username</label>
-                                        <input type="text" class="form-control" id="user_username" placeholder="ilovemovies">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="user_middle_name">Email</label>
-                                        <input type="text" class="form-control" id="user_email" placeholder="movies_great@gmail.com                                                  VERIFIED">
-                                    </div>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change password</button>
-                                    <div id="changePassword" class="modal fade" role="dialog">
-                                        <div class="modal-dialog" style="width:500px">
-                                            <div class="modal-content">
-                                                <div class="modal-header" style="padding-left:7%">
-                                                    <h2>Change Password<a class="close" data-dismiss="modal">x</a></h2>
-                                                </div>
-                                                <div class="modal-body" style="padding-left:7%">
-                                                    <form>
-                                                        <div class="row">
-                                                        <div class="col-md-8">
-                                                            <div class="form-group">
-                                                                <label for="old_password">Old password</label>
-                                                                <input type="text" class="form-control" id="user_name" placeholder="" required>
+                                    <form class="form-group" method="POST" action="">
+                                        <h2> {{ old_name }} </h2>
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Enter your name"><br>
+                                        <label>DOB</label>
+                                        <input type="date" class="form-control" name="date" placeholder="Enter your DOB"><br>
+                                        <label>Favourite Movies <i class="glyphicon glyphicon-heart"></i></label>
+                                        <input type="text" class="form-control" name="fav" placeholder="Enter your favourite movies"><br>
+                                        <label>Genre</label>
+                                        <input type="text" class="form-control" name="genre" placeholder="Enter your genre"><br>
+                                        <button type="submit" class="btn btn-primary pull-right">
+                                            <i class="glyphicon glyphicon-floppy-disk"></i> 
+                                            Save
+                                        </button> 
+                                    </form>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change password</button>
+                                        <div id="changePassword" class="modal fade" role="dialog">
+                                            <div class="modal-dialog" style="width:500px">
+                                                <div class="modal-content">
+                                                    <div class="modal-header" style="padding-left:7%">
+                                                        <h2>Change Password<a class="close" data-dismiss="modal">x</a></h2>
+                                                    </div>
+                                                    <div class="modal-body" style="padding-left:7%">
+                                                        <form method="POST" action="">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                        <label>Old password</label>
+                                                                        <input type="password" class="form-control" name="old_password" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="password">New password</label>
+                                                                        <input type="password" class="form-control" name="new_password" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="confirm_password">Retype password</label>
+                                                                        <input type="password" class="form-control" name="confirm_password" required>
+                                                                    </div>
+                                                                    <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-floppy-disk"></i> Change</button>
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="password">New password</label>
-                                                                <input type="password" class="form-control" id="password" placeholder="" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="confirm_password">Retype password</label>
-                                                                <input type="password" class="form-control" id="confirm_password" placeholder="" required>
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>       
+                                    
+                                    
                                 </div>
-                            </div> <!-- row -->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <hr>
-                                    <button class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
-                                </div>
-                            </div> <!-- row -->
+                            </div>
                         </div> <!-- panel body -->
                     </div> <!-- panel -->
-                </form>
 
                 <!-- past reviews and ratings (for now it can be sorted from newest to oldest) -->
                 <div class="panel panel-default">

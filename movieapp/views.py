@@ -7,6 +7,7 @@ from .models import Profile, Genre, Movie
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 import random
 
 
@@ -19,7 +20,7 @@ def home(request):
     if request.session.get('loggedIn'):
         updateLists(request)
         print("===")
-        print("ITEM: "+ listArray[0][0].title)
+        #print("ITEM: "+ listArray[0][0].title)
 
     if request.method == 'POST':
         if 'logout' in request.POST:
@@ -438,33 +439,65 @@ def friends(request):
         userFriends = currentUser.profile.friends.all()
         return render(request, '../templates/friends.html', {"friends": userFriends, 'error': error, "lists": listArray})
 
-
+@login_required
 def myProfile(request):
-    if request.session.get('loggedIn'):
-        updateLists(request)
-    return render(request, '../templates/myProfile.html', { "lists": listArray})
+    updateLists(request)
+    if request.method == 'GET':
+        user = request.user
+        print(user.username)
+        return render(request, '../templates/myProfile.html', {"loggedIn": True, "username": user.username, "name": user.profile.name, "email": user.email, "birthday":user.profile.birthday, 
+            "fav_movies":user.profile.fav, "genre":user.profile.fav_genre, "joined":user.profile.joined, "lists": listArray})
 
+    return render(request, '../templates/home.html', {"loggedIn": False})
 
+@login_required
 def editProfile(request):
-    if request.session.get('loggedIn'):
-        updateLists(request)
+    updateLists(request)
     error = False
-    if request.session.get('loggedIn'):
-        currentUser = User.objects.get(email=request.session.get('email'))
-        if request.method == 'POST':
-            if request.POST.get("delete"):
-                try:
-                    to_delete = User.objects.get(email=request.POST.get('delete'))
-                    currentUser.profile.friends.remove(to_delete)
-                    currentUser.save()
-                except (KeyError, User.DoesNotExist):
-                    print("")
-    try:
-        userFriends = currentUser.profile.friends.all()
-    except:
-        userFriends = [
-            User(username="Mike", password="mike", email="mike@email.com", first_name="Mike", last_name="Tyson")]
-    return render(request, '../templates/editProfile.html', {"friends": userFriends, "error": error, "lists": listArray})
+
+    if request.method == 'POST':
+        user = request.user
+        if request.POST.get('name'): user.profile.name = request.POST.get('name')
+        if request.POST.get('fav'): user.profile.fav = request.POST.get('fav')
+        if request.POST.get('date'): user.profile.birthday = request.POST.get('date')                        
+        if request.POST.get('genre'): user.profile.fav_genre = request.POST.get('genre')
+        user.profile.save()
+        user.save()
+        if request.POST.get('old_password'):
+            user = authenticate(username=user.username, password=request.POST.get('old_password'))
+            if user is not None:
+                if request.POST.get('new_password') and request.POST.get('confirm_password'):
+                    user.set_password(request.POST.get('new_password'))
+                    user.save()
+                    user = authenticate(username=user.username, password=request.POST.get('new_password'))
+                    login(request, user)
+                    print("Set new password successful")
+                    print("Log in again")
+            else:
+                print("Wrong password. No changes are made")
+                return render(request, '../templates/editProfile.html', {"loggedIn": True, "old_name": request.user.profile.name})
+
+        if request.POST.get("delete"):
+            try:
+                to_delete = User.objects.get(email=request.POST.get('delete'))
+                user.profile.friends.remove(to_delete)
+                user.save()
+            except (KeyError, User.DoesNotExist):
+                print("")
+
+        try:
+        	friends = user.profile.friends.all()
+        except:
+            friends = [
+                User(username="Mike", password="mike", email="mike@email.com", first_name="Mike", last_name="Tyson")]
+
+        return HttpResponseRedirect('myProfile.html', {"username": user.username, "name": user.profile.name, "email": user.email, "birthday":user.profile.birthday, 
+            "fav_movies":user.profile.fav, "genre":user.profile.fav_genre, "joined":user.profile.joined, "friends": friends, "lists": listArray})
+
+    else:
+        print("Still here")
+        return render(request, '../templates/editProfile.html', {"loggedIn": True, "error": error, "old_name": request.user.profile.name, "lists": listArray})
+
 
 
 def sync_genres():
