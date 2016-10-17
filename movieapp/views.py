@@ -27,6 +27,7 @@ def home(request):
                 profile = user.profile
                 request.session['username'] = user.username
                 request.session['loggedIn'] = True
+                request.session['email'] = user.email
                 return render(request, '../templates/home.html',
                               {"addStatus": "Account successfully created", "loggedIn": True})
             except IntegrityError as e:
