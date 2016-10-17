@@ -243,121 +243,149 @@
 			</div> <!-- header -->
 
 			<div class="panel-body">
-                <div class="container" style="width:70%; padding-top:1%; float:left"> <!-- move css -->
-                    {% block body %} {%  endblock %}
-                </div> <!-- newsfeed container -->
+				<div class="container" style="width:70%; padding-top:1%; float:left"> <!-- move css -->
+					{% block body %} {%  endblock %}
+				</div> <!-- newsfeed container -->
 
-                <!-- side lists -->
-                <div class="container" style="width:30%; padding-left:4%; padding-top:1%; float:right"> <!-- move css -->
-                    <a class="pull-right" data-toggle="modal" data-target="#editMovieLists" style="padding-top:1%">
-                        <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit what lists to see"></span>
-                    </a>
-                    <!-- modal to edit what lists to display -->
-                    <div id="editMovieLists" class="modal fade" role="dialog">
-                        <div class="modal-dialog" style="width:500px">
-                            <div class="modal-content">
-                                <div class="modal-header" style="padding-left:7%">
-                                    <h2>Which lists?<a class="close" data-dismiss="modal">x</a></h2>
-                                </div>
-                                <div class="container" style="padding-left:7%">
-                                    <br><p>Choose which lists you want to see and access quickly on the side.</p>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <!-- change list pictures -->
-                                        <a class="pull-left" href="/movie?id=tt0468569">
-                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
-                                        </a><br><br>
-                                        <div class="col-md-4">
-                                            Latest
-                                            <label class="switch pull-right">
-                                                <input type="checkbox" checked data-toggle="toggle">
-                                                    <div class="slider round"></div>
-                                                </input>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="container">
-                                        <!-- change list pictures -->
-                                        <a class="pull-left" href="/movie?id=tt0468569">
-                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
-                                        </a><br><br>
-                                        <div class="col-md-4">
-                                            Latest
-                                            <label class="switch pull-right">
-                                                <input type="checkbox" checked data-toggle="toggle">
-                                                    <div class="slider round"></div>
-                                                </input>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="container">
-                                        <!-- change list pictures -->
-                                        <a class="pull-left" href="/movie?id=tt0468569">
-                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
-                                        </a><br><br>
-                                        <div class="col-md-4">
-                                            Horror
-                                            <label class="switch pull-right">
-                                                <input type="checkbox">
-                                                    <div class="slider round"></div>
-                                                </input>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3>Movie Lists</h3>
-                    <div class="tabbable">
-                        <ul class="nav nav-tabs">
-                            <!-- these are the default tabs
-                                 when logged in, there should be a list under the user's data that specifies which list they want to
-                                 display (will add edit symbol so they can customise this) -->
-                            <li class="active"><a href="#one" data-toggle="tab">To Watch</a>
-                            {#  #}
-                            </li>
-                            <li><a href="#two" data-toggle="tab">Watched</a>
-                            {#  #}
-                            </li>
-                        </ul>
-                        <div class="tab-content" style="padding-left:3%">
-                            <div class="tab-pane active" id="one">
-                                <ul class="list-group">
-                                    <br>
-                                    <!-- example entries in list -->
-                                    <li href="/movie?id=tt0468569" class="text-left">
-                                        <img src="static/images/the_secret_life_of_pets.jpg" class="thumb-img" style="width:65px; height:100px;">
-                                        <label>The Secret Life of Pets</label>
-                                    </li>
-                                    {% for movie in watched %}
-                                        <li href="/movie?id={{ movie.imdbID }}" class="text-left">
-                                            <img src={{ movie.poster }} class="thumb-img" style="width:65px; height:100px;">
-                                            <label>{{ movie.title }}</label>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="tab-pane" id="two">
-                                <ul class="list-group">
-                                    {% for movie in toWatch %}
-                                        <li href="/movie?id={{ movie.imdbID }}" class="text-left">
-                                            <img src={{ movie.poster }} class="thumb-img" style="width:65px; height:100px;">
-                                            <label>{{ movie.title }}</label>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div> <!-- tab content -->
-                    </div> <!-- tabs -->
-                </div> <!-- side lists container -->
+				<!-- side lists -->
+				<div class="container" style="width:30%; padding-left:4%; padding-top:1%; float:right"> <!-- move css -->
+					<a class="pull-right" data-toggle="modal" data-target="#editMovieLists" style="padding-top:1%">
+						<span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit what lists to see"></span>
+					</a>
+					<!-- modal to edit what lists to display -->
+					<div id="editMovieLists" class="modal fade" role="dialog">
+						<div class="modal-dialog" style="width:500px">
+							<div class="modal-content">
+								<div class="modal-header" style="padding-left:7%">
+									<h2>Which lists?<a class="close" data-dismiss="modal">x</a></h2>
+								</div>
+								<div class="container" style="padding-left:7%">
+									<br><p>Choose which lists you want to see and access quickly on the side.</p>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<!-- change list pictures -->
+										<a class="pull-left" href="/movie?id=tt0468569">
+											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+										</a><br><br>
+										<div class="col-md-4">
+											Latest
+											<label class="switch pull-right">
+												<input type="checkbox" checked data-toggle="toggle">
+													<div class="slider round"></div>
+												</input>
+											</label>
+										</div>
+									</div>
+									<br>
+									<div class="container">
+										<!-- change list pictures -->
+										<a class="pull-left" href="/movie?id=tt0468569">
+											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+										</a><br><br>
+										<div class="col-md-4">
+											Latest
+											<label class="switch pull-right">
+												<input type="checkbox" checked data-toggle="toggle">
+													<div class="slider round"></div>
+												</input>
+											</label>
+										</div>
+									</div>
+									<br>
+									<div class="container">
+										<!-- change list pictures -->
+										<a class="pull-left" href="/movie?id=tt0468569">
+											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+										</a><br><br>
+										<div class="col-md-4">
+											Horror
+											<label class="switch pull-right">
+												<input type="checkbox">
+													<div class="slider round"></div>
+												</input>
+											</label>
+										</div>
+									</div>
+									<br>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h3>Movie Lists</h3>
+					<div class="tabbable">
+						<ul class="nav nav-tabs">
+							<!-- these are the default tabs
+								 when logged in, there should be a list under the user's data that specifies which list they want to
+								 display (will add edit symbol so they can customise this) -->
+							<li class="active"><a href="#one" data-toggle="tab">To Watch</a>
+							{#  #}
+							</li>
+							<li><a href="#two" data-toggle="tab">Watched</a>
+							{#  #}
+							</li>
+						</ul>
+						<div class="tab-content" style="padding-left:3%">
+							<div class="tab-pane active" id="one">
+								<ul class="list-group">
+									<br>
+									<!-- example entries in list -->
+{#									<div class="container">#}
+{#										<a class="pull-left" href="/movie?id=tt0468569">#}
+{#											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->#}
+{#										</a><br><br>#}
+{#										<div class="col-md-9">#}
+{#											The Secret Life of Pets#}
+{#										</div>#}
+{#									</div>#}
+{#									<br>#}
+{#									<div class="container">#}
+{#										<a class="pull-left" href="/movie?id=tt0468569">#}
+{#											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->#}
+{#										</a><br><br>#}
+{#										<div class="col-md-9">#}
+{#											The Secret Life of Pets#}
+{#										</div>#}
+{#									</div>#}
+									{% for movie in lists.0 %}
+                                        <div class="container">
+                                            <a class="pull-left" href="/movie?id=tt0468569">
+                                                <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
+                                            </a><br><br>
+                                            <div class="col-md-9">
+                                                {{ movie.title }}
+                                            </div>
+									    </div>
+{#										<li class="list-group-item">#}
+{#											<form class="form-inline">#}
+{#												{{ movie.title }}#}
+{#												<span class="glyphicon glyphicon-search" style="float:right"></span>#}
+{#											</form>#}
+{#										</li>#}
+									{% endfor %}
+								</ul>
+							</div>
+							<div class="tab-pane" id="two">
+								<ul class="list-group">
+									{% for movie in lists.1 %}
+										<div class="container">
+                                            <a class="pull-left" href="/movie?id=tt0468569">
+                                                <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
+                                            </a><br><br>
+                                            <div class="col-md-9">
+                                                {{ movie.title }}
+                                            </div>
+									    </div>
+									{% endfor %}
+								</ul>
+							</div>
+						</div> <!-- tab content -->
+					</div> <!-- tabs -->
+				</div> <!-- side lists container -->
+
 			</div> <!-- body with information depending on the page-->
 
 			<div id="footer">
