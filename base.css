@@ -7,6 +7,13 @@ h2 {
 
 }
 
+p{
+	text-align: center;
+	font-weight: bold;
+	color: black;
+
+}
+
 .modal-header{
 	background-color: #ffffe0;
 	
@@ -14,4 +21,8 @@ h2 {
 }
 .modal-body{
     background-image: url("potato-header.png");
+}
+.modal-footer{
+	background-color: #ffffe0;
+	
 }
