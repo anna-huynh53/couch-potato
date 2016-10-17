@@ -7,9 +7,10 @@ h2 {
 }
 
 .modal-header{
-	background-color: white;
+	background-color: #ffffe0;
+	color: green;	
 
 }
 .modal-body{
-    background-color: #FFCB9C;
+    background-image: url("potato-header.png");
 }
