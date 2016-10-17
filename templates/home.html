@@ -8,7 +8,7 @@
          green (class="timeline-icon bg-success") = new releases
          red (class="timeline-icon bg-secondary") = reviews and ratings
          blue (class="timeline-icon bg-info") = recommendations
-         yellow ("timeline-icon bg-warning">) = personal posts?
+         yellow ("timeline-icon bg-warning">) = popular
 
          different when not logged in, which will only consist of new releases and random reviews -->
     {# <div class="panel panel-default">#}
@@ -39,7 +39,8 @@
                                     <p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham,
                                        the caped crusader must come to terms with one of the greatest psychological tests
                                        of his ability to fight injustice.</p>
-                                    <br><br>
+                                    <p><b>Genres:</b> Action | Crime | Drama | Thriller</p>
+                                    <br>
                                     <ul class="list-inline list-unstyled">
                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 1hr </span></li>
                                         <li>|</li>
@@ -66,23 +67,35 @@
                                 </div>
                             </div>
                             <!-- comments -->
+
                             <div id="commentsOne" class="panel-collapse collapse">
                                 <div class="detailBox">
                                     <ul class="commentList">
                                         <li>
                                             <div class="glyphicon glyphicon-heart pull-right" data-toggle="tooltip" title="Unlike"></div>
                                             <div class="commenterImage">
-                                                <img src="http://placekitten.com/50/50" />
+                                                <img src="http://api.randomuser.me/portraits/men/94.jpg">
                                             </div>
                                             <div class="commentText">
                                                 <p class="">This is seriously such a good movie.</p>
-                                                <span class="date sub-text">yesterday</span>
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#replyOne">
+                                                    <span class="sub-text">Reply</span>
+                                                </a>
+                                                <span class="date sub-text">|  yesterday</span>
                                             </div>
                                         </li>
+                                        <div id="replyOne" class="panel-collapse collapse">
+                                            <div class="detailBox" style="padding-left:10%">
+                                                <form class="form" role="form">
+                                                    <button class="btn btn-default pull-right">Add</button>
+                                                    <input class="form-control" style="width:89%" type="text" placeholder="Your comments" />
+                                                </form>
+                                            </div>
+                                        </div> <!-- collapsible comments -->
                                         <li>
                                             <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
                                             <div class="commenterImage">
-                                                <img src="http://placekitten.com/45/45" />
+                                                <img src="http://api.randomuser.me/portraits/men/4.jpg">
                                             </div>
                                             <div class="commentText">
                                                 <p class="">One of the best superhero movies, can rewatch it again and again and still impressed.</p>
@@ -93,7 +106,7 @@
                                         <li>
                                             <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
                                             <div class="commenterImage">
-                                                <img src="http://placekitten.com/40/40" />
+                                                <img src="http://api.randomuser.me/portraits/women/94.jpg">
                                             </div>
                                             <div class="commentText">
                                                 <p class="">Joker was AMAZING best Joker ever.</p>
@@ -107,7 +120,7 @@
                                         <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
                                     </form>
                                 </div>
-                            </div> <!-- collapsable comments -->
+                            </div> <!-- collapsible comments -->
                         </div> <!-- post content -->
                     </div>
                 </div>
@@ -119,7 +132,7 @@
                         <!-- content to go here HARDCODED-->
                         <div class="well">
                             <div class="media">
-                                <a class="pull-left" href="/movie?id=tt0468569">
+                                <a class="pull-left" href="/movie?id=tt0120338">
                                     <img class="media-object" src="static/images/titanic.jpg" style="width:140px; height:230px">
                                 </a>
                                 <div class="media-body">
@@ -129,7 +142,8 @@
                                     <br>
                                     <h4 class="media-heading">TITANIC</h4>
                                     <p>A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.</p>
-                                    <br><br>
+                                    <p><b>Genres:</b> Drama | Romance</p>
+                                    <br>
                                     <ul class="list-inline list-unstyled">
                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 6hr </span></li>
                                         <li>|</li>
@@ -162,7 +176,7 @@
                                         <li>
                                             <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
                                             <div class="commenterImage">
-                                                <img src="http://placekitten.com/50/50" />
+                                                <img src="http://api.randomuser.me/portraits/women/33.jpg">
                                             </div>
                                             <div class="commentText">
                                                 <p class="">Wow I really like boats they are the greatest.</p>
@@ -172,7 +186,7 @@
                                         <li>
                                             <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
                                             <div class="commenterImage">
-                                                <img src="http://placekitten.com/45/45" />
+                                                <img src="http://api.randomuser.me/portraits/women/2.jpg">
                                             </div>
                                             <div class="commentText">
                                                 <p class="">The water looks cold I don't like cold water cause it is just too cold.</p>
@@ -186,7 +200,7 @@
                                         <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
                                     </form>
                                 </div>
-                            </div> <!-- collapsable comments -->
+                            </div> <!-- collapsible comments -->
                         </div> <!-- post content -->
                     </div>
                 </div>
@@ -198,7 +212,7 @@
                         <!-- content to go here HARDCODED-->
                         <div class="well">
                             <div class="media">
-                                <a class="pull-left" href="/movie?id=tt0468569">
+                                <a class="pull-left" href="/movie?id=tt2709768">
                                     <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:140px; height:230px">
                                 </a>
                                 <div class="media-body">
@@ -207,7 +221,7 @@
                                     <br>
                                     <h4 class="media-heading">THE SECRET LIFE OF PETS</h4>
                                     <p>The quiet life of a terrier named Max is upended when his owner takes in Duke, a stray whom Max instantly dislikes.</p>
-                                    <br><br>
+                                    <br><br><br>
                                     <p><b>Genres:</b> Animation | Comedy | Adventure | Family</p>
                                     <br>
                                     <ul class="list-inline list-unstyled">
@@ -244,7 +258,224 @@
                                         <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
                                     </form>
                                 </div>
-                            </div> <!-- collapsable comments -->
+                            </div> <!-- collapsible comments -->
+                        </div> <!-- post content -->
+                    </div>
+                </div>
+            </article> <!-- one post -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-success"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt3393786">
+                                    <img class="media-object" src="static/images/jack_reacher.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>NEW RELEASE</b></h4>
+                                    <p class="text-right" style="font-size:13px">2016</p>
+                                    <br>
+                                    <h4 class="media-heading">JACK REACHER: NEVER GO BACK</h4>
+                                    <p>Jack Reacher must uncover the truth behind a major government conspiracy in order to clear his name. On the run as a
+                                       fugitive from the law, Reacher uncovers a potential secret from his past that could change his life forever.</p>
+                                    <br>
+                                    <p><b>Genres:</b> Action | Crime | Adventure | Mystery | Thriller</p>
+                                    <br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 3 months </span></li>
+                                        <li>|</li>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsFour">
+                                                1 comment
+                                            </a>
+                                        </span>
+                                        <li>|</li>
+                                        <li>
+                                            NO RATINGS
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- comments -->
+                            <div id="commentsFour" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <ul class="commentList">
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/men/12.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">Can't wait for this movie to come out!</p>
+                                                <span class="date sub-text">1/10/16</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsible comments -->
+                        </div> <!-- post content -->
+                    </div>
+                </div>
+            </article> <!-- one post -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-warning"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt1386697">
+                                    <img class="media-object" src="static/images/suicide_squad.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>POPULAR</b></h4>
+                                    <p class="text-right" style="font-size:13px">2016</p>
+                                    <br>
+                                    <h4 class="media-heading">SUICIDE SQUAD</h4>
+                                    <p>A secret government agency recruits some of the most dangerous incarcerated criminals to form a defensive task force, with their first case leading to a potential apocalypse.</p>
+                                    <br><br>
+                                    <p><b>Genres:</b> Action | Adventure | Fantasy | Sci-fi</p>
+                                    <br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 1 month </span></li>
+                                        <li>|</li>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsFive">
+                                                2 comments
+                                            </a>
+                                        </span>
+                                        <li>|</li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- comments -->
+                            <div id="commentsFive" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <ul class="commentList">
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/men/17.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">I don't know what to say about this...</p>
+                                                <span class="date sub-text">1/9/16</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/women/95.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">It was ok but did not live up to the hype really.</p>
+                                                <span class="date sub-text">25/8/16</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsible comments -->
+                        </div> <!-- post content -->
+                    </div>
+                </div>
+            </article> <!-- one post -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-info"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt0120630">
+                                    <img class="media-object" src="static/images/chicken_run.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>Hey watch this NOW I mean it</b></h4>
+                                    <p class="text-right" style="font-size:13px">by Kayla</p>
+                                    <p>This is the best movie ever omg it is so great.</p>
+                                    <br>
+                                    <h4 class="media-heading">CHICKEN RUN</h4>
+                                    <p>When a bird "flies" into a chicken farm, the fellow chickens see him as an opportunity to escape their evil owners.</p>
+                                    <p><b>Genres:</b> Animation | Adventure | Comedy | Drama | Family</p>
+                                    <br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 3hr </span></li>
+                                        <li>|</li>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsSix">
+                                                1 comment
+                                            </a>
+                                        </span>
+                                        <li>|</li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- comments -->
+                            <div id="commentsSix" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <ul class="commentList">
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart pull-right" data-toggle="tooltip" title="Unlike"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/men/45.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">Are you serious</p>
+                                                <span class="date sub-text">yesterday</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsible comments -->
                         </div> <!-- post content -->
                     </div>
                 </div>
