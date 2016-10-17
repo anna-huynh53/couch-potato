@@ -256,29 +256,14 @@
                                 <ul class="list-group">
                                     <br>
                                     <!-- example entries in list -->
-                                    <div class="container">
-                                        <a class="pull-left" href="/movie?id=tt0468569">
-                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
-                                        </a><br><br>
-                                        <div class="col-md-9">
-                                            The Secret Life of Pets
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="container">
-                                        <a class="pull-left" href="/movie?id=tt0468569">
-                                            <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
-                                        </a><br><br>
-                                        <div class="col-md-9">
-                                            The Secret Life of Pets
-                                        </div>
-                                    </div>
+                                    <li href="/movie?id=tt0468569" class="text-left">
+                                        <img src="static/images/the_secret_life_of_pets.jpg" class="thumb-img" style="width:65px; height:100px;">
+                                        <label>The Secret Life of Pets</label>
+                                    </li>
                                     {% for movie in watched %}
-                                        <li class="list-group-item">
-                                            <form class="form-inline">
-                                                {{ movie.title }}
-                                                <span class="glyphicon glyphicon-search" style="float:right"></span>
-                                            </form>
+                                        <li href="/movie?id={{ movie.imdbID }}" class="text-left">
+                                            <img src={{ movie.poster }} class="thumb-img" style="width:65px; height:100px;">
+                                            <label>{{ movie.title }}</label>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -286,11 +271,9 @@
                             <div class="tab-pane" id="two">
                                 <ul class="list-group">
                                     {% for movie in toWatch %}
-                                        <li class="list-group-item">
-                                            <form class="form-inline">
-                                                {{ movie.title }}
-                                                <span class="glyphicon glyphicon-search" style="float:right"></span>
-                                            </form>
+                                        <li href="/movie?id={{ movie.imdbID }}" class="text-left">
+                                            <img src={{ movie.poster }} class="thumb-img" style="width:65px; height:100px;">
+                                            <label>{{ movie.title }}</label>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -435,47 +418,37 @@
         });
     </script>
 
-    <!-- roulette -->
+    <!-- roulette modal -->
     <script src="static/js/roulette.js"></script>
     <script src="static/js/roulette.min.js"></script>
 
-
     <div id="roulette" class="modal fade" role="dialog">
-       
         <div class="modal-dialog">
-            <link href="static/css/base.css" rel='stylesheet' type='text/css'/>
             <div class="modal-content">
                 <div class="modal-header" style="padding-left:7%">
                     <h2>Movie Roulette<a class="close" data-dismiss="modal">x</a></h2>
                 </div>
                 <div class="modal-body" style="text-align:center">
 					<div class="roulette_container">
-                           <form>
-                     <input type="button" value="Movie Info" onclick="window.location.href='http://127.0.0.1:8000/movie?id=tt1049413'" />
-                          </form>
-                            <link href="static/css/base.css" rel='stylesheet' type='text/css'/>
-
                         <!-- function needed to generate random list of movies and find corresponding images -->
                         {# {% for movie in list %}#}
                         {#      <img src={{ movie.poster }} style="width:width:200px; height:300px">#}
                         {# {% endfor %}#}
 						<div class="roulette" style="display:none;">
-                            <img class="roulette-img"src="static/images/finding_nemo.jpg">
-							<img class="roulette-img"src="static/images/up.jpg">
-							<img class="roulette-img"src="static/images/incredibles.jpg">
-							<img class="roulette-img"src="static/images/snow_white.jpg">
-                            <img class="roulette-img"src="static/images/cinderella.jpg">
-                            <img class="roulette-img"src="static/images/brave.jpg">
-                            <img class="roulette-img"src="static/images/tangled.jpg">
+                            <a href="/movie?id=tt0266543"><img class="roulette-img" src="static/images/finding_nemo.jpg"></a>
+							<a href="/movie?id=tt0266543"><img class="roulette-img" src="static/images/up.jpg"></a>
+							<img class="roulette-img" src="static/images/incredibles.jpg">
+							<img class="roulette-img" src="static/images/snow_white.jpg">
+                            <img class="roulette-img" src="static/images/cinderella.jpg">
+                            <img class="roulette-img" src="static/images/brave.jpg">
+                            <img class="roulette-img" src="static/images/tangled.jpg">
 						</div>
 					</div>
                     <br>
 					<button class="btn btn-large btn-primary start"> Give me a random movie </button>
                 <div class="modal-footer">
-                    <p> OCTOBER THEME : DISNEY<p>
 
                 </div>
-               
             </div>
         </div>
     </div>
@@ -499,7 +472,7 @@
 
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+        }
 
         $(function() {
             $('.roulette').find('img').hover(function() {
@@ -578,8 +551,6 @@
             });
         });
     </script>
-
-
 
 </body>
 </html>
