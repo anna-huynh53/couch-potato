@@ -286,42 +286,52 @@
 								<ul class="list-group">
 									<br>
 									<!-- example entries in list -->
-									<div class="container">
-										<a class="pull-left" href="/movie?id=tt0468569">
-											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
-										</a><br><br>
-										<div class="col-md-9">
-											The Secret Life of Pets
-										</div>
-									</div>
-									<br>
-									<div class="container">
-										<a class="pull-left" href="/movie?id=tt0468569">
-											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
-										</a><br><br>
-										<div class="col-md-9">
-											The Secret Life of Pets
-										</div>
-									</div>
-									{% for movie in watched %}
-										<li class="list-group-item">
-											<form class="form-inline">
-												{{ movie.title }}
-												<span class="glyphicon glyphicon-search" style="float:right"></span>
-											</form>
-										</li>
+{#									<div class="container">#}
+{#										<a class="pull-left" href="/movie?id=tt0468569">#}
+{#											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->#}
+{#										</a><br><br>#}
+{#										<div class="col-md-9">#}
+{#											The Secret Life of Pets#}
+{#										</div>#}
+{#									</div>#}
+{#									<br>#}
+{#									<div class="container">#}
+{#										<a class="pull-left" href="/movie?id=tt0468569">#}
+{#											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->#}
+{#										</a><br><br>#}
+{#										<div class="col-md-9">#}
+{#											The Secret Life of Pets#}
+{#										</div>#}
+{#									</div>#}
+									{% for movie in lists.0 %}
+                                        <div class="container">
+                                            <a class="pull-left" href="/movie?id=tt0468569">
+                                                <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
+                                            </a><br><br>
+                                            <div class="col-md-9">
+                                                {{ movie.title }}
+                                            </div>
+									    </div>
+{#										<li class="list-group-item">#}
+{#											<form class="form-inline">#}
+{#												{{ movie.title }}#}
+{#												<span class="glyphicon glyphicon-search" style="float:right"></span>#}
+{#											</form>#}
+{#										</li>#}
 									{% endfor %}
 								</ul>
 							</div>
 							<div class="tab-pane" id="two">
 								<ul class="list-group">
-									{% for movie in toWatch %}
-										<li class="list-group-item">
-											<form class="form-inline">
-												{{ movie.title }}
-												<span class="glyphicon glyphicon-search" style="float:right"></span>
-											</form>
-										</li>
+									{% for movie in lists.1 %}
+										<div class="container">
+                                            <a class="pull-left" href="/movie?id=tt0468569">
+                                                <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
+                                            </a><br><br>
+                                            <div class="col-md-9">
+                                                {{ movie.title }}
+                                            </div>
+									    </div>
 									{% endfor %}
 								</ul>
 							</div>

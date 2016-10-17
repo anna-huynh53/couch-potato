@@ -10,13 +10,19 @@ from django.db import IntegrityError
 import random
 
 
+watchedList = []
+toWatchList = []
+listArray = [watchedList, toWatchList]
+
 # Home page
 def home(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     if request.method == 'POST':
         if 'logout' in request.POST:
             request.session['loggedIn'] = False
             logout(request)
-            return render(request, '../templates/home.html', {"loggedIn": False})
+            return render(request, '../templates/home.html', {"loggedIn": False, "lists": listArray})
         elif 'email' and 'username' in request.POST:
             try:
                 user = User.objects.create_user(username=request.POST['username'], email=request.POST['email'],
@@ -28,25 +34,27 @@ def home(request):
                 request.session['username'] = user.username
                 request.session['loggedIn'] = True
                 request.session['email'] = user.email
+                updateLists(request)
                 return render(request, '../templates/home.html',
-                              {"addStatus": "Account successfully created", "loggedIn": True})
+                              {"addStatus": "Account successfully created", "loggedIn": True, "lists": listArray})
             except IntegrityError as e:
                 if 'UNIQUE contraint' in e.message:
                     print("Email/username already in use")
-                    return render(request, '../templates/home.html', {"loggedIn": False})
+                    return render(request, '../templates/home.html', {"loggedIn": False, "lists": listArray})
 
         elif 'username_LI' and 'password_LI' in request.POST:
             user = authenticate(username=request.POST['username_LI'], password=request.POST['password_LI'])
 
             if user is None:
                 print("Incorrect password");
-                return render(request, '../templates/home.html', {"addStatus": "Incorrect password", "loggedIn": False})
+                return render(request, '../templates/home.html', {"addStatus": "Incorrect password", "loggedIn": False, "lists": listArray})
             else:
                 login(request, user)
                 request.session['username'] = user.username
                 request.session['email'] = user.email
                 request.session['loggedIn'] = True
-                return render(request, '../templates/home.html', {"loggedIn": True})
+                updateLists(request)
+                return render(request, '../templates/home.html', {"loggedIn": True, "lists": listArray})
 
         elif 'user' in request.POST:
             try:
@@ -57,16 +65,22 @@ def home(request):
                     user.save()
                     user.profile.friends.add(userAdded)
                     user.save()
+                    if request.session['loggedIn']:
+                        updateLists(request)
                     return render(request, '../templates/home.html',
-                                  {"addStatus": "User Added!", "loggedIn": request.session['loggedIn']})
+                                  {"addStatus": "User Added!", "loggedIn": request.session['loggedIn'], "lists": listArray})
                 except:
                     print("Some other error")
+                    if request.session['loggedIn']:
+                        updateLists(request)
                     return render(request, '../templates/home.html',
-                                  {"addStatus": "Error", "loggedIn": request.session['loggedIn']})
+                                  {"addStatus": "Error", "loggedIn": request.session['loggedIn'], "lists": listArray})
             except:
                 print("actual user does not exist")
+                if request.session['loggedIn']:
+                    updateLists(request)
                 return render(request, '../templates/home.html',
-                              {"addStatus": 'User Doesnt Exist!', "loggedIn": request.session['loggedIn']})
+                              {"addStatus": 'User Doesnt Exist!', "loggedIn": request.session['loggedIn'], "lists": listArray})
 
         else:
             form = SearchForm(request.POST)
@@ -75,6 +89,7 @@ def home(request):
 
     else:  # GET method
         if request.session.get('loggedIn'):
+            updateLists(request)
             content = request.session['email']
             user = User.objects.get(email=request.session.get('email'))
             user.save()
@@ -82,16 +97,18 @@ def home(request):
             toWatch = user.profile.toWatchList.all()
             return render(request, '../templates/home.html',
                           {"addStatus": "Email", "watched": watched, "toWatch": toWatch,
-                           "loggedIn": request.session['loggedIn']})
+                           "loggedIn": request.session['loggedIn'], "lists": listArray})
         else:
             content = 'Search'
-            return render(request, '../templates/home.html', {"addStatus": "Email", "loggedIn": False})
+            return render(request, '../templates/home.html', {"addStatus": "Email", "loggedIn": False, "lists": listArray})
 
-    return render(request, '../templates/home.html', {"loggedIn": False})
+    return render(request, '../templates/home.html', {"loggedIn": False, "lists": listArray})
 
 
 # Personal lists (if this is still it's own page I'm not sure)
 def lists(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     if request.session.get('loggedIn'):
         currentUser = User.objects.get(email=request.session.get('email'))
         return render(request, '../templates/lists.html', {"currentUserRecord": currentUser, "bodyContent": "My List"})
@@ -101,6 +118,8 @@ def lists(request):
 
 # Search results
 def results(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     synced = False
     # If this is a search
     if request.method == 'POST':
@@ -193,6 +212,8 @@ def lists(request):
 
 # Search results
 def results(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     synced = False
     # If this is a search
     if request.method == 'POST':
@@ -248,7 +269,7 @@ def results(request):
                 movies.append(Movie(item['title'], item['release_date'], item['id'], item['poster_path']))
 
             return render(request, '../templates/movieResults_genre.html',
-                          {"query": movies, "searchTyped": movie_query})
+                          {"query": movies, "searchTyped": movie_query, "lists": listArray})
 
         # search by movie title
         else:
@@ -271,10 +292,13 @@ def results(request):
                 movies.append(Movie(item["Title"], item["Year"], item["imdbID"], item["Poster"]))
 
         # TODO rename query
-        return render(request, '../templates/movieResults.html', {"query": movies, "searchTyped": movie_query})
+        return render(request, '../templates/movieResults.html', {"query": movies, "searchTyped": movie_query, "lists": listArray})
 
 
 def movie(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
+
     if request.method == 'GET':
         url = 'http://www.omdbapi.com/?i=' + request.GET["id"] + "&plot=full&r=json"
         response = requests.get(url)
@@ -326,9 +350,12 @@ def movie(request):
                 imdbRating=content['imdbRating'],
             )
 
-            newMovieRecord.save()
+            try:
+                Movie.objects.get(imdbID=newMovieRecord.imdbID)
+            except:
+                newMovieRecord.save()
 
-        return render(request, '../templates/movie.html', {"movie": movieDict})
+        return render(request, '../templates/movie.html', {"movie": movieDict, "lists": listArray})
 
     elif request.method == 'POST':
 
@@ -348,7 +375,7 @@ def movie(request):
                 print("watched")
                 profile.watchedList.add(movie)
 
-            return render(request, '../templates/movie.html', {"movie": movie})
+            return render(request, '../templates/movie.html', {"movie": movie, "lists": listArray})
 
 
         else:
@@ -380,10 +407,12 @@ def movie(request):
 
                 newMovieRecord.save()
 
-            return render(request, '../templates/movie.html', {"movie": movie})
+            return render(request, '../templates/movie.html', {"movie": movie, "lists": listArray})
 
 
 def friends(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     error = False
     if request.session.get('loggedIn'):
         currentUser = User.objects.get(email=request.session.get('email'))
@@ -404,14 +433,18 @@ def friends(request):
                     error = True
 
         userFriends = currentUser.profile.friends.all()
-        return render(request, '../templates/friends.html', {"friends": userFriends, 'error': error})
+        return render(request, '../templates/friends.html', {"friends": userFriends, 'error': error, "lists": listArray})
 
 
 def myProfile(request):
-    return render(request, '../templates/myProfile.html')
+    if request.session.get('loggedIn'):
+        updateLists(request)
+    return render(request, '../templates/myProfile.html', { "lists": listArray})
 
 
 def editProfile(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     error = False
     if request.session.get('loggedIn'):
         currentUser = User.objects.get(email=request.session.get('email'))
@@ -428,7 +461,7 @@ def editProfile(request):
     except:
         userFriends = [
             User(username="Mike", password="mike", email="mike@email.com", first_name="Mike", last_name="Tyson")]
-    return render(request, '../templates/editProfile.html', {"friends": userFriends, "error": error})
+    return render(request, '../templates/editProfile.html', {"friends": userFriends, "error": error, "lists": listArray})
 
 
 def sync_genres():
@@ -448,6 +481,8 @@ def sync_genres():
 
 
 def randomMovies(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     # gets a random movie from movies in the database
     n_movies = Movie.objects.count()
     m = Movie.objects.all()
@@ -495,4 +530,20 @@ def randomMovies(request):
 
 
 def randomTVShows(request):
+    if request.session.get('loggedIn'):
+        updateLists(request)
     return render(request, '../templates/randomTVShows.html')
+
+
+def updateLists(request):
+    print("updating lists")
+    currentUser = User.objects.get(email=request.session['email'])
+    profile = Profile.objects.get(user=currentUser)
+    toWatchList = []
+    watchedList = []
+    for movie in profile.toWatchList.all():
+        toWatchList.append(movie)
+        toWatchList.sort()
+    for movie in profile.watchedList.all():
+        watchedList.append(movie)
+        watchedList.sort()
