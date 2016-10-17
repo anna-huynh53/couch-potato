@@ -233,15 +233,18 @@ def movie(request):
 
             movie = Movie.objects.get(imdbID=request.POST['movie'])
 
+            userObject = User.objects.get(username=request.session.get('username'))
+            profile = Profile.objects.get(user=userObject)
+
             if request.POST['listAdd'] == 'watch':
                 print("watch")
-
-
-                return render(request, '../templates/movie.html', {"movie": movie})
+                profile.toWatchList.add(movie)
 
             else:
                 print("watched")
-                return render(request, '../templates/movie.html', {"movie": movie})
+                profile.watchedList.add(movie)
+
+            return render(request, '../templates/movie.html', {"movie": movie})
 
 
         else:
