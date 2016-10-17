@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'editProfile$', views.editProfile, name='editProfile'),
     url(r'^lists$', views.lists, name='lists'),
     url(r'^friends$', views.friends, name='friends'),
-
+    url(r'^recommendations$', views.recommendations, name='recommendations'),
 ]

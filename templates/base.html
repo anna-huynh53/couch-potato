@@ -281,10 +281,10 @@
 									<div class="container">
 										<!-- change list pictures -->
 										<a class="pull-left" href="/movie?id=tt0468569">
-											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+											<img class="media-object" src="static/images/suicide_squad.jpg" style="width:70px; height:100px;"> <!-- move css -->
 										</a><br><br>
 										<div class="col-md-4">
-											Latest
+											Popular
 											<label class="switch pull-right">
 												<input type="checkbox" checked data-toggle="toggle">
 													<div class="slider round"></div>
@@ -296,10 +296,10 @@
 									<div class="container">
 										<!-- change list pictures -->
 										<a class="pull-left" href="/movie?id=tt0468569">
-											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:70px; height:100px;"> <!-- move css -->
+											<img class="media-object" src="static/images/deadpool.jpg" style="width:70px; height:100px;"> <!-- move css -->
 										</a><br><br>
 										<div class="col-md-4">
-											Horror
+											Comedy
 											<label class="switch pull-right">
 												<input type="checkbox">
 													<div class="slider round"></div>
@@ -321,10 +321,10 @@
 							<!-- these are the default tabs
 								 when logged in, there should be a list under the user's data that specifies which list they want to
 								 display (will add edit symbol so they can customise this) -->
-							<li class="active"><a href="#one" data-toggle="tab">To Watch</a>
+							<li class="active"><a href="#one" data-toggle="tab">Latest</a>
 							{#  #}
 							</li>
-							<li><a href="#two" data-toggle="tab">Watched</a>
+							<li><a href="#two" data-toggle="tab">Popular</a>
 							{#  #}
 							</li>
 						</ul>
@@ -333,52 +333,102 @@
 								<ul class="list-group">
 									<br>
 									<!-- example entries in list -->
-{#									<div class="container">#}
-{#										<a class="pull-left" href="/movie?id=tt0468569">#}
-{#											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->#}
-{#										</a><br><br>#}
-{#										<div class="col-md-9">#}
-{#											The Secret Life of Pets#}
-{#										</div>#}
-{#									</div>#}
-{#									<br>#}
-{#									<div class="container">#}
-{#										<a class="pull-left" href="/movie?id=tt0468569">#}
-{#											<img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->#}
-{#										</a><br><br>#}
-{#										<div class="col-md-9">#}
-{#											The Secret Life of Pets#}
-{#										</div>#}
-{#									</div>#}
-									{% for movie in lists.0 %}
-                                        <div class="container">
-                                            <a class="pull-left" href="/movie?id=tt0468569">
-                                                <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
-                                            </a><br><br>
-                                            <div class="col-md-9">
-                                                {{ movie.title }}
-                                            </div>
-									    </div>
-{#										<li class="list-group-item">#}
-{#											<form class="form-inline">#}
-{#												{{ movie.title }}#}
-{#												<span class="glyphicon glyphicon-search" style="float:right"></span>#}
-{#											</form>#}
-{#										</li>#}
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt2709768">
+                                            <img src="static/images/the_secret_life_of_pets.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>The Secret Life of Pets</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt0468569">
+                                            <img src="static/images/peculiar_children.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>Miss Peregine's Home</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt2709768">
+                                            <img src="static/images/girl_on_train.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>The Girl On the Train</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt0468569">
+                                            <img src="static/images/magnificent_seven.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>The Magnificent Seven</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt2709768">
+                                            <img src="static/images/deadpool.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>Deadpool</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt0468569">
+                                            <img src="static/images/deepwater_horizon.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>Deepwater Horizon</label>
+                                    </li>
+                                    {% for movie in lists.0 %}
+                                        <li class="text-left">
+                                            <a href="/movie?id={{ movie.imdbID }}">
+                                                <img src="{{ movie.poster }}" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                            </a>
+                                            <label>{{ movie.title }}</label>
+                                        </li>
 									{% endfor %}
 								</ul>
 							</div>
 							<div class="tab-pane" id="two">
 								<ul class="list-group">
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt2709768">
+                                            <img src="static/images/suicide_squad.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>Suicide Squad</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt0468569">
+                                            <img src="static/images/little_mermaid.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>The Little Mermaid</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt2709768">
+                                            <img src="static/images/the_dark_knight.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>The Dark Knight</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt0468569">
+                                            <img src="static/images/magnificent_seven.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>The Magnificent Seven</label>
+                                    </li>
+                                    <br>
+                                    <li class="text-left">
+                                        <a href="/movie?id=tt2709768">
+                                            <img src="static/images/deadpool.jpg" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                        </a>
+                                        <label>Deadpool</label>
+                                    </li>
+                                    <br>
 									{% for movie in lists.1 %}
-										<div class="container">
-                                            <a class="pull-left" href="/movie?id=tt0468569">
-                                                <img class="media-object" src="{{ movie.poster }}" style="width:65px; height:100px;"> <!-- move css -->
-                                            </a><br><br>
-                                            <div class="col-md-9">
-                                                {{ movie.title }}
-                                            </div>
-									    </div>
+                                        <li class="text-left">
+                                            <a href="/movie?id={{ movie.imdbID }}">
+                                                <img src="{{ movie.poster }}" class="thumb-img" style="width:75px; height:100px; padding-right:2%">
+                                            </a>
+                                            <label>{{ movie.title }}</label>
+                                        </li>
 									{% endfor %}
 								</ul>
 							</div>

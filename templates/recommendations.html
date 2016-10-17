@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{%  block title %} Home {% endblock %}
+
+{% block body %}
+
+    <!-- for testing purposes -->
+    <!-- newsfeed needs to be populated with following types
+         green (class="timeline-icon bg-success") = new releases
+         red (class="timeline-icon bg-secondary") = reviews and ratings
+         blue (class="timeline-icon bg-info") = recommendations
+         yellow ("timeline-icon bg-warning">) = popular
+
+         different when not logged in, which will only consist of new releases and random reviews -->
+    {# <div class="panel panel-default">#}
+        <div style="padding-left:2%">
+			<button type="button" class="btn btn-fresh text-uppercase"><a style="color:#fff">New releases</a></button>
+            <button type="button" class="btn btn-sunny text-uppercase"><a style="color:#fff">Popular</a></button>
+            <button type="button" class="btn btn-hot text-uppercase"><a style="color:#fff">Reviews and ratings</a></button>
+            <button type="button" class="btn btn-sky text-uppercase"><a href="/recommendations" style="color:#fff">Recommendations</a></button>
+        </div>
+        <div class="timeline-centered">
+            <!-- method in for loop -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-info"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt0468569">
+                                    <img class="media-object" src="static/images/the_dark_knight.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>You should watch this!</b></h4>
+                                    <p class="text-right" style="font-size:13px">By Anna</p>
+                                    <p>Hey watch this it is funny trust me when have I ever lied to you.</p>
+                                    <br>
+                                    <h4 class="media-heading">THE DARK KNIGHT</h4>
+                                    <p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham,
+                                       the caped crusader must come to terms with one of the greatest psychological tests
+                                       of his ability to fight injustice.</p>
+                                    <p><b>Genres:</b> Action | Crime | Drama | Thriller</p>
+                                    <br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 1hr </span></li>
+                                        <li>|</li>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsOne">
+                                                3 comments
+                                            </a>
+                                        </span>
+                                        <li>|</li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- comments -->
+                            <div id="commentsOne" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <ul class="commentList">
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart pull-right" data-toggle="tooltip" title="Unlike"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/men/94.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">This is seriously such a good movie.</p>
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#replyOne">
+                                                    <span class="sub-text">Reply</span>
+                                                </a>
+                                                <span class="date sub-text">|  yesterday</span>
+                                            </div>
+                                        </li>
+                                        <div id="replyOne" class="panel-collapse collapse">
+                                            <div class="detailBox" style="padding-left:10%">
+                                                <form class="form" role="form">
+                                                    <button class="btn btn-default pull-right">Add</button>
+                                                    <input class="form-control" style="width:89%" type="text" placeholder="Your comments" />
+                                                </form>
+                                            </div>
+                                        </div> <!-- collapsible comments -->
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/men/4.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">One of the best superhero movies, can rewatch it again and again and still impressed.</p>
+                                                <span class="sub-text">Reply</span>
+                                                <span class="date sub-text">|  yesterday</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/women/94.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">Joker was AMAZING best Joker ever.</p>
+                                                <span class="sub-text">Reply</span>
+                                                <span class="date sub-text">|  yesterday</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsible comments -->
+                        </div> <!-- post content -->
+                    </div>
+                </div>
+            </article> <!-- one post -->
+            <article class="timeline-entry"><br>
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon bg-info"></div> <!-- will change depending on type of post -->
+                    <div class="timeline-label">
+                        <!-- content to go here HARDCODED-->
+                        <div class="well">
+                            <div class="media">
+                                <a class="pull-left" href="/movie?id=tt0120630">
+                                    <img class="media-object" src="static/images/chicken_run.jpg" style="width:140px; height:230px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>Hey watch this NOW I mean it</b></h4>
+                                    <p class="text-right" style="font-size:13px">by Kayla</p>
+                                    <p>This is the best movie ever omg it is so great.</p>
+                                    <br>
+                                    <h4 class="media-heading">CHICKEN RUN</h4>
+                                    <p>When a bird "flies" into a chicken farm, the fellow chickens see him as an opportunity to escape their evil owners.</p>
+                                    <p><b>Genres:</b> Animation | Adventure | Comedy | Drama | Family</p>
+                                    <br>
+                                    <ul class="list-inline list-unstyled">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i> 3hr </span></li>
+                                        <li>|</li>
+                                        <span>
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsSix">
+                                                1 comment
+                                            </a>
+                                        </span>
+                                        <li>|</li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        </li>
+                                        <li>|</li>
+                                        <li>
+                                            <span><i class="fa fa-facebook-square"></i></span>
+                                            <span><i class="fa fa-twitter-square"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- comments -->
+                            <div id="commentsSix" class="panel-collapse collapse">
+                                <div class="detailBox">
+                                    <ul class="commentList">
+                                        <li>
+                                            <div class="glyphicon glyphicon-heart pull-right" data-toggle="tooltip" title="Unlike"></div>
+                                            <div class="commenterImage">
+                                                <img src="http://api.randomuser.me/portraits/men/45.jpg">
+                                            </div>
+                                            <div class="commentText">
+                                                <p class="">Are you serious</p>
+                                                <span class="sub-text">Reply</span>
+                                                <span class="date sub-text">|  yesterday</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form class="form" role="form">
+                                        <button class="btn btn-default pull-right">Add</button>
+                                        <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                                    </form>
+                                </div>
+                            </div> <!-- collapsible comments -->
+                        </div> <!-- post content -->
+                    </div>
+                </div>
+            </article> <!-- one post -->
+            <article class="timeline-entry begin">
+                <div class="timeline-entry-inner">
+                    <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
+                        <i class="entypo-flight"></i>
+                    </div>
+                </div>
+            </article>
+        </div> <!-- timeline -->
+    {# </div> <!-- panel -->#}
+
+{% endblock %}

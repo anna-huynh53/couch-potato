@@ -547,3 +547,8 @@ def updateLists(request):
     for movie in profile.watchedList.all():
         watchedList.append(movie)
         watchedList.sort()
+
+
+def recommendations(request):
+
+    return render(request, '../templates/recommendations.html')
