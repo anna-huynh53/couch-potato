@@ -1,3 +1,4 @@
+
 <!-- Base html from which other html templates inherit.
 	 Use this for persistent menu bar, panels etc. -->
 
@@ -36,7 +37,6 @@
 		attachSignin(document.getElementById('custom_button'));
 	});
 	};
-
 	function attachSignin(element) {
 		console.log(element.id);
 		auth2.attachClickHandler(element, {},
@@ -66,13 +66,11 @@
             'into Facebook.';
         }
     }
-
     function checkLoginState() {
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });
     }
-
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '1808543276057571',
@@ -81,13 +79,10 @@
             xfbml      : true,  // parse social plugins on this page
             version    : 'v2.5' // use graph api version 2.5
         });
-
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });
-
     };
-
     // Load the SDK asynchronously
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -96,7 +91,6 @@
         js.src="https://connect.facebook.net/en_US/all.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
 </script>
 
 <body>
@@ -452,7 +446,6 @@
 			overlay: 0.6,
 			closeButton: ".modal_close"
 		});
-
 		$(function() {
 			// calling login form
 			$("#login_form").click(function() {
@@ -460,7 +453,6 @@
 				$(".user_login").show();
 				return false;
 			});
-
 			// calling register form
 			$("#register_form").click(function() {
 				$(".social_login").hide();
@@ -468,7 +460,6 @@
 				$(".header_title").text('Register');
 				return false;
 			});
-
 			// going back to social forms
 			$(".back_btn").click(function() {
 				$(".user_login").hide();
@@ -507,6 +498,9 @@
                     <h4>Click for a random movie!</h4>
                     <br>
 					<div class="roulette_container">
+						<form>
+                     <input type="button" id="invisiButton" value="Movie Info" style="visibility:hidden;" onclick="window.location.href='http://127.0.0.1:8000/movie?id=tt1049413'" />
+                         </form>
                         <!-- function needed to generate random list of movies and find corresponding images -->
                         {# {% for movie in list %}#}
                         {#      <img src={{ movie.poster }} style="width:width:200px; height:300px">#}
@@ -543,19 +537,18 @@
             },
             stopCallback : function($stopElm) {
                 console.log('stop');
+                var buttonToShow = document.getElementById("invisiButton");
+                buttonToShow.style.visibility = "visible";
             }
         }
         $('div.roulette').roulette(option);
-
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-
         $(function() {
             $('.roulette').find('img').hover(function() {
                 console.log($(this).height());
             });
-
             var p = {
                 startCallback : function() {
                     $('#stopImageNumber').spinner('disable');
@@ -571,7 +564,6 @@
                     $('.stop').attr('disabled', 'true');
                 }
             }
-
             var rouletter = $('div.roulette');
             rouletter.roulette(p);
             $('.stop').click(function() {
@@ -585,22 +577,18 @@
             $('.start').click(function(){
                 rouletter.roulette('start');
             });
-
             var updateParamater = function() {
                 p['speed'] = Number($('.speed_param').eq(0).text());
                 p['duration'] = Number($('.duration_param').eq(0).text());
                 p['stopImageNumber'] = Number($('.stop_image_number_param').eq(0).text());
                 rouletter.roulette('option', p);
             }
-
             var updateSpeed = function(speed) {
                 $('.speed_param').text(speed);
             }
-
             var updateDuration = function(duration) {
                 $('.duration_param').text(duration);
             }
-
             $('#stopImageNumber').spinner({
                 spin: function( event, ui ) {
                     var imageNumber = ui.value;
@@ -620,7 +608,6 @@
             });
             $('#stopImageNumber').spinner('value', 0);
 	        updateStopImageNumber($('#stopImageNumber').spinner('value'));
-
             $('.image_sample').children().click(function(){
                 var stopImageNumber = $(this).attr('data-value');
                 $('#stopImageNumber').spinner('value', stopImageNumber);
