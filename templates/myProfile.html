@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <!-- Profile layout should be same for others as well excepting that others will have an
+    <!-- profile layout should be same for others as well excepting that others will have an
          'add friend' button (or 'remove' if already a friend) below the picture -->
     <div class="panel panel-default">
         <div class="panel-body">
@@ -40,7 +40,7 @@
         </div> <!-- panel content --->
     </div> <!-- panel -->
 
-    <!-- List of friends -->
+    <!-- list of friends -->
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
@@ -48,7 +48,9 @@
             </div>
             <!-- random people, only need the first one to actually link to something -->
             <div class="col-sm-2">
-                <img src="http://api.randomuser.me/portraits/men/62.jpg" data-toggle="tooltip" title="John Smith" class="img-responsive img-circle"/>
+                <a href="/chicken_nugget">
+                    <img src="http://api.randomuser.me/portraits/men/62.jpg" data-toggle="tooltip" title="John Smith" class="img-responsive img-circle"/>
+                </a>
             </div>
             <div class="col-sm-2">
                 <img src="http://api.randomuser.me/portraits/women/3.jpg" data-toggle="tooltip" title="Bread Face" class="img-responsive img-circle"/>
@@ -65,7 +67,7 @@
         </div> <!-- panel content -->
     </div> <!-- panel -->
 
-    <!-- Favourites/lists that are public -->
+    <!-- favourites/lists that are public -->
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
@@ -91,8 +93,6 @@
                                 </a><br><br>
                                 <!-- why is this container so wide -->
                                 <div class="col-md-9" style="width:480px">
-                                    <!-- only for other user's profile -->
-                                    <button type="button" class="btn btn-fresh text-uppercase pull-right"><a style="color:#fff">Add to my list</a></button>
                                     <h4>The Little Mermaid</h4>
                                 </div>
                             </div>
@@ -102,8 +102,6 @@
                                     <img class="media-object" src="static/images/the_secret_life_of_pets.jpg" style="width:65px; height:100px;"> <!-- move css -->
                                 </a><br><br>
                                 <div class="col-md-9" style="width:480px">
-                                    <!-- only for other user's profile -->
-                                    <button type="button" class="btn btn-sunny text-uppercase pull-right"><a style="color:#fff">Add to my list</a></button>
                                     <h4>The Secret Life of Pets</h4>
                                 </div>
                             </div>

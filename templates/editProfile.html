@@ -29,6 +29,8 @@
                                 background-image:url(http://robohash.org/sitsequiquia.png?size=120x120)"></div>
                                     <br>
                                     <span class="btn btn-link btn-file">Edit profile picture<input type="file" id="upload-img"></span>
+                                    <br><br>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#changeGenres">Favourite genres</button>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -95,15 +97,117 @@
                             <div class="col-md-12 lead">Recent activity<hr></div>
                         </div> <!-- row -->
                         <!-- list of reviews, max 10 -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                You recommended <b>Finding Nemo</b> to <b>chicken_nugget.</b>
+                                <a data-toggle="modal" data-target="#recommendModal">
+                                    <i class="glyphicon glyphicon-repeat pull-right" data-toggle="tooltip" title="View post"></i>
+                                </a>
+                                <div id="recommendModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog" style="width:700px">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="padding-up:2%">
+                                                <h2>Recommendation to chicken_nugget<a class="close" data-dismiss="modal">x</a></h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="media">
+                                                    <a class="pull-left" href="/movie?id=tt0468569">
+                                                        <img class="media-object" src="static/images/the_dark_knight.jpg" style="width:140px; height:230px">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading"><b>You should watch this!</b></h4>
+                                                        <p class="text-right" style="font-size:13px">By Anna</p>
+                                                        <p>Hey watch this it is funny trust me when have I ever lied to you.</p>
+                                                        <br>
+                                                        <h4 class="media-heading">THE DARK KNIGHT</h4>
+                                                        <p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham,
+                                                           the caped crusader must come to terms with one of the greatest psychological tests
+                                                           of his ability to fight injustice.</p>
+                                                        <p><b>Genres:</b> Action | Crime | Drama | Thriller</p>
+                                                        <br>
+                                                        <ul class="list-inline list-unstyled">
+                                                            <li><span><i class="glyphicon glyphicon-calendar"></i> 1hr </span></li>
+                                                            <li>|</li>
+                                                            <span>
+                                                                <i class="glyphicon glyphicon-comment"></i>
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsOne">
+                                                                    3 comments
+                                                                </a>
+                                                            </span>
+                                                            <li>|</li>
+                                                            <li>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                                <span class="glyphicon glyphicon-star"></span>
+                                                            </li>
+                                                            <li>|</li>
+                                                            <li>
+                                                                <span><i class="fa fa-facebook-square"></i></span>
+                                                                <span><i class="fa fa-twitter-square"></i></span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" data-dismiss="modal" class="btn btn-primary pull-right">OK!</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right" style="padding-right:2%">yesterday</div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                You added <b>Suicide Squad</b> to <b>Comedy</b> list.
+                                <a data-toggle="modal" data-target="#listModal">
+                                    <i class="glyphicon glyphicon-th-list pull-right" data-toggle="tooltip" title="View list"></i>
+                                </a>
+                                <div id="listModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog" >
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="padding-left:7%">
+                                                <h2>Comedy<a class="close" data-dismiss="modal">x</a></h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container">
+                                                    <a class="pull-left" href="/movie?id=tt0468569">
+                                                        <img class="media-object" src="static/images/little_mermaid.jpg" style="width:65px; height:100px;"> <!-- move css -->
+                                                    </a><br><br>
+                                                    <!-- why is this container so wide -->
+                                                    <div class="col-md-9" style="width:480px">
+                                                        <h4>The Little Mermaid</h4>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="container">
+                                                    <a class="pull-left" href="/movie?id=tt0468569">
+                                                        <img class="media-object" src="static/images/suicide_squad.jpg" style="width:65px; height:100px;"> <!-- move css -->
+                                                    </a><br><br>
+                                                    <div class="col-md-9" style="width:480px">
+                                                        <h4>Suicide Squad</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary pull-right" data-dismiss="modal">OK!</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- list modal -->
+                                <div class="pull-right" style="padding-right:2%">2 days ago</div>
+                            </div>
+                        </div>
+                        <br>
                         <!-- page numbers -->
                         <div class="container">
                             <ul class="pagination" >
                                 <li class="disabled"><a href="#">«</a></li>
                                 <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
                                 <li><a href="#">»</a></li>
                             </ul>
                         </div>
@@ -212,8 +316,13 @@
                                             <div class="panel-heading c-list">
                                                 <span class="title">Search</span>
                                                 <ul class="pull-right c-controls">
-                                                    <li><a href="#" class="hide-search" data-command="toggle-search" data-toggle="tooltip" data-placement="top" title="Toggle Search"><i class="fa fa-ellipsis-v"></i></a></li>
+                                                    <li><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#searchBar"><i class="fa fa-ellipsis-v"></i></a></li>
                                                 </ul>
+                                                <div id="searchBar" class="panel-collapse collapse">
+                                                    <form class="form" role="form">
+                                                        <input class="form-control" style="width:100%" type="text" placeholder="Username or name" />
+                                                    </form>
+                                                </div>
                                             </div>
                                             <div class="row" style="display: none;">
                                                 <div class="col-xs-12">
@@ -231,7 +340,9 @@
                                                         <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
                                                     </div>
                                                     <div class="col-xs-12 col-sm-9">
-                                                        <span class="name">Scott Stevens</span><br/>
+                                                        <span class="name">Scott Stevens</span>
+                                                        <br><br>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmRequest"><i class="glyphicon glyphicon-user"></i> Add user</button>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </li>
@@ -241,6 +352,8 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-9">
                                                         <span class="name">Seth Frazier</span><br/>
+                                                        <br>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmRequest"><i class="glyphicon glyphicon-user"></i> Add user</button>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </li>
@@ -250,6 +363,8 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-9">
                                                         <span class="name">Jean Myers</span><br/>
+                                                        <br>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmRequest"><i class="glyphicon glyphicon-user"></i> Add user</button>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </li>
@@ -259,6 +374,8 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-9">
                                                         <span class="name">Todd Shelton</span><br/>
+                                                        <br>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#confirmRequest"><i class="glyphicon glyphicon-user"></i> Add user</button>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </li>
@@ -275,34 +392,34 @@
                             {% for user in friends %}
                             <form method="post">
                             <li href="#" class="list-group-item text-left">
-                                <img class="img-thumbnail" src="http://bootdey.com/img/Content/user_1.jpg">
+                                <img class="img-thumbnail" src="http://api.randomuser.me/portraits/men/45.jpg">
                                 <label class="name">{{ user.first_name }} {{ user.last_name }}</label>
                                 <label class="pull-right">
-                                    <button class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></button>
-                                    <button value="{{ user.email }}" type="submit" class="btn btn-danger  btn-xs glyphicon glyphicon-trash" href="#" title="Delete" name="delete"></button>
-                                    <button class="btn btn-info  btn-xs glyphicon glyphicon glyphicon-comment" href="#" title="Send message"></button>
+                                    <a class="btn btn-success btn-xs glyphicon glyphicon-user" style="color:#fff" href="#" title="View profile"></a>
+                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-remove" style="color:#fff" href="#" title="Remove from friends"></a>
+                                    <a class="btn btn-info btn-xs glyphicon glyphicon glyphicon-film" style="color:#fff" href="#" title="Send recommendation"></a>
                                 </label>
                                 <div class="break"></div>
                             </li>
                             </form>
                             {% endfor %}
                             <li href="#" class="list-group-item text-left">
-                                <img class="img-thumbnail" src="http://bootdey.com/img/Content/user_1.jpg">
+                                <img class="img-thumbnail" src="http://api.randomuser.me/portraits/men/8.jpg">
                                 <label class="name">James Rodriguez</label>
                                 <label class="pull-right">
-                                    <a class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
-                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-trash" href="#" title="Delete"></a>
-                                    <a class="btn btn-info  btn-xs glyphicon glyphicon glyphicon-comment" href="#" title="Send message"></a>
+                                    <a class="btn btn-success btn-xs glyphicon glyphicon-user" style="color:#fff" href="#" title="View profile"></a>
+                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-remove" style="color:#fff" href="#" title="Remove from friends"></a>
+                                    <a class="btn btn-info btn-xs glyphicon glyphicon glyphicon-film" style="color:#fff" href="#" title="Send recommendation"></a>
                                 </label>
                                 <div class="break"></div>
                             </li>
                             <li href="#" class="list-group-item text-left">
-                                <img class="img-thumbnail" src="http://bootdey.com/img/Content/user_2.jpg">
+                                <img class="img-thumbnail" src="http://api.randomuser.me/portraits/women/94.jpg">
                                 <label class="name">Mariana pajon</label>
                                 <label class="pull-right">
-                                    <a class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
-                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-trash" href="#" title="Delete"></a>
-                                    <a class="btn btn-info  btn-xs glyphicon glyphicon glyphicon-comment" href="#" title="Send message"></a>
+                                    <a class="btn btn-success btn-xs glyphicon glyphicon-user" style="color:#fff" href="#" title="View profile"></a>
+                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-remove" style="color:#fff" href="#" title="Remove from friends"></a>
+                                    <a class="btn btn-info btn-xs glyphicon glyphicon glyphicon-film" style="color:#fff" href="#" title="Send recommendation"></a>
                                 </label>
                                 <div class="break"></div>
                             </li>
@@ -313,6 +430,168 @@
 
         </div> <!-- tab content -->
     </div> <!-- tabs -->
+
+    <!-- choosing favourite genre modal -->
+    <div id="changeGenres" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:500px">
+            <div class="modal-content">
+                <div class="modal-header" style="padding-left:7%">
+                    <h2>Select favourite genres!<a class="close" data-dismiss="modal">x</a></h2>
+                </div>
+                <!-- look at that hardcoding -->
+                <div class="modal-body">
+                    <div class="row" style="padding-bottom:2%">
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success ">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Comedy
+                            </label>
+                            <label class="btn btn-genre btn-danger active">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Comedy
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Horror
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Horror
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success ">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Adventure
+                            </label>
+                            <label class="btn btn-genre btn-danger active">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Adventure
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Action
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Action
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%">
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Family
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Family
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Drama
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Drama
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Sci-fi
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Sci-fi
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Fantasy
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Fantasy
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Romance
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Romance
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Crime
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Crime
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Mystery
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Mystery
+                            </label>
+                        </div>
+                        <div class="col-sm-3" data-toggle="buttons">
+                            <label class="btn btn-genre btn-success active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                <i class="fa fa-check"></i> Thriller
+                            </label>
+                            <label class="btn btn-genre btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <i class="fa fa-warning"></i> Thriller
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary pull-right">OK!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- confirm friend request modal -->
+    <div id="confirmRequest" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:500px">
+            <div class="modal-content">
+                <div class="modal-header" style="padding-left:7%">
+                    <h2>Add user as a friend?<a class="close" data-dismiss="modal">x</a></h2>
+                </div>
+                <div class="modal-body">
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary pull-left">No, I change my mind.</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary pull-right">Go ahead!</button>
+                </div>
+                <br>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- to upload a new profile picture -->
     <script>

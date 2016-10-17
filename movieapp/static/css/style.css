@@ -798,6 +798,22 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/*text toggle*/
+.btn-genre.active {
+	display: none;
+}
+.btn-genre span:nth-of-type(1)  {
+	display: none;
+}
+.btn-genre span:last-child  {
+	display: block;
+}
+.btn-genre.active  span:nth-of-type(1)  {
+	display: block;
+}
+.btn-genre.active span:last-child  {
+	display: none;
+}
 
 /*************************************/
 
@@ -988,7 +1004,6 @@ ul.c-controls li a:hover {
     font-size: 1.7em;
 }
 
-
 /*************************************/
 
 /*comments*/
@@ -1053,4 +1068,18 @@ ul.c-controls li a:hover {
 .actionBox {
     border-top:1px dotted #bbb;
     padding:10px;
+}
+
+/*************************************/
+
+/*rating*/
+
+ .animated {
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    transition: height 0.2s;
+}
+.stars {
+    font-size: 24px;
+    color: #d17581;
 }

@@ -48,7 +48,8 @@
 
         <div class="well well-sm" style="margin-top:20px;">
             <div style="display: inline-block; width: 20%; height: 100%; *display: inline; vertical-align: top;">
-                <img src="{{ movie.poster }}" alt="Poster" align="right" class="img-rounded" style="max-width: 100%; height: auto; vertical-align: top;" onload="getUrl()">
+                <img src="{{ movie.poster }}" alt="Poster" align="right" class="img-rounded" style="max-width: 100%; height: auto; vertical-align: top; onload="getUrl()">
+                <a class="btn btn-default" style="margin-top: 15px; width: 100%;" data-toggle="modal" data-target="#recommendModal"><i class="glyphicon glyphicon-film"></i> Recommend </a>
                 <button class="btn btn-default" id="toWatchBtn" onclick="addToWatch()" style="margin-top: 20px; width: 100%;">
                     + To Watch
                 </button>
@@ -87,11 +88,14 @@
         </div>
 
         <div class="well well-sm" style="margin-top:20px;">
+            <h3>Trailer</h3>
+            <hr>
             <iframe width="420" height="315" id="video" style="display: block; margin: auto" src="https://www.youtube.com/embed/XGSy3_Czz8k">
             </iframe>
+            <br>
         </div>
 
-        <div class="well well-sm" style="margin-top:20px;" >
+{#        <div class="well well-sm" style="margin-top:20px;" >#}
 {#            <div class="col-md-6">#}
 {#            <div class="well well-sm">#}
 {#                <div class="text-right">#}
@@ -115,31 +119,106 @@
 {#                </div>#}
 {#            </div>#}
 
-            <form>
-                <textarea class="form-control" rows="3" style="margin-right: 10px; margin-bottom: 10px">Comment...</textarea>
-                <btn type="submit" class="btn btn-success btn-green">
-                    Leave Review
-                </btn>
-                <div style="float: right;">
-                    <label style="font-weight: bold; margin-left: 20px">Rating: </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 1
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> 2
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> 3
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4"> 4
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5"> 5
-                    </label>
+        <div class="well well-sm" style="margin-top:20px;" >
+            <h3>Reviews and ratings</h3>
+            <hr>
+            <div class="well">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading"><b>It was good</b></h4>
+                        <p class="text-right" style="font-size:13px">By Josh</p>
+                        <p>I really like this show.</p>
+                        <br>
+                        <ul class="list-inline list-unstyled">
+                            <li><span><i class="glyphicon glyphicon-calendar"></i> 6hr </span></li>
+                            <li>|</li>
+                            <span>
+                                <i class="glyphicon glyphicon-comment"></i>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-s" href="#commentsTwo">
+                                    2 comments
+                                </a>
+                            </span>
+                            <li>|</li>
+                            <li>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            </li>
+                            <li>|</li>
+                            <li>
+                                <span><i class="fa fa-facebook-square"></i></span>
+                                <span><i class="fa fa-twitter-square"></i></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                
-            </form>
+                <!-- comments -->
+                <div id="commentsTwo" class="panel-collapse collapse">
+                    <div class="detailBox">
+                        <ul class="commentList">
+                            <li>
+                                <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                <div class="commenterImage">
+                                    <img src="http://api.randomuser.me/portraits/women/33.jpg">
+                                </div>
+                                <div class="commentText">
+                                    <p class="">Wow I really like boats they are the greatest.</p>
+                                    <span class="sub-text">Reply</span>
+                                    <span class="date sub-text">|  1/10/16</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="glyphicon glyphicon-heart-empty pull-right" data-toggle="tooltip" title="Like"></div>
+                                <div class="commenterImage">
+                                    <img src="http://api.randomuser.me/portraits/women/2.jpg">
+                                </div>
+                                <div class="commentText">
+                                    <p class="">The water looks cold I don't like cold water cause it is just too cold.</p>
+                                    <span class="sub-text">Reply</span>
+                                    <span class="date sub-text">|  27/8/16</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <br>
+                        <form class="form" role="form">
+                            <button class="btn btn-default pull-right">Add</button>
+                            <input class="form-control" style="width:90%" type="text" placeholder="Your comments" />
+                        </form>
+                    </div>
+                </div> <!-- collapsible comments -->
+            </div>
+            <div class="btn btn-sunny" data-toggle="collapse" href="#review">Leave Review</div>
+            <br>
+            <div id="review" class="panel-collapse collapse">
+                <br>
+                <form>
+                    <textarea class="form-control" rows="6" style="margin-right: 10px; margin-bottom: 10px">Comment...</textarea>
+                    <br>
+                    <btn type="submit" class="btn btn-success btn-green">
+                        Leave Review
+                    </btn>
+                    <div style="float: right;">
+                        <label style="font-weight: bold; margin-left: 20px">Rating: </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 1
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> 2
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> 3
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4"> 4
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5"> 5
+                        </label>
+                    </div>
+                </form>
+            </div> <!-- review modal -->
         </div>
 
 {#    </div>#}

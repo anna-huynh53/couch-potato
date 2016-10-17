@@ -556,3 +556,7 @@ def recommendations(request):
 
     return render(request, '../templates/recommendations.html')
 
+def chicken_nugget(request):
+
+    return render(request, '../templates/chicken_nugget.html')
+

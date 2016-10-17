@@ -500,10 +500,12 @@
     <div id="roulette" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="padding-left:7%">
+                <div class="modal-header" style="padding-left:7%; text-align:center">
                     <h2>Movie Roulette<a class="close" data-dismiss="modal">x</a></h2>
                 </div>
                 <div class="modal-body" style="text-align:center">
+                    <h4>Click for a random movie!</h4>
+                    <br>
 					<div class="roulette_container">
                         <!-- function needed to generate random list of movies and find corresponding images -->
                         {# {% for movie in list %}#}
@@ -520,7 +522,7 @@
 						</div>
 					</div>
 					<br>
-					<button class="btn btn-large btn-primary start"> Give me a random movie </button>
+                    <img src="static/images/random_button.png" class="btn-large btn-primary start" style="width:30%">
                 <div class="modal-footer">
 
                 </div>

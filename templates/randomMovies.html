@@ -10,10 +10,152 @@
         <button type="button" class="btn btn-hot text-uppercase"><a style="color:#fff">Highest rated</a></button>
         <button type="button" class="btn btn-sky text-uppercase"><a style="color:#fff">Recommendations</a></button>
         <button type="button" class="btn btn-sunny text-uppercase"><a style="color:#fff">Popular</a></button>
-        <button type="button" class="btn btn-purple text-uppercase"><a style="color:#fff">Genre</a></button>
+        <button type="button" class="btn btn-purple text-uppercase" data-toggle="modal" data-target="#genres"><a style="color:#fff">Genre</a></button>
         <!-- modal where user can search a genre? After choosing however many and clicking ok, list of active
              tags beneath -->
+        <div id="genres" class="modal fade" role="dialog">
+            <div class="modal-dialog" style="width:500px">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding-left:7%">
+                        <h2>Choose genres!<a class="close" data-dismiss="modal">x</a></h2>
+                    </div>
+                    <!-- look at that hardcoding -->
+                    <div class="modal-body">
+                        <div class="row" style="padding-bottom:2%">
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Comedy
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Comedy
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Horror
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Horror
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Adventure
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Adventure
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Action
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Action
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-bottom:2%">
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Family
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Family
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Drama
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Drama
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Sci-fi
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Sci-fi
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Fantasy
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Fantasy
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Romance
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Romance
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Crime
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Crime
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Mystery
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Mystery
+                                </label>
+                            </div>
+                            <div class="col-sm-3" data-toggle="buttons">
+                                <label class="btn btn-genre btn-success active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <i class="fa fa-check"></i> Thriller
+                                </label>
+                                <label class="btn btn-genre btn-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <i class="fa fa-warning"></i> Thriller
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" data-dismiss="modal" class="btn btn-primary pull-right">OK!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
     {% for movie in query %}
         <div class="col-sm-6 col-lg-3 col-md-4">
             <div class="gal-detail thumb" style="width:150px; height:280px">

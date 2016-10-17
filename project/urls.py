@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^lists$', views.lists, name='lists'),
     url(r'^friends$', views.friends, name='friends'),
     url(r'^recommendations$', views.recommendations, name='recommendations'),
+    url(r'^chicken_nugget$', views.chicken_nugget, name='chicken_nugget'),
 ]
