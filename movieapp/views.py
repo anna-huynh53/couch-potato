@@ -305,11 +305,35 @@ def myProfile(request):
 
 def editProfile(request):
 
+    error = False
+    if request.session.get('loggedIn'):
+        currentUser = User.objects.get(email=request.session.get('email'))
+        if request.method == 'POST':
+            if request.POST.get("delete"):
+                try:
+                    to_delete = User.objects.get(email=request.POST.get('Unfollow'))
+                    currentUser.profile.friends.remove(to_delete)
+                    currentUser.save()
+                except (KeyError, User.DoesNotExist):
+                    print("")
+            else:
+                try:
+                    to_add = User.objects.get(email=request.POST['add_friend'])
+                    currentUser.profile.friends.add(to_add)
+                    currentUser.save()
+                except (KeyError, User.DoesNotExist):
+                    error = True
+    try:
+        userFriends = currentUser.profile.friends.all()
+    except:
+        userFriends = [User(username="Mike", password="mike", email="mike@email.com", first_name="Mike", last_name="Tyson")]
+    return render(request, '../templates/editProfile.html', {"friends": userFriends, "error": error})
+
     return render(request, '../templates/editProfile.html')
 
 def sync_genres():
 
-   '''url = "https://api.themoviedb.org/3/genre/movie/list?api_key=cc4b67c52acb514bdf4931f7cedfd12b&language=en-US"
+    url = "https://api.themoviedb.org/3/genre/movie/list?api_key=cc4b67c52acb514bdf4931f7cedfd12b&language=en-US"
 
     payload = "{}"
     headers = {'content-type': 'application/json'}
@@ -323,8 +347,6 @@ def sync_genres():
         genre = Genre(name=item['name'], tmdbID=str(item['id']))
         genre.save()
 
-    for item in Genre.objects.all():
-        Genre.delete(item)'''
 
 def randomMovies(request):
 

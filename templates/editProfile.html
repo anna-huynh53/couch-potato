@@ -272,6 +272,19 @@
                     <br><br>
                     <div class="panel-body">
                         <ul class="list-group">
+
+                            {% for user in friends %}
+                            <li href="#" class="list-group-item text-left">
+                                <img class="img-thumbnail" src="http://bootdey.com/img/Content/user_1.jpg">
+                                <label class="name">{{ user.first_name }} {{ user.last_name }}</label>
+                                <label class="pull-right">
+                                    <a class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
+                                    <a class="btn btn-danger  btn-xs glyphicon glyphicon-trash" href="#" title="Delete"></a>
+                                    <a class="btn btn-info  btn-xs glyphicon glyphicon glyphicon-comment" href="#" title="Send message"></a>
+                                </label>
+                                <div class="break"></div>
+                            </li>
+                            {% endfor %}
                             <li href="#" class="list-group-item text-left">
                                 <img class="img-thumbnail" src="http://bootdey.com/img/Content/user_1.jpg">
                                 <label class="name">James Rodriguez</label>
