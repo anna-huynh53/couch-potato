@@ -110,11 +110,10 @@
 							 when logged in, 'my account' should appear as another option -->
 						<div class="options collapse navbar-collapse">
 							<ul class="nav navbar-nav menu1">
-
 								<li><a href="/randomMovies">Movies</a></li>
 								<li><a href="/randomTVShows">TV Shows</a></li>
 								<li><a href="#movieRoulette" data-toggle="modal" data-target="#roulette">Movie Roulette</a></li>
-								{% if loggedIn == True %}
+								{% if loggedIn == False %}
 									<li>
 										<a class="dropdown-toggle" data-toggle="dropdown">My Account</a>
 										<ul class="dropdown-menu" role="menu">
