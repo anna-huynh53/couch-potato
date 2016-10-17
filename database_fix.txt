@@ -1,0 +1,10 @@
+To fix database error:
+	delete db.sqlite3 file
+	delete movieapp/migrations folder
+	run command: python manage.py makemigrations
+	>> python manage.py migrate
+	>> python manage.py makemigrations movieapp
+	>> python manage.py migrate
+
+This should fix it, else send me a screenshot please.
+Thanks
