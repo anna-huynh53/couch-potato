@@ -450,19 +450,23 @@
                 </div>
                 <div class="modal-body" style="text-align:center">
 					<div class="roulette_container">
+                           <form>
+                     <input type="button" value="Movie Info" onclick="window.location.href='http://127.0.0.1:8000/movie?id=tt1049413'" />
+                          </form>
+                            <link href="static/css/base.css" rel='stylesheet' type='text/css'/>
+
                         <!-- function needed to generate random list of movies and find corresponding images -->
                         {# {% for movie in list %}#}
                         {#      <img src={{ movie.poster }} style="width:width:200px; height:300px">#}
                         {# {% endfor %}#}
 						<div class="roulette" style="display:none;">
-                            <img class="roulette-img" src="static/images/little_mermaid.jpg">
+                            <img class="roulette-img"src="static/images/finding_nemo.jpg">
 							<img class="roulette-img"src="static/images/up.jpg">
 							<img class="roulette-img"src="static/images/incredibles.jpg">
 							<img class="roulette-img"src="static/images/snow_white.jpg">
                             <img class="roulette-img"src="static/images/cinderella.jpg">
                             <img class="roulette-img"src="static/images/brave.jpg">
                             <img class="roulette-img"src="static/images/tangled.jpg">
-							<img class="roulette-img"src="static/images/finding_nemo.jpg">
 						</div>
 					</div>
                     <br>
@@ -574,6 +578,8 @@
             });
         });
     </script>
+
+
 
 </body>
 </html>
