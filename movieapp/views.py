@@ -141,7 +141,7 @@ def results(request):
             for item in raw_items:
                 movies.append(Movie(item['title'], item['release_date'], item['id'], item['poster_path']))
 
-            return render(request, '../templates/movieResults_genre.html', {"query": movies})
+            return render(request, '../templates/movieResults_genre.html', {"query": movies, "searchTyped": movie_query})
 
         #search by movie title
         else:
@@ -164,7 +164,7 @@ def results(request):
                 movies.append(Movie(item["Title"], item["Year"], item["imdbID"], item["Poster"]))
 
         # TODO rename query
-        return render(request, '../templates/movieResults.html', {"query": movies})
+        return render(request, '../templates/movieResults.html', {"query": movies, "searchTyped": movie_query})
 
 
 def movie(request):
@@ -233,6 +233,8 @@ def movie(request):
 
             if request.POST['listAdd'] == 'watch':
                 print("watch")
+
+
                 return render(request, '../templates/movie.html', {"movie": movie})
 
             else:
