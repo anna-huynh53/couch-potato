@@ -233,9 +233,19 @@ a.btn_red {
     font-size: 16px;
     color: #777;
 }
-.social_login .social_box:hover {
+.social_login .fb:hover {
     background: #E4E4E2;
 }
+
+.social_login .google:hover {
+    background: #E4E4E2;
+    cursor: pointer;
+}
+
+#customBtn {
+    white-space: nowrap;
+}
+
 .centeredText {
     text-align: center;
     margin: 20px 0;
