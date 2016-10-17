@@ -440,7 +440,7 @@
     <script src="static/js/roulette.min.js"></script>
 
 
-    <div id="roulette" class="modal fade" role="dialog">
+     <div id="roulette" class="modal fade" role="dialog">
        
         <div class="modal-dialog">
             <link href="static/css/base.css" rel='stylesheet' type='text/css'/>
@@ -449,28 +449,31 @@
                     <h2>Movie Roulette<a class="close" data-dismiss="modal">x</a></h2>
                 </div>
                 <div class="modal-body" style="text-align:center">
-					<div class="roulette_container">
+                    <div class="roulette_container">
                            <form>
-                     <input type="button" value="Movie Info" onclick="window.location.href='http://127.0.0.1:8000/movie?id=tt1049413'" />
+                     <input type="button" id="invisiButton" value="Movie Info" style="visibility:hidden;" onclick="window.location.href='http://127.0.0.1:8000/movie?id=tt1049413'" />
                           </form>
+
                             <link href="static/css/base.css" rel='stylesheet' type='text/css'/>
+                 
 
                         <!-- function needed to generate random list of movies and find corresponding images -->
                         {# {% for movie in list %}#}
                         {#      <img src={{ movie.poster }} style="width:width:200px; height:300px">#}
                         {# {% endfor %}#}
-						<div class="roulette" style="display:none;">
+                        <div class="roulette" style="display:none;">
+
                             <img class="roulette-img"src="static/images/finding_nemo.jpg">
-							<img class="roulette-img"src="static/images/up.jpg">
-							<img class="roulette-img"src="static/images/incredibles.jpg">
-							<img class="roulette-img"src="static/images/snow_white.jpg">
+                            <img class="roulette-img"src="static/images/up.jpg">
+                            <img class="roulette-img"src="static/images/incredibles.jpg">
+                            <img class="roulette-img"src="static/images/snow_white.jpg">
                             <img class="roulette-img"src="static/images/cinderella.jpg">
                             <img class="roulette-img"src="static/images/brave.jpg">
                             <img class="roulette-img"src="static/images/tangled.jpg">
-						</div>
-					</div>
+                        </div>
+                    </div>
                     <br>
-					<button class="btn btn-large btn-primary start"> Give me a random movie </button>
+                    <button class="btn btn-large btn-primary start"> Give me a random movie </button>
                 <div class="modal-footer">
                     <p> OCTOBER THEME : DISNEY<p>
 
@@ -480,7 +483,7 @@
         </div>
     </div>
 
-    <script>
+   <script type="text/javascript">
         var option = {
             speed : 15,
             duration : 3,
@@ -493,19 +496,18 @@
             },
             stopCallback : function($stopElm) {
                 console.log('stop');
+                var buttonToShow = document.getElementById("invisiButton");
+                buttonToShow.style.visibility = "visible";
             }
         }
         $('div.roulette').roulette(option);
-
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
         $(function() {
             $('.roulette').find('img').hover(function() {
                 console.log($(this).height());
             });
-
             var p = {
                 startCallback : function() {
                     $('#stopImageNumber').spinner('disable');
@@ -521,7 +523,6 @@
                     $('.stop').attr('disabled', 'true');
                 }
             }
-
             var rouletter = $('div.roulette');
             rouletter.roulette(p);
             $('.stop').click(function() {
@@ -535,22 +536,19 @@
             $('.start').click(function(){
                 rouletter.roulette('start');
             });
-
             var updateParamater = function() {
                 p['speed'] = Number($('.speed_param').eq(0).text());
                 p['duration'] = Number($('.duration_param').eq(0).text());
                 p['stopImageNumber'] = Number($('.stop_image_number_param').eq(0).text());
                 rouletter.roulette('option', p);
             }
-
             var updateSpeed = function(speed) {
                 $('.speed_param').text(speed);
             }
-
             var updateDuration = function(duration) {
                 $('.duration_param').text(duration);
             }
-
+         
             $('#stopImageNumber').spinner({
                 spin: function( event, ui ) {
                     var imageNumber = ui.value;
@@ -565,20 +563,24 @@
                         updateStopImageNumber(4);
                         return false;
                     }
-                    updateStopImageNumber(imageNumber);
+                    updateStopImageNumber(imageNumber);            
                 }
             });
-            $('#stopImageNumber').spinner('value', 0);
-	        updateStopImageNumber($('#stopImageNumber').spinner('value'));
 
+  
+
+            $('#stopImageNumber').spinner('value', 0);
+            updateStopImageNumber($('#stopImageNumber').spinner('value'));
             $('.image_sample').children().click(function(){
                 var stopImageNumber = $(this).attr('data-value');
                 $('#stopImageNumber').spinner('value', stopImageNumber);
                 updateStopImageNumber(stopImageNumber);
+
+                
+         
             });
         });
     </script>
-
 
 
 </body>
