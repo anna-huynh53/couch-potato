@@ -311,25 +311,17 @@ def editProfile(request):
         if request.method == 'POST':
             if request.POST.get("delete"):
                 try:
-                    to_delete = User.objects.get(email=request.POST.get('Unfollow'))
+                    to_delete = User.objects.get(email=request.POST.get('delete'))
                     currentUser.profile.friends.remove(to_delete)
                     currentUser.save()
                 except (KeyError, User.DoesNotExist):
                     print("")
-            else:
-                try:
-                    to_add = User.objects.get(email=request.POST['add_friend'])
-                    currentUser.profile.friends.add(to_add)
-                    currentUser.save()
-                except (KeyError, User.DoesNotExist):
-                    error = True
     try:
         userFriends = currentUser.profile.friends.all()
     except:
         userFriends = [User(username="Mike", password="mike", email="mike@email.com", first_name="Mike", last_name="Tyson")]
     return render(request, '../templates/editProfile.html', {"friends": userFriends, "error": error})
 
-    return render(request, '../templates/editProfile.html')
 
 def sync_genres():
 
