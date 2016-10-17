@@ -7,7 +7,11 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-12 lead">My Lists<hr></div>
+                <div class="col-md-12 lead">
+                    My Lists
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addLists"><i class="glyphicon glyphicon-plus"></i> Add lists</button>
+                    <hr>
+                </div>
             </div>
             <!-- lists of lists -->
             <div class="col-sm-3">
@@ -17,24 +21,102 @@
                 <br><br>
             </div>
             <div class="col-sm-3">
-                <img class="media-object" src="static/images/little_mermaid.jpg" style="width:120px; height:180px">
+                <img class="media-object" src="static/images/suicide_squad.jpg" style="width:120px; height:180px">
                 <br>
                 <button type="button" class="btn btn-hot text-uppercase" data-toggle="modal" data-target="#listOne">To Watch</button>
                 <br><br>
             </div>
             <div class="col-sm-3">
-                <img class="media-object" src="static/images/little_mermaid.jpg" style="width:120px; height:180px">
+                <img class="media-object" src="static/images/titanic.jpg" style="width:120px; height:180px">
                 <br>
                 <button type="button" class="btn btn-fresh text-uppercase" data-toggle="modal" data-target="#listOne">For laughs</button>
                 <br><br>
             </div>
             <div class="col-sm-3">
-                <img class="media-object" src="static/images/little_mermaid.jpg" style="width:120px; height:180px">
+                <img class="media-object" src="static/images/chicken_run.jpg" style="width:120px; height:180px">
                 <br>
                 <button type="button" class="btn btn-sunny text-uppercase" data-toggle="modal" data-target="#listOne">Chicken themed</button>
                 <br><br>
             </div>
         </div> <!-- panel content -->
     </div> <!-- panel -->
+
+    <!-- add lists -->
+    <div id="addLists" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:600px">
+            <div class="modal-content">
+                <div class="modal-header" style="padding-left:7%">
+                    <h2>Add a new list!<a class="close" data-dismiss="modal">x</a></h2>
+                </div>
+                <div class="modal-body" style="padding-left:7%">
+                    <form>
+                        <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="Enter a name for your list" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Things for your list</label>
+                                <input type="text" class="form-control" placeholder="Enter a name of a movie/show to add" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="">Select colour</label>
+                                <div class="dropdown">
+                                    <button class="btn _select_color dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Green<span class="caret _right"></span>
+                                    <span _text_display="Green" class="color green"></span></button>
+                                    <ul class="dropdown-menu _select_color_drop" aria-labelledby="dropdownMenu1">
+                                        <li><span _text_display="Green" class="color green"></span></li>
+                                        <li><span _text_display="Red" class="color red"></span></li>
+                                        <li><span _text_display="Yellow" class="color yellow"></span></li>
+                                        <li><span _text_display="Brown" class="color brown"></span></li>
+                                        <li><span _text_display="Orange" class="color orange"></span></li>
+                                        <li><span _text_display="Pink" class="color pink"></span></li>
+                                        <li><span _text_display="Silver" class="color silver"></span></li>
+                                        <li><span _text_display="Bule" class="color blue"></span></li>
+                                        <li><span _text_display="TEAL" class="color TEAL"></span></li>
+                                        <li><span _text_display="NAVY" class="color NAVY"></span></li>
+                                        <li><span _text_display="PURPLE" class="color PURPLE"></span></li>
+                                        <li><span _text_display="OLIVE" class="color OLIVE"></span></li>
+                                        <li><span _text_display="LIME" class="color LIME"></span></li>
+                                        <input type="hidden" name="_color" value="Green">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal"><i class="glyphicon glyphicon-floppy-disk"></i> Make new list!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- colour picker -->
+    <script>
+        _colors=$('._select_color_drop li');
+        for (var i = _colors.length - 1; i >= 0; i--) {
+            $(_colors[i]).click(function(){
+                var color_text = $(this).find('span').attr('_text_display');
+                var elemnt = $(this).closest('._select_color_drop').prev();
+                elemnt.find('span.color').remove();
+                $(this).find('span').clone().appendTo(elemnt);
+                var contents = $(elemnt).contents();
+                if (contents.length > 0) {
+                    if (contents.get(0).nodeType == Node.TEXT_NODE) {
+                        $(elemnt).html(color_text).append(contents.slice(1));
+                    }
+                }
+                if($('[name=_color]').val() == undefined){
+                    elemnt.next().append("<input type='hidden' name='_color' value='"+color_text+"'>");
+                }else{
+                    $('[name=_color]').val(color_text);
+                }
+
+            })
+        };
+    </script>
 
 {% endblock %}

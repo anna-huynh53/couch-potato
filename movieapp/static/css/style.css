@@ -1073,7 +1073,6 @@ ul.c-controls li a:hover {
 /*************************************/
 
 /*rating*/
-
  .animated {
     -webkit-transition: height 0.2s;
     -moz-transition: height 0.2s;
@@ -1083,3 +1082,72 @@ ul.c-controls li a:hover {
     font-size: 24px;
     color: #d17581;
 }
+
+/*************************************/
+
+/*pick colour*/
+body{margin-top:20px;}
+._select_color{
+    font-size: 20px;
+    padding: 10px 12px;
+    font-weight: 300;
+    line-height: 28px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    -webkit-appearance: none;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+        text-align: left;
+    background-image: none;
+    color: #796652;
+    background: white;
+}
+._select_color_drop {
+    margin: 0;
+    padding: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    top: 99%;
+    border-top: 0;
+    width: 100%;
+}
+._select_color_drop > li {
+    display: inline-block;
+    padding: 7px;
+    border-right: 1px solid rgba(192, 192, 192, 0.55);
+    cursor: pointer;
+    float: left;
+}
+._select_color_drop > li > .color,.btn > span.color{
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    float: left;
+}
+.btn > span.color{margin-right:10px}
+.btn .caret{
+    float: right;
+    border-top: 7px solid;
+    font-size: 28px;
+    padding-top: 5px;
+    vertical-align: middle;
+    position: absolute;
+    right: 20px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    top: 20px;
+}
+._select_color_drop > li > .red ,.btn._select_color > span.red{background-color: red;}
+._select_color_drop > li > .green ,.btn._select_color > span.green{background-color: green;}
+._select_color_drop > li > .yellow ,.btn._select_color > span.yellow{background-color: yellow;}
+._select_color_drop > li > .brown ,.btn._select_color > span.brown{background-color: brown;}
+._select_color_drop > li > .orange ,.btn._select_color > span.orange{background-color: orange;}
+._select_color_drop > li > .pink ,.btn._select_color > span.pink{background-color: pink;}
+._select_color_drop > li > .silver ,.btn._select_color > span.silver{background-color: silver;}
+._select_color_drop > li > .blue ,.btn._select_color > span.blue{background-color: blue;}
+._select_color_drop > li > .TEAL ,.btn._select_color > span.TEAL{background-color: #008080;}
+._select_color_drop > li > .NAVY ,.btn._select_color > span.NAVY{background-color: #000080;}
+._select_color_drop > li > .PURPLE ,.btn._select_color > span.PURPLE{background-color: #800080;}
+._select_color_drop > li > .OLIVE ,.btn._select_color > span.OLIVE{background-color: #808000;}
+._select_color_drop > li > .LIME ,.btn._select_color > span.LIME{background-color: #00FF00;}
